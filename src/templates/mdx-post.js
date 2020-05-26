@@ -10,9 +10,11 @@ import Layout from "../components/layout"
 const shortcodes = { Link, YouTube }
 
 export default function PageTemplate({ data: { mdx } }) {
+  const { date, title, image, imageAlt } = mdx.frontmatter
   return (
     <Layout>
-      <h1>{mdx.frontmatter.title}</h1>
+      {image && <img src={image.publicURL} alt={imageAlt} />}
+      <h1>{title}</h1>
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
@@ -26,6 +28,11 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
+        image {
+          publicURL
+        }
+        imageAlt
+        date
       }
     }
   }
