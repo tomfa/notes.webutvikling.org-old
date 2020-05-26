@@ -10,7 +10,7 @@ const getRelativeFolder = node => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  const blogPostTypes = ["Mdx", "MarkdownRemark"]
+  const blogPostTypes = ["Mdx"]
   if (blogPostTypes.includes(node.internal.type)) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
@@ -32,17 +32,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
     query {
-      allMarkdownRemark(
-        filter: { fields: { relativeFolder: { in: ["pages", "posts"] } } }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-          }
-        }
-      }
       allMdx(
         filter: { fields: { relativeFolder: { in: ["pages", "posts"] } } }
       ) {
@@ -56,16 +45,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(`./src/templates/blog-post.js`),
-      context: {
-        slug: node.fields.slug,
-      },
-    })
-  })
 
   result.data.allMdx.edges.forEach(({ node }) => {
     createPage({

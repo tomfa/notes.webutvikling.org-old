@@ -10,8 +10,8 @@ export default function Home({ data }) {
     <Layout>
       <div>
         <MetaTags />
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        <h4>{data.allMdx.totalCount} Posts</h4>
+        {data.allMdx.edges.map(({ node }) => (
           <div key={node.id}>
             <Link to={node.fields.slug}>
               <h3
@@ -38,11 +38,10 @@ export default function Home({ data }) {
 }
 export const query = graphql`
   query {
-    allMarkdownRemark(filter: { fields: { relativeFolder: { eq: "posts" } } }) {
+    allMdx(filter: { fields: { relativeFolder: { in: ["pages", "posts"] } } }) {
       totalCount
       edges {
         node {
-          id
           fields {
             slug
           }
