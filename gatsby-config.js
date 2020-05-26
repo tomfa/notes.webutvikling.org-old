@@ -12,10 +12,20 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    "gatsby-plugin-sharp",
+    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
       },
     },
     `gatsby-plugin-emotion`,
