@@ -32,9 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
     query {
-      allMdx(
-        filter: { fields: { relativeFolder: { in: ["pages", "posts"] } } }
-      ) {
+      allMdx(filter: { fields: { relativeFolder: { regex: "/posts*/" } } }) {
         edges {
           node {
             fields {

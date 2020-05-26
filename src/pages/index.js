@@ -1,17 +1,20 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 import { MetaTags } from "../components/MetaTags"
+import { usePostQuery } from "../hooks/use-posts"
 
-export default function Home({ data }) {
+export default function Home() {
+  const data = usePostQuery()
+
   return (
     <Layout>
       <div>
         <MetaTags />
-        <h4>{data.allMdx.totalCount} Posts</h4>
-        {data.allMdx.edges.map(({ node }) => (
+        <h4>{data.totalCount} Posts</h4>
+        {data.edges.map(({ node }) => (
           <div key={node.id}>
             <Link to={node.fields.slug}>
               <h3
@@ -36,22 +39,3 @@ export default function Home({ data }) {
     </Layout>
   )
 }
-export const query = graphql`
-  query {
-    allMdx(filter: { fields: { relativeFolder: { in: ["pages", "posts"] } } }) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-          }
-          excerpt
-        }
-      }
-    }
-  }
-`
