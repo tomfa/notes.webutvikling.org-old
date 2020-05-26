@@ -33,6 +33,7 @@
     "react-helmet": "^6.0.0",
     "react-typography": "^0.16.19",
     "react-youtube": "^7.11.2",
+    "styled-components": "^5.1.1",
     "typography": "^0.16.19",
     "typography-theme-kirkham": "^0.16.19"
   },
