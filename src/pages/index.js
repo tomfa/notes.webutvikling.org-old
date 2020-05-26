@@ -38,7 +38,7 @@ export default function Home({ data }) {
 }
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMarkdownRemark(filter: { fields: { relativeFolder: { eq: "posts" } } }) {
       totalCount
       edges {
         node {
