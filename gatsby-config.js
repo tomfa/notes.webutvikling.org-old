@@ -12,6 +12,7 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    `gatsby-plugin-mdx`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,
     {
