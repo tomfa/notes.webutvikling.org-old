@@ -1,5 +1,12 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { slash } = require(`gatsby-core-utils`)
+
+const getRelativeFolder = node => {
+  const absolutePath = node.fileAbsolutePath
+  const parsedPath = path.parse(absolutePath)
+  return slash(path.relative("./src", parsedPath.dir))
+}
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -9,6 +16,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: `slug`,
       value: slug,
+    })
+
+    const relativeFolder = getRelativeFolder(node)
+    createNodeField({
+      node,
+      name: `relativeFolder`,
+      value: relativeFolder,
     })
   }
 }
