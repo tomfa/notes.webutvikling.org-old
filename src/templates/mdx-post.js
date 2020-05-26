@@ -6,15 +6,14 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
+import PostHero from "../components/PostHero"
 
 const shortcodes = { Link, YouTube }
 
 export default function PageTemplate({ data: { mdx } }) {
-  const { date, title, image, imageAlt } = mdx.frontmatter
   return (
     <Layout>
-      {image && <img src={image.publicURL} alt={imageAlt} />}
-      <h1>{title}</h1>
+      <PostHero {...mdx.frontmatter} />
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
@@ -32,7 +31,7 @@ export const pageQuery = graphql`
           publicURL
         }
         imageAlt
-        date
+        date(formatString: "DD MMMM, YYYY")
       }
     }
   }
