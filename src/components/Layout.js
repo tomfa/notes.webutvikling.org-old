@@ -1,25 +1,26 @@
 import React from "react"
-import { useStaticQuery, Link, graphql } from "gatsby"
+import styled from "styled-components"
+
+import { Header } from "./header"
+import { Footer } from "./footer"
+import { Navigation } from "./navigation"
+
+const Main = styled.main`
+  width: 100%;
+`
+const SiteWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 40rem;
+`
 
 export default function Layout({ children }) {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
   return (
-    <div>
-      <Link to={`/`}>
-        <h3>{data.site.siteMetadata.title}</h3>
-      </Link>
-      <Link to={`/about/`}>About</Link>
+    <SiteWrapper>
+      <Header>
+        <Navigation />
+      </Header>
       {children}
-    </div>
+      <Footer />
+    </SiteWrapper>
   )
 }
