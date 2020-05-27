@@ -1,5 +1,8 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const {
+  createFilePath,
+  createRemoteFileNode,
+} = require(`gatsby-source-filesystem`)
 const { slash } = require(`gatsby-core-utils`)
 
 const getRelativeFolder = node => {
@@ -8,8 +11,15 @@ const getRelativeFolder = node => {
   return slash(path.relative("./src", parsedPath.dir))
 }
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
+exports.onCreateNode = async ({
+  actions,
+  node,
+  getNode,
+  store,
+  cache,
+  createNodeId,
+}) => {
+  const { createNodeField, createNode } = actions
   const blogPostTypes = ["Mdx"]
   if (blogPostTypes.includes(node.internal.type)) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
@@ -25,6 +35,21 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `relativeFolder`,
       value: relativeFolder,
     })
+
+    if (node.frontmatter.eImage) {
+      let fileNode = await createRemoteFileNode({
+        url: node.frontmatter.eImage, // string that points to the URL of the image
+        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+        createNode, // helper function in gatsby-node to generate the node
+        createNodeId, // helper function in gatsby-node to generate the node id
+        cache, // Gatsby's cache
+        store, // Gatsby's redux store
+      })
+      // if the file was created, attach the new node to the parent node
+      if (fileNode) {
+        node.frontmatter.eImage___NODE = fileNode.id
+      }
+    }
   }
 }
 

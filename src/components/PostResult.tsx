@@ -57,13 +57,13 @@ const PostExcerpt = styled.p`
 `
 
 export const PostResult = ({ post }) => {
-  const { image, title, date, imageAlt, tags } = post.frontmatter
+  const { eImage, image, title, date, imageAlt, tags } = post.frontmatter
+  const img = image || eImage
+
   return (
     <Article>
       <Link to={post.fields.slug}>
-        {image && (
-          <PostImage fluid={image.childImageSharp.fluid} alt={imageAlt} />
-        )}
+        {img && <PostImage fluid={img.childImageSharp.fluid} alt={imageAlt} />}
         <ArticleText>
           <PostHeader>{title}</PostHeader>
           <PostHeaderDate>{date}</PostHeaderDate>
