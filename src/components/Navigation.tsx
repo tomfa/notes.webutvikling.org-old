@@ -4,6 +4,12 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 const Nav = styled.nav``
 
+const HomeLink = styled(Link)`
+  font-size: 1.4rem;
+  color: white;
+  text-decoration: none;
+`
+
 export const Navigation = () => {
   const data = useStaticQuery(
     graphql`
@@ -17,11 +23,11 @@ export const Navigation = () => {
     `
   )
   return (
-    <Nav>
-      <Link to={`/`}>
-        <h3>{data.site.siteMetadata.title}</h3>
-      </Link>
-      <Link to={`/about/`}>About</Link>
-    </Nav>
+    <>
+      <HomeLink to={`/`}>{data.site.siteMetadata.title}</HomeLink>
+      <Nav>
+        <Link to={`/about/`}>About</Link>
+      </Nav>
+    </>
   )
 }

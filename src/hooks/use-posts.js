@@ -12,6 +12,10 @@ export const usePostQuery = () => {
                 slug
               }
               frontmatter {
+                image {
+                  publicURL
+                }
+                imageAlt
                 title
                 date(formatString: "DD MMMM, YYYY")
               }
