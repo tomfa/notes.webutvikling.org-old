@@ -28,7 +28,7 @@ export default function Home() {
         </Intro>
         <PostList>
           {data.edges.map(({ node }) => (
-            <PostResult key={node.id} post={node} />
+            <PostResult post={node} key={node.id} />
           ))}
         </PostList>
       </Layout>

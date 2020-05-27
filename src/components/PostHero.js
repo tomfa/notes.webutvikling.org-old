@@ -9,7 +9,7 @@ const PostHero = ({ eImage, image, imageAlt, title, date, tags }) => {
       {img && <Image fluid={img.childImageSharp.fluid} alt={imageAlt} />}
       <h1>{title}</h1>
       <small>{date}</small>
-      <PostTags tags={tags} inline />
+      <PostTags tags={tags} inline useLink />
     </>
   )
 }

@@ -10,6 +10,15 @@ const Tag = styled.span`
   font-size: 1rem;
   font-weight: bold;
   border-radius: 0.3rem;
+
+  & > a {
+    color: inherit;
+  }
+  @media (min-width: 800px) {
+    &:not(:hover) > a {
+      text-decoration: none;
+    }
+  }
 `
 
 const tagStyles = {
@@ -58,16 +67,21 @@ const getTagStyle = tag => {
 
 const Tags = styled.div`
   display: ${props => (props.inline ? "inline-block" : "block")};
+  margin-left: ${props => (props.inline ? "1rem" : "")};
 `
 
-export const PostTag = ({ children }) => (
-  <Tag {...getTagStyle(children)}>{children}</Tag>
+export const PostTag = ({ children, link }) => (
+  <Tag {...getTagStyle(children)}>
+    {(link && <a href={`/tag/${children}`}>{children}</a>) || children}
+  </Tag>
 )
-export const PostTags = ({ tags, inline = false }) =>
+export const PostTags = ({ tags, useLink = false, inline = false }) =>
   tags && (
     <Tags inline={inline}>
       {tags.map(tag => (
-        <PostTag key={tag}>{tag}</PostTag>
+        <PostTag link={useLink} key={tag}>
+          {tag}
+        </PostTag>
       ))}
     </Tags>
   )
