@@ -32,11 +32,16 @@ export default function PageTemplate({ data: { mdx } }) {
 export const pageQuery = graphql`
   query BlogPostQuery($slug: String) {
     mdx(fields: { slug: { eq: $slug } }) {
+      id
       body
       frontmatter {
         date(formatString: "DD MMMM, YYYY")
         image {
-          publicURL
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
         imageAlt
         tags

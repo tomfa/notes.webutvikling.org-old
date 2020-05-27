@@ -13,7 +13,11 @@ export const usePostQuery = () => {
               }
               frontmatter {
                 image {
-                  publicURL
+                  childImageSharp {
+                    fluid(maxWidth: 1000, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
                 tags
                 imageAlt

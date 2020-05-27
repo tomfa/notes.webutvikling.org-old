@@ -67,7 +67,7 @@ export const PostTags = ({ tags, inline = false }) =>
   tags && (
     <Tags inline={inline}>
       {tags.map(tag => (
-        <PostTag>{tag}</PostTag>
+        <PostTag key={tag}>{tag}</PostTag>
       ))}
     </Tags>
   )

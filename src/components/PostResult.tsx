@@ -61,7 +61,9 @@ export const PostResult = ({ post }) => {
   return (
     <Article>
       <Link to={post.fields.slug}>
-        {image && <PostImage src={image.publicURL} alt={imageAlt} />}
+        {image && (
+          <PostImage fluid={image.childImageSharp.fluid} alt={imageAlt} />
+        )}
         <ArticleText>
           <PostHeader>{title}</PostHeader>
           <PostHeaderDate>{date}</PostHeaderDate>
