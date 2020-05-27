@@ -9,13 +9,14 @@ const Article = styled.article`
   background-color: #ececec;
   align-self: flex-start;
   border-bottom: 3px solid transparent;
+  margin-bottom: 0.5rem;
 
   & > a {
     text-decoration: none;
     color: #333333;
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 1200px) {
     margin: 0.5rem;
 
     transition: background-color 0.3s;

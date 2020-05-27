@@ -11,6 +11,7 @@ import "./style.css"
 const Main = styled.main`
   max-width: ${props => (!props.wide ? "40rem" : null)};
   margin: ${props => (!props.wide ? "0 auto" : null)};
+  padding-bottom: 2rem;
 
   @media (max-width: 800px) {
     & > p,
@@ -24,8 +25,8 @@ const Main = styled.main`
   }
 `
 const SiteWrapper = styled.div`
-  max-width: 120rem;
   margin: 0 auto;
+  min-height: 100vh;
 `
 
 export default function Layout({ children, wide = false }) {
