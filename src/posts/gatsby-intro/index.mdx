@@ -1,0 +1,134 @@
+---
+title: Gatsby intro
+date: 2020-05-21
+image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
+imageAlt: Laptop on a desk. Photo by Nick Morrison on Unsplash.
+tags: ["gatsby", "javascript", "markdown"]
+---
+
+I've decided to try out Gatsby!
+
+Here's my first few questions:
+
+### What is Gatsby?
+
+It's a modern JavaScript-based CMS that generates static pages.
+It uses React and GraphQL, and you can plug in different content
+backends that it pulls from on build time. You could also write
+content with Markdown or as React components.
+
+It seems centered around pages and posts as content.
+
+### How is GatsbyJS doing?
+
+[Google trends says](https://trends.google.com/trends/explore?q=gatsbyjs)
+that it's been flatlining for 2 years, though Sweden love it.
+![Gatsby is flatlining](./gatsby-flatline.png)
+
+### MarkDown: How do I add images?
+
+The regular github flavored way, with a local or external url:
+
+```markdown
+![Lovely kitten](https://kittens.com/image.png)
+```
+
+### Markdown: Can I do code highlighting
+
+Can I create code snippets with highlighting?
+
+````text
+Yes, e.g. using ```js for javascript.
+````
+
+At least with the blog starter.
+
+### Deploy Gatsby to Github (pages)
+
+Given that you have added a github repository as a remote origin, and
+[enabled github pages for your repos](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+, use gh-pages:
+
+```bash
+yarn add gh-pages
+```
+
+Add script `deploy` to `package.json`
+
+```json
+"scripts": {
+  "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+},
+```
+
+And set the prefix-path in `gatsby-config.js` to the name of your repo:
+
+```js
+pathPrefix: `/my-repo-name`,
+```
+
+Now you can deploy by simply running `yarn deploy`. It'll be available at
+[https://_your-username_.github.io/_my-repo-name_](https://tomfa.github.io/notes)
+
+### How do I use remark-plugins with .mdx?
+
+TODO
+
+### Can I use regular React components?
+
+Yes! Front .mdx files, you can import React components and
+mostly use them without any special handling at I all.
+
+I first mistakenly thought one needed plugins for everything.
+
+### How do I do CSS?
+
+Almost however you like. [Gatsby](https://www.gatsbyjs.org/tutorial/part-two/)
+defaults to [css-modules](https://github.com/css-modules/css-modules), but supports
+CSS-in-JS like [Styled Components](https://www.gatsbyjs.org/docs/styled-components/).
+
+The only difference is that you probably got to install one or two plugins to
+make it work.
+
+Here's a [guide for Gatsby with Styled System and StoryBook](https://pagepro.co/blog/getting-started-with-gatsbyjs-styled-components-storybook/)!
+
+## Summary
+
+Gatsby is like React met WordPress. Developers meet hackers. It offers some really
+cool things: Static page generation with React and GraphQL? I love that.
+
+The [documentation is rich](https://www.gatsbyjs.org/docs/).
+[Tutorials for beginners](https://www.gatsbyjs.org/tutorial/) even tell you how to install node.
+[Everything is plugin-based](https://www.gatsbyjs.org/plugins/).
+You want styled-components? Sure, there's a plugin and a [4-page guide](https://www.gatsbyjs.org/docs/styled-components/) for that.
+
+I can't quite put my finger on it, but it's like a bunch of well-meaning developers
+tried to bring React and front-end development to non-developers. I admire that,
+but it feels unsustainable. It looks **so heavy** to maintain:
+
+When you have 12 000 pages of documentation (about JavaScript), how many full-time
+employees do you need to keep those up to date?
+
+[3443 packages are found on npm when searching for "gatsby"](https://www.npmjs.com/search?q=gatsby).
+Is Gatsby able to evolve while still supporting these packages?
+
+Depending on not only `styled-components` both also `gatsby-plugin-styled-components`
+and `babel-plugin-styled-components` for your CSS-in-JS solution feels fragile.
+How quickly will your dependencies be deprecated?
+
+But maybe it doesn't matter much if you run gatsby-version-old when the site is
+static? Old styled-components? Well, it builds and works, and there's no security risk involved.
+
+Maybe the plugin-community will be super loyal since they've invested enough time
+learning the Gatsby-way and creating Gatsby-plugins to feel comfortable right
+where they are?
+
+My worries that _things are different_ might be just what is needed
+to lure Wordpress and Drupal communities over to React, and what makes them stay.
+
+[Gatsby raised \$15M](https://www.gatsbyjs.org/blog/2019-09-26-announcing-gatsby-15m-series-a-funding-round/)
+last year. That'll keep them afloat for a couple of years, and by that time maybe
+they've gathered a large enough following to stick around – or found a way to
+be able to use packages like **styled-components** directly without plugins.
+
+Until that time, I'll play around skeptically.
