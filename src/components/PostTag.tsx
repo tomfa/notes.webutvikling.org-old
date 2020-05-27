@@ -15,42 +15,42 @@ const Tag = styled.span`
 const tagStyles = {
   default: { bgColor: "#3a3a3a", color: "white" },
   // topic
-  mobile: { bgColor: "rgb(0, 64, 53)", color: "white" },
+  mobile: { bgColor: "#2C5C89", color: "white" },
 
   // languages
-  javascript: { bgColor: "rgb(0, 64, 53)", color: "white" },
-  svg: { bgColor: "rgb(0, 64, 53)", color: "white" },
-  css: { bgColor: "rgb(0, 64, 53)", color: "white" },
-  bash: { bgColor: "rgb(0, 64, 53)", color: "white" },
-  python: { bgColor: "rgb(0, 64, 53)", color: "white" },
+  javascript: { bgColor: "#2C5C89", color: "white" },
+  svg: { bgColor: "#2C5C89", color: "white" },
+  css: { bgColor: "#2C5C89", color: "white" },
+  bash: { bgColor: "#2C5C89", color: "white" },
+  python: { bgColor: "#2C5C89", color: "white" },
 
   // platforms
-  github: { bgColor: "rgb(166, 106, 30)", color: "white" },
-  heroku: { bgColor: "rgb(166, 106, 30)", color: "white" },
-  aws: { bgColor: "rgb(166, 106, 30)", color: "white" },
+  github: { bgColor: "#BF4216", color: "white" },
+  heroku: { bgColor: "#BF4216", color: "white" },
+  aws: { bgColor: "#BF4216", color: "white" },
 
   // services
-  "google maps": { bgColor: "rgb(225, 196, 133)", color: "black" },
-  cloudfront: { bgColor: "rgb(225, 196, 133)", color: "black" },
-  s3: { bgColor: "rgb(225, 196, 133)", color: "black" },
-  node: { bgColor: "rgb(225, 196, 133)", color: "black" },
+  "google maps": { bgColor: "#E4B81B", color: "black" },
+  cloudfront: { bgColor: "#E4B81B", color: "black" },
+  s3: { bgColor: "#E4B81B", color: "black" },
+  node: { bgColor: "#E4B81B", color: "black" },
 
   // libraries
-  django: { bgColor: "rgb(225, 196, 133)", color: "black" },
-  react: { bgColor: "rgb(225, 196, 133)", color: "black" },
-  gatsby: { bgColor: "rgb(225, 196, 133)", color: "black" },
+  django: { bgColor: "#E4B81B", color: "black" },
+  react: { bgColor: "#E4B81B", color: "black" },
+  gatsby: { bgColor: "#E4B81B", color: "black" },
 
   // tools
-  slack: { bgColor: "rgb(40, 137, 129)", color: "white" },
-  serverless: { bgColor: "rgb(40, 137, 129)", color: "white" },
-  git: { bgColor: "rgb(40, 137, 129)", color: "white" },
-  typing: { bgColor: "rgb(40, 137, 129)", color: "white" },
+  slack: { bgColor: "#FF8A00", color: "white" },
+  serverless: { bgColor: "#FF8A00", color: "white" },
+  git: { bgColor: "#FF8A00", color: "white" },
+  typing: { bgColor: "#FF8A00", color: "white" },
 
   // people
-  meetup: { bgColor: "rgb(222, 239, 236)", color: "black" },
-  workshop: { bgColor: "rgb(222, 239, 236)", color: "black" },
-  talk: { bgColor: "rgb(222, 239, 236)", color: "black" },
-  culture: { bgColor: "rgb(222, 239, 236)", color: "black" },
+  meetup: { bgColor: "#6C9BD1", color: "white" },
+  workshop: { bgColor: "#6C9BD1", color: "white" },
+  talk: { bgColor: "#6C9BD1", color: "white" },
+  culture: { bgColor: "#6C9BD1", color: "white" },
 }
 const getTagStyle = tag => {
   return tagStyles[tag] || tagStyles["default"]
