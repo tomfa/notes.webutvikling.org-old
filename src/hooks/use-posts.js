@@ -15,6 +15,7 @@ export const usePostQuery = () => {
                 image {
                   publicURL
                 }
+                tags
                 imageAlt
                 title
                 date(formatString: "DD MMMM, YYYY")

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 import { Image } from "./Image"
+import { PostTags } from "./PostTag"
 
 const Article = styled.article`
   width: 40rem;
@@ -56,7 +57,7 @@ const PostExcerpt = styled.p`
 `
 
 export const PostResult = ({ post }) => {
-  const { image, title, date, imageAlt } = post.frontmatter
+  const { image, title, date, imageAlt, tags } = post.frontmatter
   return (
     <Article>
       <Link to={post.fields.slug}>
@@ -64,6 +65,7 @@ export const PostResult = ({ post }) => {
         <ArticleText>
           <PostHeader>{title}</PostHeader>
           <PostHeaderDate>{date}</PostHeaderDate>
+          <PostTags tags={tags} />
           <PostExcerpt>{post.excerpt}</PostExcerpt>
         </ArticleText>
       </Link>
