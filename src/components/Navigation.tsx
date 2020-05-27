@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { Link } from "gatsby"
+import { useMeta } from "../hooks/use-meta"
 
 const Nav = styled.nav`
   display: flex;
@@ -42,20 +43,11 @@ const HomeLink = styled(Link)`
 `
 
 export const Navigation = () => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
+  const { shortTitle } = useMeta()
+
   return (
     <Nav>
-      <HomeLink to={`/`}>{title}</HomeLink>
+      <HomeLink to={`/`}>{shortTitle}</HomeLink>
       <ul>
         <NavItemLink to={`/about/`}>About</NavItemLink>
       </ul>

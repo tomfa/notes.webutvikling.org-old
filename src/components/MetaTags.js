@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import { useMeta } from "../hooks/use-meta"
 
 export function MetaTags({
   description = "",
@@ -8,22 +8,9 @@ export function MetaTags({
   meta = [],
   title = "",
 } = {}) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
-
-  const metaDescription = description || site.siteMetadata.description
-  const metaTitle = title || site.siteMetadata.title
+  const siteMeta = useMeta()
+  const metaDescription = description || siteMeta.description
+  const metaTitle = title || siteMeta.title
 
   return (
     <Helmet
@@ -31,7 +18,7 @@ export function MetaTags({
         lang,
       }}
       title={metaTitle}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteMeta.title}`}
       meta={[
         {
           name: `description`,
@@ -55,7 +42,7 @@ export function MetaTags({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: siteMeta.author,
         },
         {
           name: `twitter:title`,

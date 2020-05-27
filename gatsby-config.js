@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    shortTitle: `N / A`,
     title: `Notes and Anecdotes`,
     description: `Rambling about tech stuff`,
     author: `@tomfa (github)`,
