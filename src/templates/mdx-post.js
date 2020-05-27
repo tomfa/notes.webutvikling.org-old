@@ -1,12 +1,20 @@
 import React from "react"
 import { graphql } from "gatsby"
-import YouTube from "react-youtube"
+import YouTubePlayer from "react-youtube"
 
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
 import Layout from "../components/Layout"
 import PostHero from "../components/PostHero"
+
+const YouTube = props => (
+  <YouTubePlayer
+    className="video"
+    containerClassName="video-container"
+    {...props}
+  />
+)
 
 const shortcodes = { Link, YouTube }
 
