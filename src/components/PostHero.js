@@ -1,8 +1,9 @@
 import React from "react"
+import { Image } from "./Image"
 
 const PostHero = ({ image, imageAlt, title, date }) => (
   <>
-    {image && <img src={image.publicURL} alt={imageAlt} />}
+    {image && <Image src={image.publicURL} alt={imageAlt} />}
     <h1>{title}</h1>
     <small>{date}</small>
   </>
