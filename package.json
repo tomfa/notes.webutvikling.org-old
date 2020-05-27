@@ -24,6 +24,7 @@
     "gatsby-plugin-sharp": "^2.6.9",
     "gatsby-remark-images": "^3.3.8",
     "gatsby-source-filesystem": "^2.3.8",
+    "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

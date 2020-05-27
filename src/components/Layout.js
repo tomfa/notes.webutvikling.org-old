@@ -5,6 +5,8 @@ import { Header } from "./header"
 import { Footer } from "./footer"
 import { Navigation } from "./navigation"
 
+import "normalize.css"
+
 const Main = styled.main`
   width: 100%;
 `
