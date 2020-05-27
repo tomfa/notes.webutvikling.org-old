@@ -65,16 +65,31 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        distinct(field: frontmatter___tags)
       }
     }
   `)
 
-  result.data.allMdx.edges.forEach(({ node }) => {
+  const posts = result.data.allMdx.edges.map(e => e.node)
+  const tags = result.data.allMdx.distinct
+
+  posts.forEach(node => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/mdx-post.js`),
       context: {
         slug: node.fields.slug,
+      },
+    })
+  })
+
+  tags.forEach(tag => {
+    const slugName = tag.toLowerCase().replace(" ", "-")
+    createPage({
+      path: `tag/${slugName}`,
+      component: path.resolve(`./src/templates/tag-page.js`),
+      context: {
+        tag,
       },
     })
   })

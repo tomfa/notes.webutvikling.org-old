@@ -5,14 +5,8 @@ import Layout from "../components/Layout"
 import { MetaTags } from "../components/MetaTags"
 import { usePostQuery } from "../hooks/use-posts"
 import { PostResult } from "../components/PostResult"
+import { PostList } from "../components/PostList"
 import { useMeta } from "../hooks/use-meta"
-
-const PostList = styled.div`
-  display: flex;
-  align-items: flex-start;
-  align-content: flex-start;
-  flex-flow: row wrap;
-`
 
 const Intro = styled.div`
   max-width: 40rem;
