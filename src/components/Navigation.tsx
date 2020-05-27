@@ -22,24 +22,16 @@ const Nav = styled.nav`
   }
 `
 
-const NavItem = styled.li`
-  font-size: 1.3rem;
-  display: inline-block;
-  margin-left: 2rem;
-  & a {
-    color: white;
-  }
+const HomeLink = styled(Link)`
+  font-size: 3rem;
+  color: white;
+  text-decoration: none;
 `
 
-const NavItemLink = ({ children, to }) => (
-  <NavItem>
-    <Link to={to}>{children}</Link>
-  </NavItem>
-)
-
-const HomeLink = styled(Link)`
-  font-size: 1.4rem;
-  color: white;
+const Logo = styled.img`
+  margin-right: 1rem;
+  display: inline-block;
+  height: 4rem;
 `
 
 export const Navigation = () => {
@@ -47,10 +39,12 @@ export const Navigation = () => {
 
   return (
     <Nav>
-      <HomeLink to={`/`}>{shortTitle}</HomeLink>
-      <ul>
-        <NavItemLink to={`/about/`}>About</NavItemLink>
-      </ul>
+      <HomeLink to={`/`} title="Home">
+        {shortTitle}
+      </HomeLink>
+      <Link to={`/about/`}>
+        <Logo src="/images/logo.svg" alt="About N / A" />
+      </Link>
     </Nav>
   )
 }
