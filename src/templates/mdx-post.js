@@ -34,12 +34,13 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
-        title
+        date(formatString: "DD MMMM, YYYY")
         image {
           publicURL
         }
         imageAlt
-        date(formatString: "DD MMMM, YYYY")
+        tags
+        title
       }
     }
   }

@@ -57,15 +57,15 @@ const getTagStyle = tag => {
 }
 
 const Tags = styled.div`
-  display: block;
+  display: ${props => (props.inline ? "inline-block" : "block")};
 `
 
 export const PostTag = ({ children }) => (
   <Tag {...getTagStyle(children)}>{children}</Tag>
 )
-export const PostTags = ({ tags }) =>
+export const PostTags = ({ tags, inline = false }) =>
   tags && (
-    <Tags>
+    <Tags inline={inline}>
       {tags.map(tag => (
         <PostTag>{tag}</PostTag>
       ))}
