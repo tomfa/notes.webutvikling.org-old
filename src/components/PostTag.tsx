@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { asUrl } from "../utils/urlize"
 
 const Tag = styled.span`
   display: inline-block;
@@ -70,16 +71,16 @@ const Tags = styled.div`
   margin-left: ${props => (props.inline ? "1rem" : "")};
 `
 
-export const PostTag = ({ children, link }) => (
+export const PostTag = ({ children, tagUrl }) => (
   <Tag {...getTagStyle(children)}>
-    {(link && <a href={`/tag/${children}`}>{children}</a>) || children}
+    {(tagUrl && <a href={`/tag/${tagUrl}`}>{children}</a>) || children}
   </Tag>
 )
 export const PostTags = ({ tags, useLink = false, inline = false }) =>
   tags && (
     <Tags inline={inline}>
       {tags.map(tag => (
-        <PostTag link={useLink} key={tag}>
+        <PostTag tagUrl={useLink && asUrl(tag)} key={tag}>
           {tag}
         </PostTag>
       ))}

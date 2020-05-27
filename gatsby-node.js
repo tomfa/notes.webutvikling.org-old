@@ -1,3 +1,4 @@
+const asUrl = require(`./src/utils/urlize`).asUrl
 const path = require(`path`)
 const {
   createFilePath,
@@ -84,9 +85,8 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   tags.forEach(tag => {
-    const slugName = tag.toLowerCase().replace(" ", "-")
     createPage({
-      path: `tag/${slugName}`,
+      path: `tag/${asUrl(tag)}`,
       component: path.resolve(`./src/templates/tag-page.js`),
       context: {
         tag,
