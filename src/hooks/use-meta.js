@@ -9,6 +9,7 @@ export const useMeta = () => {
             author
             description
             shortTitle
+            keywords
             title
           }
         }

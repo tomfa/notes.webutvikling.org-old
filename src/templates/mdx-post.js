@@ -7,6 +7,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
 import Layout from "../components/Layout"
 import PostHero from "../components/PostHero"
+import { MetaTags } from "../components/MetaTags"
 
 const YouTube = props => (
   <YouTubePlayer
@@ -21,6 +22,7 @@ const shortcodes = { Link, YouTube }
 export default function PageTemplate({ data: { mdx } }) {
   return (
     <Layout>
+      <MetaTags title={mdx.frontmatter.title} keywords={mdx.frontmatter.tags} />
       <PostHero {...mdx.frontmatter} />
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{mdx.body}</MDXRenderer>

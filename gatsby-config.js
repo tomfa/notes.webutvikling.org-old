@@ -3,6 +3,7 @@ module.exports = {
     shortTitle: `N / A`,
     title: `Notes and Anecdotes`,
     description: `Rambling about tech stuff`,
+    keywords: ["React", "AWS", "Django"],
     author: `@tomfa (github)`,
   },
   plugins: [

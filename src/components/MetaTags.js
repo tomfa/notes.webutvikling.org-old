@@ -6,11 +6,13 @@ export function MetaTags({
   description = "",
   lang = "en",
   meta = [],
+  keywords = [],
   title = "",
 } = {}) {
   const siteMeta = useMeta()
   const metaDescription = description || siteMeta.description
   const metaTitle = title || siteMeta.title
+  const metaKeywords = keywords.length ? keywords : siteMeta.keywords
 
   return (
     <Helmet
@@ -23,6 +25,10 @@ export function MetaTags({
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `keywords`,
+          content: metaKeywords.join(", "),
         },
         {
           property: `og:title`,
