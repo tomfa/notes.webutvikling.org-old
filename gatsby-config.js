@@ -6,14 +6,6 @@ module.exports = {
     author: `@tomfa (github)`,
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
-      },
-    },
-    "gatsby-plugin-sharp",
     `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-mdx`,
@@ -27,6 +19,12 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src`,
       },
     },
     {
@@ -44,5 +42,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 }
