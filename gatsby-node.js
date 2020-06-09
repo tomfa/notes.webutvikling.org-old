@@ -75,8 +75,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const tags = result.data.allMdx.distinct
 
   posts.forEach(node => {
+    const shortSlug = node.fields.slug.replace(/^\/posts/g, "")
     createPage({
-      path: node.fields.slug,
+      path: shortSlug,
       component: path.resolve(`./src/templates/mdx-post.js`),
       context: {
         slug: node.fields.slug,
