@@ -23,7 +23,10 @@ exports.onCreateNode = async ({
   const { createNodeField, createNode } = actions
   const blogPostTypes = ["Mdx"]
   if (blogPostTypes.includes(node.internal.type)) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    const slug = createFilePath({ node, getNode })
+      .replace(/^\/posts\//, "/")
+      .replace(/^\/\d{4}\-\d{2}\-\d{2}\-/, "/")
+
     createNodeField({
       node,
       name: `slug`,
@@ -75,11 +78,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const tags = result.data.allMdx.distinct
 
   posts.forEach(node => {
-    const shortSlug = node.fields.slug
-      .replace(/^\/posts/g, "")
-      .replace(/^\/\d{4}\-\d{2}\-\d{2}\-/, "/")
     createPage({
-      path: shortSlug,
+      path: node.fields.slug,
       component: path.resolve(`./src/templates/mdx-post.js`),
       context: {
         slug: node.fields.slug,
