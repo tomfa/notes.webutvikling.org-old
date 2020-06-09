@@ -60,8 +60,13 @@ exports.onCreateNode = async ({
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
-    query {
-      allMdx(filter: { fields: { relativeFolder: { regex: "/posts*/" } } }) {
+    {
+      allMdx(
+        filter: {
+          fields: { relativeFolder: { regex: "/posts*/" } }
+          frontmatter: { status: { ne: "draft" } }
+        }
+      ) {
         edges {
           node {
             fields {

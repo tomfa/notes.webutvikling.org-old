@@ -4,7 +4,13 @@ export const usePostQuery = () => {
   const { allMdx } = useStaticQuery(
     graphql`
       query PostQuery {
-        allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+        allMdx(
+          sort: { order: DESC, fields: frontmatter___date }
+          filter: {
+            fields: { relativeFolder: { regex: "/posts*/" } }
+            frontmatter: { status: { ne: "draft" } }
+          }
+        ) {
           totalCount
           edges {
             node {
