@@ -39,8 +39,8 @@ export const pageQuery = graphql`
   query TagPageQuery($tag: String) {
     allMdx(
       filter: {
-        fields: { relativeFolder: {} }
-        frontmatter: { tags: { eq: $tag } }
+        fields: { relativeFolder: { regex: "/posts*/" } }
+        frontmatter: { tags: { eq: $tag }, status: { ne: "draft" } }
       }
     ) {
       totalCount
