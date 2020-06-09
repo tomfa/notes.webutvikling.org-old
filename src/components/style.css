@@ -24,7 +24,9 @@ html {
   max-width: 100%;
 }
 
-p {
+p,
+li,
+span {
   font-size: 1.3rem;
   line-height: 1.5em;
 }
