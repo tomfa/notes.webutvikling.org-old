@@ -31,9 +31,16 @@ span {
   line-height: 1.5em;
 }
 
-pre {
+pre,
+code {
+  color: rgb(214, 222, 235);
   overflow: scroll;
   font-size: 1rem;
+  background-color: #3a3a3a;
+}
+
+code {
+  padding: 0.2rem 0.6rem;
 }
 
 blockquote {
