@@ -26,17 +26,19 @@ const ListItem = styled.li`
 `
 
 export const Footer = () => {
-  const tags = useTags()
+  const tags = useTags().slice(0, 12)
   return (
-    <FooterTag>
-      <h3>Tags</h3>
-      <LinkList>
-        {tags.map(({ tag, url }) => (
-          <ListItem>
-            <Link to={url}>{tag}</Link>
-          </ListItem>
-        ))}
-      </LinkList>
-    </FooterTag>
+    <>
+      <FooterTag>
+        <h3>Tags</h3>
+        <LinkList>
+          {tags.map(({ tag, url }) => (
+            <ListItem>
+              <Link to={url}>{tag}</Link>
+            </ListItem>
+          ))}
+        </LinkList>
+      </FooterTag>
+    </>
   )
 }
