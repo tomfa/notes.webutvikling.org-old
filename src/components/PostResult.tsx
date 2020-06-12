@@ -6,7 +6,7 @@ import { Image } from "./Image"
 import { PostTags } from "./PostTag"
 
 const Article = styled.article`
-  width: 40rem;
+  flex-basis: 100vw;
   background-color: #ececec;
   align-self: flex-start;
   border-bottom: 3px solid transparent;
@@ -15,9 +15,16 @@ const Article = styled.article`
   & > a {
     text-decoration: none;
     color: #333333;
+
+    & > .gatsby-image-wrapper {
+      height: 250px;
+    }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 800px) {
+    flex-basis: 30rem;
+    flex-shrink: 1;
+    flex-grow: 5;
     margin: 0.5rem;
 
     transition: background-color 0.3s;
