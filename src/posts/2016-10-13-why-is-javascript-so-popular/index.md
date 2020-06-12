@@ -1,0 +1,10 @@
+---
+title: "Why is Javascript so popular?"
+date: 2016-10-13
+image: 
+tags: []
+author: tomfa
+status: draft
+---
+
+TLDR: npm, browser developer tools, open source trend, open and large community via GitHub and Stack overflow Lately, I've repeatedly heard people talk about the speed of change in JavaScript. About Why learning the new hype, when it is soon going to be outdated anyway. About sticking to a "slow pace" language instead. And from the other side: about why a React is going to stick around for many years to come. So I've devoted some thought to it. Why 1: Why is JavaScript changing so quickly? Because new and better solutions are rapidly becoming easily accessable. Why so? Because npm. It's easily accessable. Because of the open source community. Leads to rapid use, rapid iteration and build on others Why is there lots to get in npm? Because JavaScript ispopulaar. Why is JavaScriptis popular? Because it's easily accessable. Online cources, Developer tools. Node & npm Easy: Because people are rapidly sharing new and better ways of solving problems, and making them easily accessable to others. Why 2: why are people rapidly sharing new and better solutions to problems? ) JavaScript is a large community. It's for the 8th year in a row the most popular language on Stack overflow. This makes it easier for a developer to create something: the challenges you run into on the way, are probably solved, and the solution relatively easy to find.JavaScript is the largest part of code shared on GitHub. Combined with npm, this speeds up development: You can skip making the standard parts. JavaScript is a large community. It's for the 8th year in a row the most popular language on Stack overflow. This makes it easier for a developer to create something: the challenges you run into on the way, are probably solved, and the solution relatively easy to find.
