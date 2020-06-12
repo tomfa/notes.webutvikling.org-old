@@ -42,9 +42,9 @@ export const Navigation = () => {
       <HomeLink to={`/`} title="Home">
         {shortTitle}
       </HomeLink>
-      <Link to={`/about/`}>
-        <Logo src="/images/logo.svg" alt="About N / A" />
-      </Link>
+      <a href={`https://tomfa.github.io`}>
+        <Logo src="/images/logo.svg" alt="Projects" />
+      </a>
     </Nav>
   )
 }
