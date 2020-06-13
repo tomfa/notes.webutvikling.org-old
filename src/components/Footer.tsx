@@ -22,6 +22,11 @@ const FooterTag = styled.footer`
 
 const Div = styled.div`
   grid-area: ${props => props.ga};
+  text-align: ${props => props.ta || ""};
+
+  & > ul {
+    text-align: ${props => props.ta || ""};
+  }
 `
 
 const List = styled.ul`
@@ -66,7 +71,7 @@ export const Footer = () => {
           <ListItem>Usually I don't know what I'm talking about.</ListItem>
         </List>
       </Div>
-      <Div area="whoami">
+      <Div area="whoami" ta="right">
         <FooterHeader>Me</FooterHeader>
         <List>
           <ListItem>
