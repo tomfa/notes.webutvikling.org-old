@@ -6,7 +6,6 @@ module.exports = {
     keywords: ["React", "AWS", "Django"],
     author: `@tomfa (github)`,
   },
-  pathPrefix: `/notes`,
   plugins: [
     `gatsby-remark-images`,
     {
