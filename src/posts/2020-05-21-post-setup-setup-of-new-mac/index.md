@@ -1,6 +1,6 @@
 ---
 title: "Post-setup setup of new Mac"
-date: 2020-05-21
+date: 2020-06-03
 eImage: "https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
 imageAlt: Laptop on a desk. Photo by Nick Morrison on Unsplash.
 tags: ["brew", "Macbook", "applications"]
@@ -16,7 +16,9 @@ status: publish
 
 ### Install formulas
 ```
+brew tap heroku/brew
 brew install  \
+    heroku \
     node  \
     n  \
     pyenv  \
@@ -30,7 +32,6 @@ brew install  \
     diff-so-fancy   \
     yarn  \
 
-brew tap heroku/brew && brew install heroku
 ```
 
 #### n postsetup
@@ -67,6 +68,7 @@ brew cask install \
     figma  \
     postman  \
     spectacle \
+    sublime-text \
     ngrok
 ```
 
@@ -82,8 +84,7 @@ ln -s Dropbox/settings/.zshrc
 ```
 
 ```
-touch .local\_profile \
-    .zshrc.local
+touch .local_profile .zshrc.local
 ```
 
 #### Iterm
@@ -91,14 +92,17 @@ touch .local\_profile \
 *   Install the delicious [Dejavu Sans Mono For Powerline](https://github.com/powerline/fonts/tree/master/DejaVuSansMono)
 *   Add settings by going to `General -> Load preferences from a custom folder or url` and loading the iterm folder from `Dropbox/settings/iterm`
 
+## Webstorm/Jetbrains
+
+*   Get IDE settings/plugins synced from my account
+
 
 ### (Subjective) preferences
+
 - **Make Alfred search for folders and Chrome bookmarks** – Alfred -> *Settings* 
 - **Make Caps lock button act as CTRL instead** – "Keyboard" -> *Modifier Keys*
 - **Swap windows within application with `cmd-ctrl-tab`** –  "Keyboard" -> *Shortcuts* -> *Keyboard* -> *Move focus to next window* (You might as well remove the other stupid shortcuts once you're here)
+- **Remove the bad shortcuts** –> "Keyboard" -> *Shortcuts* -> Generally remove what you don't know and use.
 - **Make Spectacle start automatically** - "Spectacle" -> settings and check it.
 - **Hide that Dock** – Put in on the right side, autohide and make it small.
-
-```
-git config --global pull.rebase true
-```
+- 
