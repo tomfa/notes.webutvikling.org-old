@@ -12,7 +12,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "predeploy": "yarn build",
+    "predeploy": "yarn build && echo 'notes.webutvikling.org' >> public/CNAME",
     "deploy": "gh-pages -d public"
   },
   "dependencies": {
