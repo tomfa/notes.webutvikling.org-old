@@ -3,10 +3,13 @@ title: "Post-setup setup of new Mac"
 date: 2020-06-03
 eImage: "https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
 imageAlt: Laptop on a desk. Photo by Nick Morrison on Unsplash.
-tags: ["brew", "Macbook", "applications"]
+tags: ["brew"]
 author: tomfa
 status: publish
 ---
+
+Every ~4 years, I'm getting a new Mac. It has happened a few times now, so I thought I might as well make a setup guide for next time.
+Also, it's interesting to see how many (or few!) things change.
 
 
 ### Install brew
