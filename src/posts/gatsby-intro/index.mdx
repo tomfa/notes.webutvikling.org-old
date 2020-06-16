@@ -17,7 +17,7 @@ It uses React and GraphQL, and you can plug in different content
 backends that it pulls from on build time. You could also write
 content with Markdown or as React components.
 
-It seems centered around pages and posts as content.
+Its structure seems centered around pages and posts. Wrt. code, Gatsby loves plugins.
 
 ### How is GatsbyJS doing?
 
@@ -41,7 +41,7 @@ Can I create code snippets with highlighting?
 Yes, e.g. using ```js for javascript.
 ````
 
-At least with the blog starter.
+See [gatsby-remark-prismjs](https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/) for more!
 
 ### Deploy Gatsby to Github (pages)
 
@@ -70,16 +70,10 @@ pathPrefix: `/my-repo-name`,
 Now you can deploy by simply running `yarn deploy`. It'll be available at
 [https://_your-username_.github.io/_my-repo-name_](https://tomfa.github.io/notes)
 
-### How do I use remark-plugins with .mdx?
-
-TODO
-
 ### Can I use regular React components?
 
 Yes! Front .mdx files, you can import React components and
-mostly use them without any special handling at I all.
-
-I first mistakenly thought one needed plugins for everything.
+*mostly* use them without any special handling at all.  
 
 ### How do I do CSS?
 
