@@ -1,7 +1,7 @@
 ---
 title: "Chrome-addon: statistics"
 date: 2013-12-03
-image: 
+image: ./luke-chesser-JKUTrJ4vK00-unsplash.jpg
 tags: [API, chrome, Google, idea]
 author: tomfa
 status: publish

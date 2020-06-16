@@ -1,7 +1,8 @@
 ---
 title: "Facebook: Invite all friends to event"
 date: 2014-02-05
-image: 
+image: ./kon-karampelas-HUBofEFQ6CA-unsplash.jpg
+imageAlt: Facebook
 tags: [developer tools, facebook]
 author: tomfa
 status: publish
@@ -17,3 +18,5 @@ So you have created an event, and wish to invite all your friends (or all friend
 6.  Click and change "Page Context" to an Extension
 7.  Verify that it uses jQuery by typing `$('body')`. This should **not** give an error
 8.  In the console, type `$('.checkbox').click()`
+
+Tada! All should be checked!

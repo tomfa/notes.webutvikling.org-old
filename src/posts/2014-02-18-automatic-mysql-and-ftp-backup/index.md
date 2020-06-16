@@ -1,7 +1,7 @@
 ---
 title: "Automatic MySQL and FTP backup"
 date: 2014-02-18
-image: 
+image: ./markus-spiske-5yEiCUynJ9w-unsplash.jpg
 tags: [backup, ftp, mysql]
 author: tomfa
 status: publish
@@ -28,30 +28,31 @@ Solutions
 1.  Download it.
 2.  Navigate to the downloaded folder
     
-    ```
+    ```bash
     cd "automysql-folder"
     ```
     
 3.  Copy automysqlbackup.conf (the template) to myserver.con
     
-    ```
+    ```bash
     cp automysqlbackup.conf myserver.conf
     ```
     
 4.  In myserver.conf (the config file for your backup), change:
     
-    ```
-    \# Your MySQL username
-    CONFIG\_mysql\_dump\_username='_username_'
+    ```bash
+    # Your MySQL username
+    CONFIG_mysql_dump_username='username'
     
     # Your MySQL password
-    CONFIG\_mysql\_dump\_password='_password_'
+    CONFIG_mysql_dump_password='password'
     
-    # IP or DNS of MySQL server (e.g. localhost if it's the same machine)
-    CONFIG\_mysql\_dump\_host='servername.serverpark.com'
+    # IP or DNS of MySQL server 
+    # (e.g. localhost if it's the same machine)
+    CONFIG_mysql_dump_host='name.serverpark.com'
     
     # Where to store the backup (locally)
-    CONFIG\_backup\_dir='_/home/username/mysqlbackups_'
+    CONFIG_backup_dir='/home/username/sqlbackups'
     ```
     
 
@@ -59,10 +60,10 @@ Now you're good to go running your first backup!
 
 ##### Only back up certain databases
 
-In order to only back up certain databases, specify them in the CONFIG\_db\_names.
+In order to only back up certain databases, specify them in the CONFIG_db_names.
 
-```
-CONFIG\_db\_names=( 'table\_name1' 'table\_name2' )
+```bash
+CONFIG_db_names=( 'table_name1' 'table_name2' )
 ```
 
 #### Running one backup
@@ -70,7 +71,7 @@ CONFIG\_db\_names=( 'table\_name1' 'table\_name2' )
 1.  After you've setup automysqlbackup, you just run automysqlbackup with your config file as parameter
     
     ```
-    ./automysqlbackup '/path/to/config/file/myserver.conf'
+    ./automysqlbackup '/path/config/myserver.conf'
     ```
     
 
@@ -82,19 +83,19 @@ This step will make the script send you an e-mail when it's run.
 
 *   In the config file, navigate to Navigation Setup section, and change:
     
-    ```
-    \# Email Address to send mail to? (user@domain.com)
-    CONFIG\_mail\_address='youremail@example.com'
+    ```bash
+    # Email Address to send mail to? (user@domain.com)
+    CONFIG_mail_address='youremail@example.com'
     ```
     
 *   And mailcontent to log (send log to e-mail) or files (also include the actual backup)
-*   ```
-    \# What would you like to be mailed to you?
+*   ```bash
+    # What would you like to be mailed to you?
     # - log   : send only log file
     # - files : send log file and sql files as attachments (see docs)
     # - stdout : will simply output the log to the screen if run manually.
     # - quiet : Only send logs if an error occurs to the MAILADDR.
-    CONFIG\_mailcontent='log'
+    CONFIG_mailcontent='log'
     ```
     
 
@@ -109,13 +110,9 @@ crontab -e
 Where you add
 
 ```
-0 2 \* \* \* /scriptpath/automysqlbackup '/configpath/myserver.conf'
+0 2 * * * /scriptpath/automysqlbackup '/configpath/myserver.conf'
 ```
 
 #### Restoring a backup sql file
 
 In [Sequel Pro](http://www.sequelpro.com/) (what a nice program), you can simply connect to the database and click File > Import and upload the .sql file that you backed up. There is probably an as-easy way to do this from the command line, but honestly... I can't be bothered figuring that out before the need for it occurs.
-
-### Backing up files
-
-Hah, fooled you. You're using git, of course!

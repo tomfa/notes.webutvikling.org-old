@@ -1,7 +1,7 @@
 ---
 title: "SFTP in Finder"
 date: 2013-12-04
-image: 
+image: ./rodrigo-abreu-lq9PxpwDZUk-unsplash.jpg
 tags: [Finder, ftp]
 author: tomfa
 status: publish
@@ -22,3 +22,7 @@ At least that's what my three hours of Googling and checking out things led to. 
 ### The git solution
 
 First of all, this is just a workaround, and not a proper solution to SFTP through Finder, BUT... If you so happen to almost always need SFTP through Finder for a Github project, you could setup the solution locally, and make your remote server pull automatically on commit through [Post-Receive hooks](https://help.github.com/articles/post-receive-hooks).
+
+***
+
+_Sidenote: Not sure about the image relevance... SFTP is like the trailer of file transport?_

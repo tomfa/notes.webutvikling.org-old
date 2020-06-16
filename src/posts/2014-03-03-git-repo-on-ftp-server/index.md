@@ -1,13 +1,13 @@
 ---
 title: "Git repo on FTP-server"
 date: 2014-03-03
-image: 
+image: ./markus-spiske-hL8slYnc-bM-unsplash.jpg
 tags: [ftp, git]
 author: tomfa
 status: publish
 ---
 
-Often, you have to deal with limited web hotels that only provide a customly made (and usually poor) administration page, FTP- and SQL-access. **How can you, on **a cheap web hotel,** use git without ssh access?** If you're comfortable giving your git-password and ftp-password to a third party, using [deployhq](http://www.deployhq.com) is a simple and better alternative to the method below (guide [here](http://code.tutsplus.com/tutorials/how-to-use-git-with-ftp--net-27610)).
+Often, you have to deal with limited web hotels that only provide a customly made (and usually poor) administration page, FTP- and SQL-access. **How can you, on **a cheap web hotel,** use git without ssh access?** If you're comfortable giving your git-password and ftp-password to a third party, using [deployhq](http://www.deployhq.com) (guide [here](http://code.tutsplus.com/tutorials/how-to-use-git-with-ftp--net-27610)) is a simple and better alternative than the method below.
 
 ### Assumptions
 
@@ -15,12 +15,12 @@ Let's call the cheap hotel for _"SimpleHost"_ and your own server/machine for "_
 
 *   You have FTP-access to _SimpleHost. _
 *   You have sudo on _MyAwesomeClient_
-*   _MyAwesomeClient _has git
+*   _MyAwesomeClient_ has git
 
 **Incorrect Step-by-step (How you hope it would've been):**
 
 1.  Connect from MyAwesomeClient to SimpleHost with FTP from the command line.
-2. ["Mount FTP-server in debian using curlftpfs"](http://notes.webutvikling.org/mount-ftp-server-in-debian-using-curlftpfs/)
+2. [Mount FTP-server in debian using curlftpfs](http://notes.webutvikling.org/mount-ftp-server-in-debian-using-curlftpfs/)
 3.  Use git as normally.
 
 Unfortunately, that's not how it is. You'll get stuff like :
@@ -31,7 +31,7 @@ fatal: Unable to create temporary file: Operation not supported
 
 ### **Step-by-step (How it is):**
 
-```
+```bash
 git clone https://github.com/git-ftp/git-ftp
 cd git-ftp
 git tags
@@ -41,22 +41,24 @@ sudo make install
 
 You now have git-ftp installed, and can safely remove the folder
 
-```
+```bash
 cd ..
 rm -rf git-ftp
 ```
 
 Go to your local repo that you want tracked remotely and initialize it remotely with
 
-```
-cd my\_clean\_repo
-git ftp init -u \[username\] -p \[password\] ftp://server.com/public\_html
+```bash
+cd my_clean_repo
+git ftp init -u [username] -p [password] \ 
+  ftp://server.com/public_html
 ```
 
 Make changes locally and upload them to the server with
 
-```
-git ftp push -u \[username\] -p \[password\] ftp://server.com/public\_html
+```bash
+git ftp push -u [username] -p [password] \
+  ftp://server.com/public_html
 ```
 
 ### Limitations

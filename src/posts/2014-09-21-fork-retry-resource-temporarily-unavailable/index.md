@@ -1,7 +1,7 @@
 ---
 title: "fork: retry: Resource temporarily unavailable"
 date: 2014-09-21
-image: 
+image: ./mae-mu-Pvclb-iHHYY-unsplash.jpg
 tags: [unix, webfaction]
 author: tomfa
 status: publish
@@ -12,20 +12,20 @@ I got this error on webfaction. Seems it was do to too many open files (file des
 How do I check max allow amounts of file descriptors?
 -----------------------------------------------------
 
-```
+```bash
 ulimit -Hn
 ```
 
 How do I check the number of current file descriptors?
 ------------------------------------------------------
 
-```
+```bash
 sudo lsof -u <username> 2>/dev/null | wc -l 
 ```
 
 or
 
-```
+```bash
 lsof 2>/dev/null | wc -l
 ```
 
@@ -34,7 +34,7 @@ The latter showing my current user's number of file descriptors. If my current a
 How do I find my currently running processses?
 ----------------------------------------------
 
-```
+```bash
 lsof -i
 ```
 
@@ -43,7 +43,7 @@ This will show a list where PID (Process ID) is a column
 How do I find FD belonging to a PID (Process ID)?
 -------------------------------------------------
 
-```
+```bash
 lsof | grep 123456
 ```
 
@@ -52,7 +52,7 @@ lsof | grep 123456
 How do I kill processes?
 ------------------------
 
-```
+```bash
 kill -9 123456
 ```
 

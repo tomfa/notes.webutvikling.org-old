@@ -7,15 +7,15 @@ author: tomfa
 status: publish
 ---
 
-Dad is a good guy. But he ain't like
-
-> virtualenv -p $(pyenv which python3) .venv, then pip install -r requirements.txt? NP, SON!
-
-He's more like
+Dad is a good guy. But he does not have a github account, can not set up virtual 
+environments or install node packages. When something (which I send him) doesn't work,
+he'll usually say something like
 
 > When I double click the python file, cmd flashes and I bluescreen.
 
-So he needs an exe file. Here's a general snippet for converting python3 to exe
+So my dad needs an exe file, bundled with all the dependencies. 
+
+To help me with this, I found this a general snippet for converting python3 to exe
 
 ```
 virtualenv -p $(pyenv which python3) .venv
@@ -28,4 +28,6 @@ Then, the two files in [this gist](https://gist.github.com/tomfa/9677ff180bbfc0
 python setup.py build
 ```
 
-Voila! Your executables should be in the **./build** folder _Ouch: The executables can only be run on the same OS as they're built :( Ouch2: It's not 1 executable. It's more like 1000 files + 1 executables that all should be run together. _
+Voila! Your executables should be in the **./build** folder 
+
+_Ouch: The executables can only be run on the same OS as they're built :( Ouch2: It's not 1 executable. It's more like 1000 files + 1 executables that all should be run together. _

@@ -1,7 +1,8 @@
 ---
 title: "Web Icon Fonts"
 date: 2014-02-04
-image: 
+image: ./harpal-singh-_zKxPsGOGKg-unsplash.jpg
+imageAlt: Web icons
 tags: [icon]
 author: tomfa
 status: publish

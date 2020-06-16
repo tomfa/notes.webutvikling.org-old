@@ -1,7 +1,7 @@
 ---
 title: "bash backup of webserver (FTP and SQL)"
 date: 2014-04-02
-image: 
+image: ./jc-gellidon-56eqH9opaUU-unsplash.jpg
 tags: [backup, bash, ftp, script, sql, webserver]
 author: tomfa
 status: publish
@@ -22,36 +22,60 @@ The following is a quick and dirty, simple implementation of a backup from mysql
 
 ### The Code
 
-```
+```bash
 #!/bin/bash
 
 # START CONFIG
-LOCAL\_DIR="/home/user/backup/yourpath" # The local directory  
-FTP\_USR="ftp\_username"                 # FTP user
-FTP\_PWD="ftp\_password"                 # FTP password
-FTP\_HOST="ftp.server.com"              # FTP host
-FTP\_FOLDER="remote\_folder"             # Folder on remote host
-USING\_SFTP=true                        # Use SFTP?
-SQL\_USR="sql\_user"                     # SQL username
-SQL\_PWD="sql\_password"                 # SQL password
-SQL\_DUMP\_LOC="local\_file.sql"          # name of SQL-dump file
-SQL\_HOST="sql.server.com"              # SQL host
-DB\_NAME="database\_name"                # Name of database
-DATE=\`date +%Y-%m-%d\`                  # Date format
+# The local directory  
+LOCAL_DIR="/home/user/backup/yourpath"
+
+# FTP user
+FTP_USR="ftp_username"                
+
+# FTP password
+FTP_PWD="ftp_password"                
+
+# FTP host
+FTP_HOST="ftp.server.com"             
+
+# Folder on remote host
+FTP_FOLDER="remote_folder"            
+
+# Use SFTP?
+USING_SFTP=true                       
+
+# SQL username
+SQL_USR="sql_user"                    
+
+# SQL password
+SQL_PWD="sql_password"                
+
+# name of SQL-dump file
+SQL_DUMP_LOC="local_file.sql"         
+
+# SQL host
+SQL_HOST="sql.server.com"             
+
+# Name of database
+DB_NAME="database_name"               
+
+# Date format
+DATE=`date +%Y-%m-%d`                 
+
 # END CONFIG
 
-cd $LOCAL\_DIR
+cd $LOCAL_DIR
 
-if \[ "$USING\_SFTP" = true \] ; then
+if [ "$USING_SFTP" = true ] ; then
  echo "Copying files through sftp..."
- lftp sftp://$FTP\_USR:$FTP\_PWD@$FTP\_HOST -e "cd $FTP\_FOLDER; mirror --only-newer; quit"2>ftp\_log.txt
+ lftp sftp://$FTP_USR:$FTP_PWD@$FTP_HOST -e "cd $FTP_FOLDER; mirror --only-newer; quit"2>ftp_log.txt
 else
  echo "Copying files through unsecure ftp..."
- wget -mN ftp://$FTP\_USR:$FTP\_PWD@$FTP\_HOST/$FTP\_FOLDER 2>ftp\_log.txt
+ wget -mN ftp://$FTP_USR:$FTP_PWD@$FTP_HOST/$FTP_FOLDER 2>ftp_log.txt
 fi
 
 echo "Copying database unsecurely..."
-mysqldump -h $SQL\_HOST -u $SQL\_USR -p$SQL\_PWD $DB\_NAME > $DATE.SQL\_DUMP\_LOC
+mysqldump -h $SQL_HOST -u $SQL_USR -p $SQL_PWD $DB_NAME > $DATE.SQL_DUMP_LOC
 
 echo "Committing..."
 git add .

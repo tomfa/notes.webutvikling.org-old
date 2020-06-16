@@ -1,5 +1,5 @@
 ---
-title: "Post-setup setup of new Mac"
+title: "Setup of new Mac"
 date: 2020-06-03
 eImage: "https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
 imageAlt: Laptop on a desk. Photo by Nick Morrison on Unsplash.
@@ -34,7 +34,7 @@ brew install  \
     git   \
     diff-so-fancy   \
     yarn  \
-
+    ffmpeg
 ```
 
 #### n postsetup
@@ -75,16 +75,22 @@ brew cask install \
     ngrok
 ```
 
+Log in to dropbox
+
 #### Link settings files
+
+*This is how I keep settings synced across machines*
 
 ```
 cd
-ln -s Dropbox/settings/.git\_profile
-ln -s Dropbox/settings/.bash\_profile
-ln -s Dropbox/settings/.gitignore\_global
+ln -s Dropbox/settings/.git_profile
+ln -s Dropbox/settings/.bash_profile
+ln -s Dropbox/settings/.gitignore_global
 ln -s Dropbox/settings/.gitconfig
 ln -s Dropbox/settings/.zshrc
 ```
+
+*Local adaptations*
 
 ```
 touch .local_profile .zshrc.local
@@ -99,13 +105,11 @@ touch .local_profile .zshrc.local
 
 *   Get IDE settings/plugins synced from my account
 
-
 ### (Subjective) preferences
 
 - **Make Alfred search for folders and Chrome bookmarks** – Alfred -> *Settings* 
-- **Make Caps lock button act as CTRL instead** – "Keyboard" -> *Modifier Keys*
-- **Swap windows within application with `cmd-ctrl-tab`** –  "Keyboard" -> *Shortcuts* -> *Keyboard* -> *Move focus to next window* (You might as well remove the other stupid shortcuts once you're here)
-- **Remove the bad shortcuts** –> "Keyboard" -> *Shortcuts* -> Generally remove what you don't know and use.
-- **Make Spectacle start automatically** - "Spectacle" -> settings and check it.
+- **Make Caps lock button act as CTRL instead** – Alfred-search "Keyboard" -> *Modifier Keys*
+- **Swap windows within application with `cmd-ctrl-tab`** –  Alfred-search "Keyboard" -> *Shortcuts* -> *Keyboard* -> *Move focus to next window* 
+- **Remove the bad shortcuts** –> Alfred-search "Keyboard" -> *Shortcuts* -> Generally remove every you don't know or use. 
+- **Make Spectacle start automatically** - Alfred-search "Spectacle" -> settings and check it.
 - **Hide that Dock** – Put in on the right side, autohide and make it small.
-- 
