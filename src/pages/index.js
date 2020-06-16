@@ -10,6 +10,7 @@ import { useMeta } from "../hooks/use-meta"
 
 const Intro = styled.div`
   max-width: 40rem;
+  padding: 1rem;
   margin: 0 auto;
 `
 

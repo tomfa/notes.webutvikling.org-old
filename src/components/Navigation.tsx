@@ -29,7 +29,6 @@ const HomeLink = styled(Link)`
 `
 
 const Logo = styled.img`
-  margin-right: 1rem;
   display: inline-block;
   height: 4rem;
 `
