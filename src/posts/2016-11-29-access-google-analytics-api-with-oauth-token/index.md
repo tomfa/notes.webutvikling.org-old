@@ -46,22 +46,21 @@ In order to query the API, you need an access token. This token will only last h
 
 #### Java
 
-```
+```java
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.services.analytics.AnalyticsScopes;
-```
 
-```
 GoogleCredential credential = GoogleCredential
     .fromStream(new FileInputStream("./your-keyfile.json"))
     .createScoped(Collections.singleton(AnalyticsScopes.ANALYTICS\_READONLY));
+
 credential.refreshToken();
 System.out.println(credential.getAccessToken());
 ```
 
 **Maven-repository:**
 
-```
+```xml
 <dependency>
     <groupId>com.google.apis</groupId>
     <artifactId>google-api-services-analytics</artifactId>

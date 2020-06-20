@@ -46,7 +46,18 @@ Automated input
 
 ### Current solution
 
-First of all, use Slack, on your phone, on your PC. Then, in order to address the wishes above: 1. In order to keep track of issues and pull-requests, I use [Github](https://github.com/) for issues and [Github-Slack](https://slack.com/apps/A0F7YS2SX-github) integration to get notified of issues and pull-requests. 2. For you to be notified of system errors, the choice should depend on the system size. [AWS Cloudwatch -> Slack](http://ashiina.github.io/2015/06/cloudwatch-lambda-slack/) for large systems, or [Logstash](https://www.elastic.co/products/logstash) if advanced logs needed.  For smaller systems, deploy to [Heroku](https://www.heroku.com/) and use [Logentries addon](https://elements.heroku.com/addons/logentries) with [Logentries-Slack](https://slack.com/apps/A0F81FMAA-logentries) integration. 3. In order to keep track of support, use [Freshdesk](https://freshdesk.com/). I made a [post](http://notes.webutvikling.org/adding-freshdesk-to-slack/) on how to integrate it with slack so you'll be notified when action is required. 4. Heroku allows you to [integrate with Github](https://devcenter.heroku.com/articles/github-integration), so does [AWS Code Deploy](https://aws.amazon.com/documentation/codedeploy/). 5. I have no clue, honestly. I did however write a [node-freshdesk library](https://www.npmjs.com/package/node-freshdesk) in 2014, and a post on how to add [hubot to slack](http://notes.webutvikling.org/how-to-add-hubot-to-slack/). So it should be doable to create something. Alternatively, [Hourstack](https://hourstack.io/) and [Mesasix](https://timetracker.mesasix.com/) are time tracking tools that have [slack](https://hourstack.io/integrations/slack) integrations. **These solutions are sweet, and their payment model is suitable for early startups: **
+First of all, use Slack, on your phone, on your PC. 
+Then, in order to address the wishes above: 
+
+1. In order to keep track of issues and pull-requests, I use [Github](https://github.com/) for issues and [Github-Slack](https://slack.com/apps/A0F7YS2SX-github) integration to get notified of issues and pull-requests. 
+
+2. For you to be notified of system errors, the choice should depend on the system size. [AWS Cloudwatch -> Slack](http://ashiina.github.io/2015/06/cloudwatch-lambda-slack/) for large systems, or [Logstash](https://www.elastic.co/products/logstash) if advanced logs needed.  For smaller systems, deploy to [Heroku](https://www.heroku.com/) and use [Logentries addon](https://elements.heroku.com/addons/logentries) with [Logentries-Slack](https://slack.com/apps/A0F81FMAA-logentries) integration. 
+
+3. In order to keep track of support, use [Freshdesk](https://freshdesk.com/). I made a [post](http://notes.webutvikling.org/adding-freshdesk-to-slack/) on how to integrate it with slack so you'll be notified when action is required. 
+
+4. Heroku allows you to [integrate with Github](https://devcenter.heroku.com/articles/github-integration), so does [AWS Code Deploy](https://aws.amazon.com/documentation/codedeploy/). 
+
+5. I have no clue, honestly. I did however write a [node-freshdesk library](https://www.npmjs.com/package/node-freshdesk) in 2014, and a post on how to add [hubot to slack](http://notes.webutvikling.org/how-to-add-hubot-to-slack/). So it should be doable to create something. Alternatively, [Hourstack](https://hourstack.io/) and [Mesasix](https://timetracker.mesasix.com/) are time tracking tools that have [slack](https://hourstack.io/integrations/slack) integrations. **These solutions are sweet, and their payment model is suitable for early startups: **
 
 *   Github costs 25$ /month for first 5 users. However, it can be replaced with [Gitlab](https://about.gitlab.com/) for free.
 *   Slack is free. You could also upgrade for 6.67$ / month pr. user, which gives customers access to talk to you through slack, unlimited integrations and will save history.

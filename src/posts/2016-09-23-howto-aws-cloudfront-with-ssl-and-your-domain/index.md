@@ -7,9 +7,19 @@ author: tomfa
 status: publish
 ---
 
-Wow, such easy, much free! A few simple steps on 1) How to obtain a certificate for your domain, and 2) how to use it on your CloudFront or Elastic Load Balancer. _(See 1.4 if it's for a Load Balancer)_ Quote CloudFront SSL Settings Page:
+Wow, such easy, much free! A few simple steps on 
 
-> You can use certificates that you created in AWS Certificate Manager (ACM) in the US-East (N. Virginia) Region, or you can use certificates stored in the IAM certificate store.
+1. How to obtain a certificate for your domain
+2. How to use it on your CloudFront or Elastic Load Balancer. 
+
+_(See 1.4 if it's for a Load Balancer)_
+
+### Lession 1: Create certificates in US-East
+
+No matter where you're from, or where your buckets or infrastructure is located, **always request Certificiates from US-East**:
+
+> You can use certificates that you created in AWS Certificate Manager (ACM) in the **US-East (N. Virginia)** Region, or you can use certificates stored in the IAM certificate store. 
+> – [AWS support center](https://aws.amazon.com/premiumsupport/knowledge-center/custom-ssl-certificate-cloudfront/)
 
 #### 1.1 Using AWS generated Certificate
 
@@ -45,7 +55,9 @@ If you don't have a certificate (or if you do, but haven't gotten too attached t
 
 #### 1.3 Troubleshooting
 
-If your Cloudfront is in front of an s3 bucket (_fishsticks) _and points to its website url (_fishsticks.s3-website.eu-central-1.amazonaws.com_), you can run into trouble. The S3 website url doesn't support https out of the box. You can fix this by setting The Origin Protocol Policy to **HTTP Only** (CloudFront > Distribution Settings > Origin > Edit), which will make traffic between your CloudFront and S3 bucket be http. If you're uncomfortable with this, you can points to its regular bucket url (_https://fishsticks.s3.amazonaws.com/_), which _do_ support https. If you do, remember to set default root object on your CloudFront.
+If your Cloudfront is in front of an s3 bucket (_e.g. fishsticks)_ and points to its website url (_fishsticks.s3-website.eu-central-1.amazonaws.com_), you can run into trouble. 
+
+The S3 website url doesn't support https out of the box. You can fix this by setting The Origin Protocol Policy to **HTTP Only** (CloudFront > Distribution Settings > Origin > Edit), which will make traffic between your CloudFront and S3 bucket be http. If you're uncomfortable with this, you can points to its regular bucket url (_https://fishsticks.s3.amazonaws.com/_), which _do_ support https. If you do, remember to set default root object on your CloudFront.
 
 #### 1.4 For Elastic Load balancer
 

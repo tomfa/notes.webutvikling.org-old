@@ -2,7 +2,7 @@
 title: "Why use Exact types in Flow"
 date: 2020-05-09
 image: ./yelling.jpeg
-tags: [Flow, react, types, typing]
+tags: [flow, react, typing]
 author: tomfa
 status: publish
 ---
@@ -24,7 +24,7 @@ limited vocabulary, don't really know how to program,
 but has photographic memory and lightning fast deduction look over your shoulder
 and tell you that you're wrong: 
  
-**Uhh! You said buttons could only be Primary or Secondary last May, but now you're creating a Muted button?!** 
+> Uhh! You said buttons could only be Primary or Secondary last May, but now you're creating a Muted button?!
  
 But things change when you have programmed for a while, or when you start working 
 with others. You replace a simple text editor with an IDE and start working with

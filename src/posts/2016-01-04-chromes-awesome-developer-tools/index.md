@@ -1,13 +1,15 @@
 ---
 title: "Chromes Awesome Developer Tools"
 date: 2016-01-04
-image: 
+image: ./arthur-osipyan-5OyvN4Yx46E-unsplash.jpg
+video: https://vimeo.com/114158767
 tags: [chrome, css, developer tools, frontend, js]
 author: tomfa
 status: publish
 ---
 
-Here is a [great talk](http://www.ndcvideos.com/#/app/video/3371) about them Chrome tools.
+
+<Video url="https://vimeo.com/114158767" />
 
 1.  You can emulate reduced network speed
 2.  You can emulate other device
@@ -24,9 +26,9 @@ Some very few notes:
 --------------------
 
 *   async scripts allow you to render the page before scripts are downloaded
-    *   ```
-        <script async src="heavyscript.js"></script>
-        ```
+    ```html
+    <script async src="heavyscript.js"></script>
+    ```
         
 *   [Google PageSpeed](https://developers.google.com/speed/pagespeed/?hl=en) look quite useful.
     *   Automatic [Nginx and apache modules](https://developers.google.com/speed/pagespeed/module/)

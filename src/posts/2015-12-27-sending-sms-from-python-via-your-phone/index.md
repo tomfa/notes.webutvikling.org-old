@@ -1,7 +1,7 @@
 ---
 title: "Sending SMS from python via your phone"
 date: 2015-12-27
-image: 
+image: ./markus-winkler-8cP_6sC7Hhw-unsplash.jpg
 tags: []
 author: tomfa
 status: publish
@@ -12,14 +12,14 @@ Sending SMS using [twilio.com](http://twilio.com) is nice, but it also costs m
 1.  Sign up at [pushbullet.com](https://www.pushbullet.com)
 2.  Get the app
 3.  Install pushbullet with pip:
-    1.  ```
-        pip install pushbullet.py
-        ```
+    ```
+    pip install pushbullet.py
+    ```
         
 4.  Find your API key [here](https://www.pushbullet.com/#settings/account)
 5.  Run the code below (replace key)
 
-```
+```python
 from pushbullet import Pushbullet
 
 key = 'MyLongAndSillyCoolAPIKey'

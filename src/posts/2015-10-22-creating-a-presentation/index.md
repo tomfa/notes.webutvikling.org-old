@@ -1,8 +1,8 @@
 ---
 title: "Creating a presentation"
 date: 2015-10-22
-image: 
-tags: []
+image: ./teemu-paananen-bzdhc5b3Bxs-unsplash.jpg
+tags: [presentation]
 author: tomfa
 status: publish
 ---
@@ -12,4 +12,8 @@ People still call presentations or slides for powerpoints. That's kind of funny.
 *   [https://slides.com/](https://slides.com/)
 *   [http://lab.hakim.se/reveal-js/#/](http://lab.hakim.se/reveal-js/#/)
 
-The first is really the visual editor implementation of the other, so it's kind of like I just found one thing. Here's why I don't list many more: I'm not so fond of impress or prezi, because they're just TOO nice. It's like I'm trying to impress when I use them. And no one is impressive when they try to impress, because then they obviously spent too much time on it. #epiphany There's a bunch of HTML5/JS presentation tools, similar reveal, like [http://shwr.me/](http://shwr.me/) which was the next best thing I found, as well as a whole many others. I realize most of them are basically just some nice css + js that allows you to use arrows to skip between "slides". Perhaps I should make another one? Looks like fun :)
+The first is really the visual editor implementation of the other, so it's kind of like I just found one thing. 
+
+I'm not so fond of impress or prezi, because they're just TOO nice. It's like I'm trying to impress when I use them. And no one is impressive when they try to impress, because then they obviously spent too much time on it.
+
+ There's a bunch of HTML5/JS presentation tools, similar reveal, like [http://shwr.me/](http://shwr.me/) which was the next best thing I found, as well as a whole many other similar ones. I realize most of them are basically just some nice css + js that allows you to use arrows to skip between "slides". Perhaps I should make another one? Looks like fun :)

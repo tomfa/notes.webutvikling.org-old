@@ -11,8 +11,10 @@ Remember var from the ES5 and previously? It had this weird thing, where JavaS
 
 ### **So what's the thing with ES6 variables?**
 
-*   **_"_var_"_ still exists**, but is rarely of any use. You can use it when a function needs to refer itself.
+*   **"var" still exists**, but is rarely of any use. You can use it when a function needs to refer itself.
+
 *   **"let" is like "var" without hoisting. **Basically like a normal variable in most other languages.
+
 *   **"const" is like "let", but is read-only.  **If a variable shouldn't be reassigned later, it's good practice to use this.
 
 ### So what should I use?

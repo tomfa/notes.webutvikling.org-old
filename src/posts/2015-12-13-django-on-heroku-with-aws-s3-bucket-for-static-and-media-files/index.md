@@ -1,7 +1,7 @@
 ---
 title: "Django on Heroku with AWS S3 bucket for static and media files"
 date: 2015-12-13
-image: 
+image: ./djangodesktop-1280x1024.jpg
 tags: [AWS, cloudfront, django, heroku, python3]
 author: tomfa
 status: publish
@@ -42,46 +42,49 @@ heroku plugins:install heroku-redis --app myherokuappname
 
 ##### 2\. Change your settings.py
 
-_Note: These settings file are not an easy example settings, but they're damn awesome. You can naively copy them (replace the red parts) ._ **If you** **do use heroku**, remember to set environment variables on the app dashboard. Required vars are AWS\_ACCESS\_KEY, S3\_BUCKET, AWS\_SECRET\_KEY and AWS\_REGION (e.g. eu-west-1) Also, if you use e.g. CloudFront to front your S3 bucket, you can set the MEDIA\_URL and STATIC\_URL environment variables to point to these (optional) **If you don't use heroku,** put your value for these 4 variables in between the ' ' at the end of the line.
+_Note: These settings file are not an easy example settings, but they're damn awesome. You can naively copy them (replace the red parts) ._ 
 
-```
-AWS\_REGION = os.environ.get('AWS\_REGION', '')  # e.g. eu-west-1  
-AWS\_ACCESS\_KEY\_ID = os.environ.get('AWS\_ACCESS\_KEY', '')
-AWS\_SECRET\_ACCESS\_KEY = os.environ.get('AWS\_SECRET\_KEY', '')
-AWS\_STORAGE\_BUCKET\_NAME = os.environ.get('S3\_BUCKET', '')
-AWS\_S3\_CALLING\_FORMAT = "boto.s3.connection.OrdinaryCallingFormat"
-AWS\_PRELOAD\_METADATA = True
+**If you** **do use heroku**, remember to set environment variables on the app dashboard. Required vars are AWS_ACCESS_KEY, S3_BUCKET, AWS_SECRET_KEY and AWS_REGION (e.g. eu-west-1) Also, if you use e.g. CloudFront to front your S3 bucket, you can set the MEDIA_URL and STATIC_URL environment variables to point to these (optional) 
+
+**If you don't use heroku,** put your value for these 4 variables in between the ' ' at the end of the line.
+
+```python
+AWS_REGION = os.environ.get('AWS_REGION', '')  # e.g. eu-west-1  
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY', '')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET', '')
+AWS_S3_CALLING_FORMAT = "boto.s3.connection.OrdinaryCallingFormat"
+AWS_PRELOAD_METADATA = True
 
 ...
 
-if AWS\_STORAGE\_BUCKET\_NAME:
-    STATIC\_URL = 'https://s3-%s.amazonaws.com/%s/static/' % (AWS\_REGION, AWS\_STORAGE\_BUCKET\_NAME)
-    MEDIA\_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (AWS\_REGION, AWS\_STORAGE\_BUCKET\_NAME)
-    STATICFILES\_STORAGE = 'myapp.customstorages.StaticStorage'
-    DEFAULT\_FILE\_STORAGE = 'myapp.customstorages.MediaStorage'
-    STATICFILES\_LOCATION = 'static'  # name of folder within bucket
-    MEDIAFILES\_LOCATION = 'media'    # name of folder within bucket
+if AWS_STORAGE_BUCKET_NAME:
+    STATIC_URL = 'https://s3-%s.amazonaws.com/%s/static/' % (AWS_REGION, AWS_STORAGE_BUCKET_NAME)
+    MEDIA_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (AWS_REGION, AWS_STORAGE_BUCKET_NAME)
+    STATICFILES_STORAGE = 'myapp.customstorages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'myapp.customstorages.MediaStorage'
+    STATICFILES_LOCATION = 'static'  # name of folder within bucket
+    MEDIAFILES_LOCATION = 'media'    # name of folder within bucket
 else:
-    STATIC\_URL = '/static/'
-    MEDIA\_URL = '/media/'
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
 
-MEDIA\_URL = os.environ.get('MEDIA\_URL', MEDIA\_URL)
-STATIC\_URL = os.environ.get('STATIC\_URL', STATIC\_URL)
+MEDIA_URL = os.environ.get('MEDIA_URL', MEDIA_URL)
+STATIC_URL = os.environ.get('STATIC_URL', STATIC_URL)
 
 ...
 
-def get\_static\_memcache():
- # For python 2.7, just 'import urlparse'
+def get_static_memcache():
     from urllib.parse import urlparse
 
-    if os.environ.get('REDIS\_URL', ''):
-        redis\_url = urlparse(os.environ.get('REDIS\_URL'))
+    if os.environ.get('REDIS_URL', ''):
+        redis_url = urlparse(os.environ.get('REDIS_URL'))
         return {
-            "BACKEND": "redis\_cache.RedisCache",
+            "BACKEND": "redis_cache.RedisCache",
             'TIMEOUT': None,
-            "LOCATION": "{0}:{1}".format(redis\_url.hostname, redis\_url.port),
+            "LOCATION": "{0}:{1}".format(redis_url.hostname, redis_url.port),
             "OPTIONS": {
-                "PASSWORD": redis\_url.password,
+                "PASSWORD": redis_url.password,
                 "DB": 0,
             }
         }
@@ -89,55 +92,55 @@ def get\_static\_memcache():
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'TIMEOUT': None,
         'OPTIONS': {
-            'MAX\_ENTRIES': 5000
+            'MAX_ENTRIES': 5000
         }
     }
 
 CACHES = {
-    \# Replace the default cache with your existing one (if you have any)
+    # Replace the default cache with your existing one (if you have any)
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
     },
-    'collectfast': get\_static\_memcache(),
+    'collectfast': get_static_memcache(),
 }
 
-COLLECTFAST\_CACHE = 'collectfast'
+COLLECTFAST_CACHE = 'collectfast'
 ```
 
 ##### 3. Add customstorages file
 
 This allows you to have a bucket outside the default US-region. Also it makes sure we can use one bucket for both media and static files. Store this file in the same folder as your settings file (or settings-folder):
 
-```
+```python
 from django.conf import settings
 from storages.backends.s3boto import S3BotoStorage
 import os
 
-os.environ\['S3\_USE\_SIGV4'\] = 'True'
+os.environ\['S3_USE_SIGV4'\] = 'True'
 
 class StaticStorage(S3BotoStorage):
-    host = "s3-%s.amazonaws.com" % settings.AWS\_REGION
+    host = "s3-%s.amazonaws.com" % settings.AWS_REGION
 
     @property
     def connection(self):
-        if self.\_connection is None:
-            self.\_connection = self.connection\_class(
-                self.access\_key, self.secret\_key,
-                calling\_format=self.calling\_format, host=self.host)
-        return self.\_connection
+        if self._connection is None:
+            self._connection = self.connection_class(
+                self.access_key, self.secret_key,
+                calling_format=self.calling_format, host=self.host)
+        return self._connection
 
 
 class MediaStorage(S3BotoStorage):
-    location = settings.MEDIAFILES\_LOCATION
-    host = "s3-%s.amazonaws.com" % settings.AWS\_REGION
+    location = settings.MEDIAFILES_LOCATION
+    host = "s3-%s.amazonaws.com" % settings.AWS_REGION
 
     @property
     def connection(self):
-        if self.\_connection is None:
-            self.\_connection = self.connection\_class(
-                self.access\_key, self.secret\_key,
-                calling\_format=self.calling\_format, host=self.host)
-        return self.\_connection
+        if self._connection is None:
+            self._connection = self.connection_class(
+                self.access_key, self.secret_key,
+                calling_format=self.calling_format, host=self.host)
+        return self._connection
 ```
 
 #### 4\. Profit!

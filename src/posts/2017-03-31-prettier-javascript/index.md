@@ -7,4 +7,10 @@ author: tomfa
 status: publish
 ---
 
-https://www.youtube.com/watch?v=hkfBvpEfWdA A side note: [A-Prettier-Formatter](http://jlongster.com/A-Prettier-Formatter) should be read. And if you're using Javascript, [Prettier](https://github.com/prettier/prettier) should be tested (especially if you're using JSX). While ESLint eliminated the need for people to talk about code formatting, Prettier can eliminate the need for people to think about code formatting. **Thumbs up!**
+<Video url="https://www.youtube.com/watch?v=hkfBvpEfWdA" /> 
+
+_A side note: [A-Prettier-Formatter](http://jlongster.com/A-Prettier-Formatter) should be read. And if you're using Javascript, [Prettier](https://github.com/prettier/prettier) should be tested (especially if you're using JSX)._
+
+While ESLint eliminated the need for people to talk about code conventions, Prettier can eliminate the need for people to think about code formatting. 
+
+**10 000 thumbs up! I will never work for a company without autoformatting again.**

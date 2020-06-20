@@ -1,7 +1,7 @@
 ---
 title: "Export data from one Django to another over ssh"
 date: 2015-10-18
-image: 
+image: ./steinar-engeland-_2G4EeyeoeA-unsplash.jpg
 tags: [database, django, loaddata, readdata]
 author: tomfa
 status: publish
@@ -9,7 +9,7 @@ status: publish
 
 Sometimes I clone a repository with Django and make a setup of the environment on my own machine. Then I would usually like to have some testdata populated in my environment. So here's how to copy the data from one Django installation (production) to my environment (test). 1. ssh to the remote server
 
-```
+```bash
 ssh username@hostname
 ```
 
@@ -25,7 +25,7 @@ cd /path/to/remote/django
 python manage.py dumpdata db.json
 ```
 
-4. Open a **local** terminal and copy down the file
+4\. Open a **local** terminal and copy down the file
 
 ```
  scp username@hostname:/path/to/remote/django/db.json /path/to/local/django/db.json 

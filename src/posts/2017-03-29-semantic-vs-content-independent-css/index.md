@@ -18,9 +18,11 @@ If you use semantic classes, you could name it something like "search" or even
 If you use content-independent classes, you might call it "tiny-form", because 
 that's **what** it is.  
 
-Now, say you're about to create a feature that allows users to input their phone 
-number, and be sent a one-time verification code. You could absolutely reuse that 
-style from the example above. **Q: Which name make you more likely to reuse the css class?**  
+#### Which name make you more likely to reuse the css class?
+
+Say you're about to create a feature that allows users to input their phone 
+number, and be sent a one-time verification code. Which class name would make 
+you more inclined to reuse its css?
 
 - "header-search"
 - "tiny-form"
@@ -47,7 +49,9 @@ These are all content independent class names, i.e. describe **what they are**
 > Semantic names never works without knowing what you're building.
 > – You, just now.
 
-Valid point, but you must admit this type of naming enables reusability, 
-consistency and readability! And isn't really our own little *Mini-Bootstrap* 
+Valid point, and this type of naming is what enables their reusability, 
+consistency and readability! 
+
+And isn't really our own little *Mini-Bootstrap* 
 exactly what we want from our css? That can be reused in new components and 
 projects with totally new concepts? I think it is!

@@ -25,23 +25,23 @@ A few notes on ["GraphQL: Designing a Data Language" by Lee Byron. ](https://w
 *   Queries can be validated against schema both backend and frontend
 *   Queries is in a readable JSON-like format
     
-    ```
-    {
-         me {
-             name
-         }
-    }
-    ```
+```graphql
+{
+  me {
+    name
+  }
+}
+```
     
 *   Predictable return data in the same structure as query
     
-    ```
-    {
-         "me" {
-             "name": "Tomas Albertsen"
-         }
-    }
-    ```
+```graphql
+{
+  me {
+    name: "Tomas Albertsen"
+  }
+}
+```
     
 
 * * *

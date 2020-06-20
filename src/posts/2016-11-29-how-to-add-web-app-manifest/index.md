@@ -11,19 +11,23 @@ The [manifest.json for web apps](https://developer.mozilla.org/en-US/docs/Web/Ma
 
 1.  Add a file named manifest.json next to your index.html
 2.  Set the content of manifest.json to something like [this](https://gist.github.com/tomfa/0dabc8f36ae5c9e10ee48c40f5e17a56).
-    *   (If you've added icons, make sure their urls contains actual images)
+    
+    _If you've added icons, make sure their urls contains actual images_
+
 3.  Add the following meta-tag to your header in your index.html 
     
     ```html
     <link 
       rel="manifest" 
-      href="http://notes.webutvikling.org/manifest.json">
+      href="http://me.org/manifest.json">
     ```
 
 4.  You might also want to add the following to `head` in index.html, which is necessary for icons at least on my Nexus 5x (svg was not supported) 
     
     ```html
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta 
+      name="mobile-web-app-capable" 
+      content="yes">
     ```
 
 5.  And the same with this, which is necessary for similar features for iOS

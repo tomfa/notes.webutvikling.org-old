@@ -1,7 +1,7 @@
 ---
 title: "Grunt: Don't worry about webkit-*, moz-* when typing css"
 date: 2014-09-21
-image: 
+image: ./grunt.png
 tags: [css, grunt, vendor-prefix]
 author: tomfa
 status: publish

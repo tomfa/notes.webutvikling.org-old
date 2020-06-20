@@ -23,26 +23,43 @@ First off, I want to override Chromes _new tab_ page. New Tab, Bookmarks and His
 
 ### Part 2: Making functionality
 
-So I'm thinking I'd like to see a specific board from Trello, optionally with a filter, with the topmost matching ticket in extra large fonts, to keep my head focused on that task. Something like this: ![](./trello-chrome-ext.png) _– So it's basically a [todomvc](http://todomvc.com/) with a trello integration?_ Yes, that's exactly what it is! _– Well, can I use my favorite framework, like React + Redux, Angular or Ember, pack it with Webpack, and just use that?_ Yes, if you'd like. Remember that it'll pop up every time you open a new tab, so I'd say it's perfectly acceptable to write some plain old ES5 JavaScript without any libraries or frameworks, in order to get the best performance. But whatever you like – this is suppose to be fun after all! But the base line is: **Just create any frontend app**. As long as it's only static files (or compiled to it), it's OK to be a start-page extension.
+So I'm thinking I'd like to see a specific board from Trello, optionally with a filter, with the topmost matching ticket in extra large fonts, to keep my head focused on that task. Something like this: 
+
+![](./trello-chrome-ext.png) 
+
+> So it's basically a [todomvc](http://todomvc.com/) with a trello integration?
+
+> – Yes, that's exactly what it is! 
+
+> Well, can I use my favorite framework, like React + Redux, Angular or Ember, pack it with Webpack, and just use that?
+
+> – Sure. There's nothing stopping you!
+
+Remember that it'll pop up every time you open a new tab, so I'd say it's perfectly acceptable to write some plain old ES5 JavaScript without any libraries or frameworks, in order to get the best performance. But whatever you like – this is suppose to be fun after all! 
+
+But the base line is: **Just create any frontend app**. As long as it's only static files (or compiled to it), it's OK to be a start-page extension.
 
 ### Part 3: Fix up manifest.json
 
 My manifest.json looks something like this:
 
-```
+```json
 {
- "name": "2rello start tab",
- "description": "Your favorite trello board as a beautiful start tab",
- "version": "0.2",
- "incognito": "not\_allowed",
- "chrome\_url\_overrides": {
-   "newtab": "index.html"
- },
- "manifest\_version": 2
+  "name": "2rello start tab",
+  "description": (
+     "Your favorite trello board "
+     "as a beautiful start tab"
+  ),
+  "version": "0.2",
+  "incognito": "not_allowed",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "manifest_version": 2
 }
 ```
 
-You should put in manifest\_version 2. Name and version is [required](https://developer.chrome.com/extensions/manifest), while chrome\_url\_overrides is what tells chrome to use this app as the start page. For a full list of options, check out [Manifest doc](https://developer.chrome.com/extensions/manifest)
+You should put in `manifest_version: 2`. Name and version is [required](https://developer.chrome.com/extensions/manifest), while `chrome_url_overrides` is what tells chrome to use this app as the start page. For a full list of options, check out [Manifest doc](https://developer.chrome.com/extensions/manifest)
 
 ### Frequently Asked Questions
 

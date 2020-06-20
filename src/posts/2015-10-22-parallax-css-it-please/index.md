@@ -1,7 +1,7 @@
 ---
 title: "Parallax. CSS it, please."
 date: 2015-10-22
-image: 
+image: ./parallax.png
 tags: []
 author: tomfa
 status: publish
