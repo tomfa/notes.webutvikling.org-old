@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import YouTubePlayer from "react-youtube"
 import ReactPlayer from "react-player"
 import styled from "styled-components"
 
@@ -17,19 +16,11 @@ const VideoContainer = styled.div`
   margin: 0.3rem 0;
 `
 
-const YouTube = props => (
-  <YouTubePlayer
-    className="video"
-    containerClassName="video-container"
-    {...props}
-  />
-)
-
 const Video = props => (
   <ReactPlayer {...props} controls={true} wrapper={VideoContainer} />
 )
 
-const shortcodes = { Link, YouTube, Video }
+const shortcodes = { Link, Video }
 
 export default function PageTemplate({ data: { mdx } }) {
   return (
