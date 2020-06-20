@@ -6,8 +6,11 @@ import { Image } from "./Image"
 import { PostTags } from "./PostTag"
 
 const Article = styled.article`
+  margin: 0.8rem;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 20px 20px 60px #dedbdb, -20px -20px 60px #f3f2f2;
   flex-basis: 100vw;
-  background-color: #ececec;
   align-self: flex-start;
   border-bottom: 3px solid transparent;
   margin-bottom: 0.5rem;
@@ -22,14 +25,16 @@ const Article = styled.article`
   }
 
   @media (min-width: 800px) {
+    margin: 2rem;
     flex-basis: 30rem;
     flex-shrink: 1;
     flex-grow: 5;
-    margin: 0.5rem;
+    margin: 0.7rem;
+    border-width: 3px;
+    background-color: #fff;
+    border-color: #dedede;
 
-    transition: background-color 0.3s;
     &:hover {
-      background-color: #f6f6f6;
       border-color: #6f8eff;
     }
   }
@@ -40,6 +45,10 @@ const ArticleText = styled.div`
 `
 
 const PostImage = styled(Image)`
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   margin-bottom: -1rem;
 `
 
@@ -47,6 +56,8 @@ const PostHeader = styled.h2`
   font-weight: normal;
   font-size: 2rem;
   margin: 0;
+  margin-bottom: 0.8rem;
+  margin-top: 3.6rem;
 `
 
 const PostHeaderDate = styled.span`
@@ -56,11 +67,8 @@ const PostHeaderDate = styled.span`
 
 const PostExcerpt = styled.p`
   text-decoration: underline;
-  margin-bottom: 1rm;
-
-  @media (min-width: 1200px) {
-    text-decoration: none;
-  }
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
 `
 
 export const PostResult = ({ post }) => {
