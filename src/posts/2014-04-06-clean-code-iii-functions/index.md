@@ -1,13 +1,17 @@
 ---
 title: "Clean Code III: Functions"
 date: 2014-04-06
-image: 
+image: ./robert-clean.jpg
+video: http://vimeo.com/12643301
 tags: [clean code, video]
 author: tomfa
 status: publish
 ---
 
-_This post is an my interpretation of the teachings in [Robert C. Martins Clean Code III: Functions](http://vimeo.com/12643301)._
+<Video url="https://player.vimeo.com/video/12643301"  />
+
+_This post is my TLDR of the video above – 
+[Robert C. Martins Clean Code III: Functions](http://vimeo.com/12643301)._
 
 Functions should do one thing
 -----------------------------

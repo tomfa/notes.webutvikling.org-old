@@ -1,11 +1,14 @@
 ---
 title: "Building a better bootstrap"
 date: 2014-10-07
-image: 
+image: ./a-better-bootstrap.jpg
+video: https://vimeo.com/97318798
 tags: [notes, video]
 author: tomfa
 status: publish
 ---
+
+<Video url="https://vimeo.com/97318798" />
 
 _These are my notes from [Build a Better Bootstrap, by Tim G. Thomas](https://vimeo.com/97318798). It's a good talk. Just not good notes._
 

@@ -2,10 +2,13 @@
 title: "Notes on GraphQL"
 date: 2016-09-25
 image: ./Screen-Shot-2016-09-25-at-14.39.59.png
+video: https://www.youtube.com/watch?v=Oh5oC98ztvI
 tags: [GraphQL]
 author: tomfa
 status: publish
 ---
+
+<Video url="https://www.youtube.com/watch?v=Oh5oC98ztvI" />
 
 A few notes on ["GraphQL: Designing a Data Language" by Lee Byron. ](https://www.youtube.com/watch?v=Oh5oC98ztvI)
 

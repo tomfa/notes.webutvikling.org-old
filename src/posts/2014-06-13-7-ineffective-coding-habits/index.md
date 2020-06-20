@@ -1,13 +1,16 @@
 ---
 title: "7 ineffective coding habits"
 date: 2014-06-13
-image: 
+image: ./7-ineffective-habits.png
+video: https://vimeo.com/97329157
 tags: [clean code, video]
 author: tomfa
 status: publish
 ---
 
-_Notes from [Seven Ineffective Coding Habits of Many Programmers by Kevlin Henney](https://vimeo.com/97329157)_
+<Video url="https://player.vimeo.com/video/97329157"  />
+
+_This post is my TLDR of the video above - [Seven Ineffective Coding Habits of Many Programmers by Kevlin Henney](https://vimeo.com/97329157)_
 
 1\. We clutter our code (with comments)
 ---------------------------------------
@@ -19,18 +22,22 @@ Comments are ignored by the compiler. They are also ignored by programmers. So w
 2. We write off the line
 ------------------------
 
-**Your code shouldn't be longer than 80 lines.** Don't make people scroll horizontally to read your stuff (or even worse, not recognize that there's hidden code off the screen). Have you not thought about this those times where you show code on a projector? Or that a programmer with a large screen might only want to use half of his screen for your code, and the other half for something else?. Come on. Be nice.
+**Your code shouldn't be longer than 80 lines.** 
+
+Don't make people scroll horizontally to read your stuff (or even worse, not recognize that there's hidden code off the screen). Have you not thought about this those times where you show code on a projector? Or that a programmer with a large screen might only want to use half of his screen for your code, and the other half for something else?. Come on. Be nice.
 
 3\. Parameters are placed all over the place
 --------------------------------------------
 
-**Gather your parameters on the screen.** Don't go
+**Gather your parameters on the screen.** 
 
-```
+Don't do
+
+```java
 public void method(int firstArg,
     int secondArg)
 
-or
+// or
 
 public void method(int firstArg,
                    int secondArg)
@@ -38,14 +45,14 @@ public void method(int firstArg,
 
 This will make a screen of methods messy. Chunks of relevant code will be placed on many different indentations in your code, and make it heavy to read. Instead, do
 
-```
+```java
 public void method(
     int firstArg, int secondArg)
 ```
 
 or if it doesn't fit on one line:
 
-```
+```java
 public void method(
     int firstArg,
     int secondArg)
