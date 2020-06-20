@@ -9,7 +9,7 @@ const Article = styled.article`
   margin: 0.8rem;
   border-radius: 30px;
   background-color: #ffffff;
-  box-shadow: 20px 20px 60px #dedbdb, -20px -20px 60px #f3f2f2;
+  box-shadow: 7px 7px 20px #dedbdb, -7px -7px 20px #f3f2f2;
   flex-basis: 100vw;
   align-self: flex-start;
   border-bottom: 3px solid transparent;
