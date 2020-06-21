@@ -62,6 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       allMdx(
+        sort: { order: DESC, fields: frontmatter___date }
         filter: {
           fields: { relativeFolder: { regex: "/posts*/" } }
           frontmatter: { status: { ne: "draft" } }
@@ -72,6 +73,9 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               slug
             }
+            frontmatter {
+              title
+            }
           }
         }
         distinct(field: frontmatter___tags)
@@ -79,7 +83,16 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const posts = result.data.allMdx.edges.map(e => e.node)
+  const posts = result.data.allMdx.edges
+    .map(e => e.node)
+    .reduce((posts, post) => {
+      if (posts.length !== 0) {
+        posts[posts.length - 1].next = post
+        post.prev = posts[posts.length - 1]
+      }
+      posts.push(post)
+      return posts
+    }, [])
   const tags = result.data.allMdx.distinct
 
   posts.forEach(node => {
@@ -88,6 +101,14 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/mdx-post.js`),
       context: {
         slug: node.fields.slug,
+        next: node.next && {
+          slug: node.next.fields.slug,
+          title: node.next.frontmatter.title,
+        },
+        prev: node.prev && {
+          slug: node.prev.fields.slug,
+          title: node.prev.frontmatter.title,
+        },
       },
     })
   })

@@ -8,6 +8,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
 import Layout from "../components/Layout"
 import PostHero from "../components/PostHero"
+import PostFooter from "../components/PostFooter"
 import { MetaTags } from "../components/MetaTags"
 
 const VideoContainer = styled.div`
@@ -22,15 +23,24 @@ const Video = props => (
 
 const shortcodes = { Link, Video }
 
-export default function PageTemplate({ data: { mdx } }) {
+export default function PageTemplate({ data, pageContext }) {
+  const { mdx } = data
+  const { next, prev } = pageContext
+
   return (
-    <Layout>
-      <MetaTags title={mdx.frontmatter.title} keywords={mdx.frontmatter.tags} />
-      <PostHero {...mdx.frontmatter} />
-      <MDXProvider components={shortcodes}>
-        <MDXRenderer>{mdx.body}</MDXRenderer>
-      </MDXProvider>
-    </Layout>
+    <>
+      <Layout>
+        <MetaTags
+          title={mdx.frontmatter.title}
+          keywords={mdx.frontmatter.tags}
+        />
+        <PostHero {...mdx.frontmatter} />
+        <MDXProvider components={shortcodes}>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </MDXProvider>
+        <PostFooter next={next} prev={prev} />
+      </Layout>
+    </>
   )
 }
 
