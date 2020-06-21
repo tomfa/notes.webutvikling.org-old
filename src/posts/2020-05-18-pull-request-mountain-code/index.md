@@ -1,7 +1,7 @@
 ---
 title: "Pull request mountain code"
 date: 2020-05-18
-image: ./victor-freitas-B0zAPSrEcFw-unsplash.jpg
+image: ./tobias-cornille-4QWR5geRC9I-unsplash.jpg
 tags: [github, pull-request, qa, review]
 author: tomfa
 status: publish
