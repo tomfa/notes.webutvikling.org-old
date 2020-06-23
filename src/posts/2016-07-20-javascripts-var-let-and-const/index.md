@@ -21,6 +21,6 @@ Remember var from the ES5 and previously? It had this weird thing, where JavaS
 
 Think about it, then use what suits your needs. Not an easy answer? How about: **Always use const, and then change it to let when your realise you have to reassign some value to it. And  change to var when you realize you need to refer to yourself (e.g. in recursive functions).**
 
-### I don't understand, tell me more about these "variables" you speak of
+> I don't understand, tell me more about these "variables" you speak of
 
 [Do level 1 (it's free) on codeschool.](https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come)

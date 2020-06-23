@@ -45,47 +45,44 @@ There are other, better arguments for and against.
 
 ### Readability
 
-Below is a non-sensical method. It has a default value.
+**When a function becomes large, you can not see default props values when navigating to the function** 
+
+```jsx
+// Default values: easy to see values immediately
+const Hand = ({ hand = 'left' }) => {
+  // Many many lines, can't see below
+```
 
 Here's the same method with defaultProps
 
 ```jsx
-const Hand = ({ hand }) => <h1>{left}</h1>
-
-Hand.defaultProps = { hand: 'left' } 
+// defaultProps: can't see values
+const Hand = ({ hand }) => {
+  // Many many lines, can't see below
 ```
+*** 
 
-*When the method becomes large, you will no longer see the default props when you go to the method. You'll have to scroll, potentially hundred of lines.*
-
-But also, default values can become too messy if you have many properties
+**Maybe defaultProps are more readable when you have (too) many props?**
 
 ```jsx
+// default values: messy method signature
 const Body = ({ 
   arm, 
   ear="2", 
   eye="brown", 
-  feet, 
   head="round", 
   nail="polished", 
   toe="stubbed", 
 }) => {
-    ...
+  // ...
 }
 ```
 
 vs 
 
 ```jsx
-const Body = ({ 
-  arm, 
-  ear,
-  eye,
-  feet, 
-  head,
-  nail,
-  toe,
-}) => {
-    ...
+const Body = ({ arm, ear, eye, head, nail, toe }) => {
+  // ...
 }
 
 Body.defaultProps = { 
@@ -97,11 +94,13 @@ Body.defaultProps = {
 }
 ```
 
-**Maybe defaultProps are more readable when you have (too) many props?**
+***
 
-With default values in class components, their values can be in the middle of the screen, or sprayed across the class.
+**defaultProps are more readable for Class components**
+
 
 ```jsx
+// default values
 class Belly extends React.Component<Props, State> {
   constructor {
     const { moleLocation = 'top right' } = this.props;
@@ -116,7 +115,6 @@ class Belly extends React.Component<Props, State> {
 }
 ```
 
-**defaultProps are more readable in Class components**
 
 ### Typing
 
