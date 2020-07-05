@@ -1,0 +1,27 @@
+---
+title: "React hooks"
+date: 2020-07-05
+eImage: https://picsum.photos/600/400
+imageAlt: "Random image"
+tags: []
+author: tomfa
+status: draft
+---
+
+Why do we use useContext? Isn't it just a non-local non-global state? Why do we want to separate it somewhere in the tree? Does it help if we need two different contexts?
+- useContext may cause unexpected rerenders https://www.youtube.com/watch?v=5gUHfe-ETuo
+- useContext not performant for frequent updates: https://www.youtube.com/watch?v=OvM4hIxrqAw
+
+
+Why do we use useReducer instead of redux? Isn't it the same basic functionality, but with one store, and no developer tools?
+
+Why do we want to use useRef?
+
+Can we use redux very willy nilly, by creating and using it from within a component? It could be cool due to consistent front end state and debugging?
+
+A common argument against Redux is that it's too easy to share state across the app, so it becomes awkwardly weird when one component uses and changes another one... I conceptually agree. It's a different way of saying: We can create bugs more easily when sharing state, and it can be _difficult to debug_ why state changed when it's all due to some component you're not working on. Rephrasing: REDUX = EASY TO SHARE STATE = THIS IS NOT ALWAYS SMART = ... THEN DONT DO IT? YOU DONT HAVE TO SHARE STATE BECAUSE YOU CAN?
+
+SHould we use useCallback instead of defining functions inside render functions?
+
+Should we use React.memo and React.useMemo for things when and why?
+- https://kentcdodds.com/blog/usememo-and-usecallback
