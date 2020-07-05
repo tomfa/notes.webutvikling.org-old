@@ -1,7 +1,7 @@
 ---
 title: "Git commits"
 date: 2020-06-23
-image: ./clickhub.png
+eImage: "https://unsplash.com/photos/lUaaKCUANVI/download?force=true&w=1920"
 tags: [clickup, github]
 author: tomfa
 status: draft
