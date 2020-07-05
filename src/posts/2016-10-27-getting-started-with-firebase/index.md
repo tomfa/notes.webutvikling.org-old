@@ -1,7 +1,6 @@
 ---
 title: "Getting started with Firebase"
 date: 2016-10-27
-image: 
 tags: []
 author: tomfa
 status: draft

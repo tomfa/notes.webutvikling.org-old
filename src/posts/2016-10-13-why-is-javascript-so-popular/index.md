@@ -1,7 +1,6 @@
 ---
 title: "Why is Javascript so popular?"
 date: 2016-10-13
-image: 
 tags: []
 author: tomfa
 status: draft

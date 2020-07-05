@@ -1,7 +1,6 @@
 ---
 title: "Logic Pro keyboard shortcuts"
 date: 2018-08-26
-image: 
 tags: []
 author: tomfa
 status: draft

@@ -1,7 +1,6 @@
 ---
 title: "Coonsidering Websockets"
 date: 2018-11-17
-image: 
 tags: []
 author: tomfa
 status: draft

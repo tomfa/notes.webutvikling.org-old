@@ -1,7 +1,6 @@
 ---
 title: "Create a Chrome extension"
 date: 2016-10-27
-image: 
 tags: []
 author: tomfa
 status: draft

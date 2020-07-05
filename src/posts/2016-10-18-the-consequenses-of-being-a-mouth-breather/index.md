@@ -1,7 +1,6 @@
 ---
 title: "The consequenses of being a mouth-breather"
 date: 2016-10-18
-image: 
 tags: []
 author: tomfa
 status: draft

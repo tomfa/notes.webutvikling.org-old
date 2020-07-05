@@ -1,7 +1,6 @@
 ---
 title: "Minimizing Webpack builds"
 date: 2016-09-20
-image: 
 tags: [react, webpack]
 author: tomfa
 status: draft

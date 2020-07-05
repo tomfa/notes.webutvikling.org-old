@@ -1,7 +1,6 @@
 ---
 title: "Make your website app-like"
 date: 2016-10-27
-image: 
 tags: []
 author: tomfa
 status: draft

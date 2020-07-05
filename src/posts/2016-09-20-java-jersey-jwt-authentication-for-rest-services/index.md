@@ -1,7 +1,6 @@
 ---
 title: "Java Jersey JWT authentication for REST services"
 date: 2016-09-20
-image: 
 tags: []
 author: tomfa
 status: draft

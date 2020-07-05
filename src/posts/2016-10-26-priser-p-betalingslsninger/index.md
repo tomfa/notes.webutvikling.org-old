@@ -1,7 +1,6 @@
 ---
 title: "Priser på betalingsløsninger"
 date: 2016-10-26
-image: 
 tags: []
 author: tomfa
 status: draft

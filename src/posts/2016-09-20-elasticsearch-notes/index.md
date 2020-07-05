@@ -1,7 +1,6 @@
 ---
 title: "Elasticsearch notes"
 date: 2016-09-20
-image: 
 tags: [elasticsearch]
 author: tomfa
 status: draft

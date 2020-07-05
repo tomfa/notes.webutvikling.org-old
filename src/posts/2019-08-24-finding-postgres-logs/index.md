@@ -1,7 +1,6 @@
 ---
 title: "Finding postgres logs"
 date: 2019-08-24
-image: 
 tags: []
 author: tomfa
 status: draft

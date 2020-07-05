@@ -1,7 +1,6 @@
 ---
 title: "Animations in React"
 date: 2016-09-26
-image: 
 tags: []
 author: tomfa
 status: draft
