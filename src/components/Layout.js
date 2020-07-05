@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Header } from "./header"
-import { Footer } from "./footer"
-import { Navigation } from "./navigation"
+import { Header } from "./Header"
+import { Footer } from "./Footer"
+import { Navigation } from "./Navigation"
 
 import "normalize.css"
 import "./style.css"
