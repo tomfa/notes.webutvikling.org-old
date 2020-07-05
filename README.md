@@ -2,6 +2,8 @@
 
 Static site generator for [notes.webutvikling.org](https://notes.webutvikling.org)
 
+![Production Build](https://github.com/tomfa/notes/workflows/Production%20Build/badge.svg)
+
 ## Run
 
 ```
@@ -11,11 +13,8 @@ yarn start
 
 
 ### Write 
-Write `.mdx` files in the `posts`
+Write `.mdx` files in `./src/posts`
 
 ## Deploy
 
-```
-yarn deploy
-```
-...builds and deploys to Github pages 
+Happens automatically on push to master. 
