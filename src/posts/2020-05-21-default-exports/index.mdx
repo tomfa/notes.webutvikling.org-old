@@ -10,9 +10,11 @@ Stop using default exports! Yes, they make the import line look better, and
 they come at no real cost at first, but I'll show how it hinders refactoring
 and decrease your productivity.
 
+_Disclaimer: This post is about default exports in your own project. When creating libraries for others to consume: a default export makes a lot of sense since it simplifies use. How is it different? IDEs don't autocomplete nearly as detailed (sensibly enough) when importing from libraries, and the consumer rarely cares (or know) about the inner function names of external libraries._
+
 ## The pros
 
-Why do we use default exports?
+Why do I use default exports?
 
 ### 1. No brackets on imports!
 
@@ -36,7 +38,7 @@ import FrontPage from "./pages/LandingPage"
 import { LandingPage as FrontPage } from "./pages/LandingPage"
 ```
 
-Neat, huh? Well, you better love it, because that's where the pros end
+Neat, huh? Well, you better love it, because that's where the pros end.
 
 ## The cons
 
