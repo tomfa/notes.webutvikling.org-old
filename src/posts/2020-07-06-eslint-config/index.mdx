@@ -1,0 +1,167 @@
+---
+title: "Understanding Eslint config"
+date: 2020-07-07
+image: "./eslint-logo.jpg"
+imageAlt: "Eslint logo"
+tags: ["eslint"]
+author: tomfa
+status: publish
+---
+
+I like eslint. But I don't quite understand how the setup works. Let's learn it!
+
+## Installation
+
+Getting Started with ESLint tells us to go get started with:
+
+```bash
+# Install eslint
+yarn add -D eslint
+
+# Set up config
+yarn run eslint --init
+```
+
+This will prompt me with a little set of questions. I'll mark my suggested defaults with _italic_.
+
+**How would you like to use ESLint?**
+- To check syntax only
+- To check syntax and find problems
+- _To check syntax, find problems, and enforce code style_
+
+Reasoning: Consistency is king!
+
+**What type of modules does your project use?**
+- _JavaScript modules (import/export)_
+- CommonJS (require/exports)
+- None of these
+
+Depends on my project.
+
+**Which framework does your project use?**
+- _React_
+- Vue.js
+- None of these
+
+Depends on my project.
+
+**Does your project use TypeScript?**  No / Y
+
+Depends on my project.
+
+**Where does your code run?**
+- _Browser_
+- _Node_
+
+Depends on my project.
+
+**How would you like to define a style for your project?**
+- _Use a popular style guide_
+- Answer questions about your style
+- Inspect your JavaScript file(s)
+
+Reasoning: Using a popular lint config usually has more sensible defaults than what I'll come up with myself.
+
+**Which style guide do you want to follow?**
+- _Airbnb: https://github.com/airbnb/javascript_
+- Standard: https://github.com/standard/standard
+- Google: https://github.com/google/eslint-config-google
+
+It's just what I'm used to.
+
+**What format do you want your config file to be in?**
+- _JavaScript_
+- YAML
+- JSON
+
+Javascript allows us to do some extra imports or logic if need be.
+
+***
+
+This will install the needed depencies. If I look at my new `package.json`, I'll see some new eslint packages in my devDepencencies. 
+
+### Running eslint
+
+I can run a check with:
+```bash
+yarn run eslint .
+```
+
+And fix (some problems) with
+```bash
+yarn run eslint . --fix
+```
+
+## Understanding the config
+
+Let's go through each part of my newly generated `.eslintrc.js`:
+
+```js
+env: {
+  browser: true,
+  es2020: true,
+},
+```
+The [env](https://eslint.org/docs/user-guide/configuring#specifying-environments) section tells eslint something about the environment I'm in. _browser_ implies I should be able to use `window` (available in browser), rather than `fs` (available in _node_). `es2020` declares that I should be able to use any part of the `es2020` javascript standard.
+
+```js
+extends: [
+  'plugin:react/recommended',
+  'airbnb',
+],
+```
+
+[Extends](https://eslint.org/docs/user-guide/configuring#using-a-configuration-file) allows us to point to a different eslint configuration, and use that as a "basis". The current eslint config will take presendence over any configuration it extends. 
+
+I can point to packages such as `eslint-config-airbnb`, or with a relative path to a different config file of my own. That allows me to split up rules and settings in different files, which can be useful if I want to reuse my rules accross different repositories. 
+
+_Note: When pointing to packages, I can omit `eslint-config`, and only write `airbnb` as the extended package string._
+
+```js
+parserOptions: {
+  ecmaFeatures: {
+    jsx: true,
+  },
+  ecmaVersion: 11,
+  sourceType: 'module',
+},
+```
+
+[parserOptions](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) tells eslint about ECMA options: if we use `import` vs `require` in imports, which version and features we got.
+
+
+```js
+plugins: [
+  'react',
+],
+```
+
+[plugins](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) can preprocess files, or add extra rules to choose from.
+
+**Plugins: processor**: to generate javascript to be linted. An example would could be javascript contained within `.md` files. 
+
+The plugins job would then be to extract javascript from the files before eslint lints them.
+
+**Plugins: rules**: `react` in the config above adds [these rule options](https://github.com/yannickcr/eslint-plugin-react). By doing so, we do not enforce any rules, we just add them to the set to select from.
+
+We'll have to add them to `extends` or `rules` for us to enforce any of them.
+
+
+```js
+rules: {
+  // Your rules go here
+},
+```
+
+I can override existing rules, or add new rules in rules. [eslint.org/docs/rules](https://eslint.org/docs/rules/) provides a list of available rules, and reasoning and examples behind each of them. 
+
+### Other configuration options
+- Ignore files by specifying them in [.eslintignore](https://eslint.org/docs/user-guide/configuring#eslintignore).
+- Disallow warnings with `yarn run eslint . --max-warnings=0`
+- Configurate for other file endings (e.g. for `.md`) by [specifying processor](https://eslint.org/docs/user-guide/configuring#eslintignore)
+
+
+## Related links
+- [eslint.org/docs/rules](https://eslint.org/docs/rules/): List of rules, examples and reasoning.
+- [Airbnb: javascript](https://github.com/airbnb/javascript): Preferences and arguments for Javascript code style.
+- [eslint-config-airbnb](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb): My go-to eslint config package.
