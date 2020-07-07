@@ -1,20 +1,20 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "styled-components"
+import React from 'react';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
 
-import Layout from "../components/Layout"
-import { MetaTags } from "../components/MetaTags"
-import { PostResult } from "../components/PostResult"
-import { PostList } from "../components/PostList"
+import Layout from '../components/Layout';
+import { MetaTags } from '../components/MetaTags';
+import { PostResult } from '../components/PostResult';
+import { PostList } from '../components/PostList';
 
 const Intro = styled.div`
   max-width: 40rem;
   margin: 0 auto;
-`
+`;
 
 export default function TagTemplate({ data, pathContext }) {
-  const { tag } = pathContext
-  const { edges, totalCount } = data.allMdx
+  const { tag } = pathContext;
+  const { edges, totalCount } = data.allMdx;
 
   return (
     <div>
@@ -22,7 +22,10 @@ export default function TagTemplate({ data, pathContext }) {
 
       <Layout wide>
         <Intro>
-          <h1>Posts about {tag}</h1>
+          <h1>
+            Posts about
+            {tag}
+          </h1>
           <h4>{totalCount} Posts</h4>
         </Intro>
         <PostList>
@@ -32,7 +35,7 @@ export default function TagTemplate({ data, pathContext }) {
         </PostList>
       </Layout>
     </div>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -74,4 +77,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

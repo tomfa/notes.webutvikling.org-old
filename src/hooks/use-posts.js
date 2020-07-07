@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby';
 
 export const usePostQuery = () => {
   const { allMdx } = useStaticQuery(
@@ -43,6 +43,6 @@ export const usePostQuery = () => {
         }
       }
     `
-  )
-  return allMdx
-}
+  );
+  return allMdx;
+};

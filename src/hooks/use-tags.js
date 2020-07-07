@@ -1,5 +1,5 @@
-import { useStaticQuery, graphql } from "gatsby"
-import { asUrl } from "../utils/urlize"
+import { useStaticQuery, graphql } from 'gatsby';
+import { asUrl } from '../utils/urlize';
 
 export const useTags = () => {
   const data = useStaticQuery(
@@ -17,17 +17,17 @@ export const useTags = () => {
         }
       }
     `
-  )
-  const tags = data.allMdx.distinct
+  );
+  const tags = data.allMdx.distinct;
   const tagCount = tags.reduce((obj, item) => {
-    obj[item] = 0
-    return obj
-  }, {})
-  const edges = data.allMdx.edges || []
+    obj[item] = 0;
+    return obj;
+  }, {});
+  const edges = data.allMdx.edges || [];
   edges.forEach(edge => {
-    const tags = (edge.node.frontmatter && edge.node.frontmatter.tags) || []
-    tags.forEach(tag => (tagCount[tag] += 1))
-  })
+    const tags = (edge.node.frontmatter && edge.node.frontmatter.tags) || [];
+    tags.forEach(tag => (tagCount[tag] += 1));
+  });
 
   return tags
     .map(tag => ({
@@ -35,5 +35,5 @@ export const useTags = () => {
       url: `/tag/${asUrl(tag)}`,
       count: tagCount[tag],
     }))
-    .sort((a, b) => b.count - a.count)
-}
+    .sort((a, b) => b.count - a.count);
+};

@@ -1,31 +1,31 @@
-import React from "react"
-import { graphql } from "gatsby"
-import ReactPlayer from "react-player"
-import styled from "styled-components"
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import ReactPlayer from 'react-player';
+import styled from 'styled-components';
 
-import { MDXProvider } from "@mdx-js/react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import { Link } from "gatsby"
-import Layout from "../components/Layout"
-import PostHero from "../components/PostHero"
-import PostFooter from "../components/PostFooter"
-import { MetaTags } from "../components/MetaTags"
+import { MDXProvider } from '@mdx-js/react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+
+import Layout from '../components/Layout';
+import PostHero from '../components/PostHero';
+import PostFooter from '../components/PostFooter';
+import { MetaTags } from '../components/MetaTags';
 
 const VideoContainer = styled.div`
   max-width: 100%;
   background-color: #000000;
   margin: 0.3rem 0;
-`
+`;
 
 const Video = props => (
-  <ReactPlayer {...props} controls={true} wrapper={VideoContainer} />
-)
+  <ReactPlayer {...props} controls wrapper={VideoContainer} />
+);
 
-const shortcodes = { Link, Video }
+const shortcodes = { Link, Video };
 
 export default function PageTemplate({ data, pageContext }) {
-  const { mdx } = data
-  const { next, prev } = pageContext
+  const { mdx } = data;
+  const { next, prev } = pageContext;
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function PageTemplate({ data, pageContext }) {
         <PostFooter next={next} prev={prev} />
       </Layout>
     </>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -71,4 +71,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

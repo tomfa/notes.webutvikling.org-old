@@ -1,4 +1,4 @@
 function asUrl(text) {
-  return text.toLowerCase().replace(" ", "-")
+  return text.toLowerCase().replace(' ', '-');
 }
-module.exports = { asUrl }
+module.exports = { asUrl };

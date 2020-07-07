@@ -1,6 +1,6 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout"
+import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
 
 export default function MyFiles({ data }) {
   return (
@@ -12,13 +12,13 @@ export default function MyFiles({ data }) {
             .map(n => n.node)
             .map(n => (
               <li>
-                {n.relativePath}, {n.birthTime}
+                {n.relativePath},{n.birthTime}
               </li>
             ))}
         </ul>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const query = graphql`
@@ -34,4 +34,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

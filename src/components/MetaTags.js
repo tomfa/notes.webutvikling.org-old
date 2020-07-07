@@ -1,18 +1,18 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useMeta } from "../hooks/use-meta"
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { useMeta } from '../hooks/use-meta';
 
 export function MetaTags({
-  description = "",
-  lang = "en",
+  description = '',
+  lang = 'en',
   meta = [],
   keywords = [],
-  title = "",
+  title = '',
 } = {}) {
-  const siteMeta = useMeta()
-  const metaDescription = description || siteMeta.description
-  const metaTitle = title || siteMeta.title
-  const metaKeywords = keywords.length ? keywords : siteMeta.keywords
+  const siteMeta = useMeta();
+  const metaDescription = description || siteMeta.description;
+  const metaTitle = title || siteMeta.title;
+  const metaKeywords = keywords.length ? keywords : siteMeta.keywords;
 
   return (
     <Helmet
@@ -23,42 +23,42 @@ export function MetaTags({
       titleTemplate={`%s | ${siteMeta.title}`}
       meta={[
         {
-          name: `description`,
+          name: 'description',
           content: metaDescription,
         },
         {
-          name: `keywords`,
-          content: metaKeywords.join(", "),
+          name: 'keywords',
+          content: metaKeywords.join(', '),
         },
         {
-          property: `og:title`,
+          property: 'og:title',
           content: metaTitle,
         },
         {
-          property: `og:description`,
+          property: 'og:description',
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: 'og:type',
+          content: 'website',
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          name: 'twitter:card',
+          content: 'summary',
         },
         {
-          name: `twitter:creator`,
+          name: 'twitter:creator',
           content: siteMeta.author,
         },
         {
-          name: `twitter:title`,
+          name: 'twitter:title',
           content: metaTitle,
         },
         {
-          name: `twitter:description`,
+          name: 'twitter:description',
           content: metaDescription,
         },
       ].concat(meta)}
     />
-  )
+  );
 }
