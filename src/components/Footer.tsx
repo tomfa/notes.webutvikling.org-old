@@ -68,7 +68,9 @@ export const Footer = () => {
         <List>
           <ListItem>These are just notes and scribbl.</ListItem>
           <ListItem>Don't take anything seriously.</ListItem>
+          <ListItem>Add a grain of salt.</ListItem>
           <ListItem>Usually I don't know what I'm talking about.</ListItem>
+          <ListItem>↑ Also good rules for the Internet as a whole.</ListItem>
         </List>
       </Div>
       <Div area="whoami" ta="right">
