@@ -1,0 +1,178 @@
+---
+title: "Passbolt on AWS"
+date: 2020-09-15
+eImage: https://picsum.photos/600/400
+imageAlt: "Random image"
+tags: []
+author: tomfa
+status: draft
+---
+
+This is a guide on how to setup Passbolt on ~Heroku~ AWS, using Docker image. 
+
+I tried Heroku first, but [passbolt docker](https://help.passbolt.com/hosting/install/ce/docker.html) 
+requires [Volumes](https://devcenter.heroku.com/articles/container-registry-and-runtime#unsupported-dockerfile-commands), which 
+is not supported.
+
+So let's do it on AWS instead.
+
+
+## Install AWS EBCLI
+
+You _should_ follow the setup at github.com/aws/aws-elastic-beanstalk-cli-setup. Using brew is also a possibility.
+
+```sh
+# Warning: This can take an hour(1)
+brew install awsebcli
+```
+
+Lets create the files we need.
+
+```
+mkdir passbolt
+cd passbolt
+
+cat <<EOT >> Dockerrun.aws.json 
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "passbolt/passbolt",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "5000"
+    }
+  ]
+}
+EOT
+```
+
+## Deploy time
+```
+# Naming the application passbolt
+eb init -r eu-north-1 -p docker passbolt
+
+# Verify that it works locally
+eb local run --port 5000
+
+# deploy it
+eb create passbolt-env
+
+# Open it up
+eb open
+```
+
+## Shutdown/cleanup
+```
+# This will REMOVE the created environment
+eb terminate passbolt
+```
+
+- https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) installed
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed
+
+## Shotgun
+
+```sh
+# Clone the passbolt_docker code
+git clone git@github.com:passbolt/passbolt_docker.git
+
+# Create a heroku app
+heroku create mypassboltapp
+
+# Enable workers
+heroku ps:scale web=1
+
+# Tell Heroku to use DockerFile for its web worker. There is the run CMD specified too
+cat <<EOT >> heroku.yml
+build:
+  docker:
+    web: Dockerfile
+EOT
+
+# Add maria db
+heroku addons:create jawsdb-maria
+
+```
+
+### Configure env vars
+
+This could probably be done inside heroku.yaml?
+
+#### Find the heroku app URL:
+```
+heroku open
+```
+
+_Use this as DOMAIN below_
+
+#### Get the maria DB vars
+```sh
+heroku config:get JAWSDB_MARIA_URL
+```
+
+_Comes in format mysql://USER:PASSWORD@URL:3306/DB_NAME_
+
+Set the required variables
+```sh
+heroku config:set \
+    APP_FULL_BASE_URL="DOMMAIN" \
+    DATASOURCES_DEFAULT_HOST=URL \
+    DATASOURCES_DEFAULT_USERNAME=USER \
+    DATASOURCES_DEFAULT_PASSWORD=PASSWORD \
+    DATASOURCES_DEFAULT_DATABASE=DB_NAME \
+    DATASOURCES_DEFAULT_PORT=3306 \
+    DATASOURCES_QUOTE_IDENTIFIER=true \
+    PASSBOLT_REGISTRATION_PUBLIC=false
+```
+
+Set up title and description
+
+```sh
+heroku config:set \
+    PASSBOLT_META_TITLE="ACO Nøkkelknippe" \
+    PASSBOLT_META_DESCRIPTION="Skreppa til Espen"
+```
+
+Disable all the emails
+```sh
+heroku config:set \
+    PASSBOLT_EMAIL_SHOW_COMMENT=false \
+    PASSBOLT_EMAIL_SHOW_DESCRIPTION=false \
+    PASSBOLT_EMAIL_SHOW_SECRET=false \
+    PASSBOLT_EMAIL_SHOW_URI=false \
+    PASSBOLT_EMAIL_SHOW_USERNAME=false \
+    PASSBOLT_EMAIL_SEND_COMMENT_ADD=false \
+    PASSBOLT_EMAIL_SEND_PASSWORD_CREATE=false \
+    PASSBOLT_EMAIL_SEND_PASSWORD_SHARE=false \
+    PASSBOLT_EMAIL_SEND_PASSWORD_UPDATE=false \
+    PASSBOLT_EMAIL_SEND_PASSWORD_DELETE=false \
+    PASSBOLT_EMAIL_SEND_USER_CREATE=false \
+    PASSBOLT_EMAIL_SEND_USER_RECOVER=false \
+    PASSBOLT_EMAIL_SEND_ADMIN_USER_SETUP_COMPLETED=false \
+    PASSBOLT_EMAIL_SEND_GROUP_DELETE=false \
+    PASSBOLT_EMAIL_SEND_GROUP_USER_ADD=false \
+    PASSBOLT_EMAIL_SEND_GROUP_USER_DELETE=false \
+    PASSBOLT_EMAIL_SEND_GROUP_USER_UPDATE=false \
+    PASSBOLT_EMAIL_SEND_GROUP_MANAGER_UPDATE=false
+```
+
+## Deploy
+
+```
+git push heroku master
+
+```
+
+
+## Locally
+```
+docker-compose up
+
+# Close with ctrl+c and docker-compose down
+```
