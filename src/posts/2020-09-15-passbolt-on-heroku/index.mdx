@@ -1,0 +1,33 @@
+---
+title: "Passbolt on AWS"
+date: 2020-09-15
+image: ./vault.jpg
+imageAlt: "Photo by Morning Brew on Unsplash"
+tags: ["passbolt", "aws", "docker", "elastic beanstalk", "heroku", "digitalocean"]
+author: tomfa
+status: publish
+---
+
+This is a guide on how to setup Passbolt on ~Heroku using Docker image~, shit, ~AWS using Elastic Beanstalk with Docker~, fuck ~AWS EC2 insatnces with Terraform~ GOD DAMN IT... Droplets on Digital Ocean?
+
+_I tried Heroku first, but [passbolt docker](https://help.passbolt.com/hosting/install/ce/docker.html) 
+requires Volumes, which [is not supported]((https://devcenter.heroku.com/articles/container-registry-and-runtime#unsupported-dockerfile-commands)). I then went on to attempting AWS ELB with Docker, but it kept abruptly aborting without any useful errors. Close to giving up, I got [some trackion using Terraform and AWS EC2 instances + RDS](https://gist.github.com/tomfa/b4236ed2776cca5b756251d08e31a226), but got so frustrated when Passbolt didn't out of the box support the default AWS Linux 2 AMI that I tried Digital Ocean Droplet. THAT worked like a CHARM!_
+
+[passbolt](https://www.passbolt.com) is an open source password manager for teams. The community version does not support storing files, but it'll be enought for most. See [https://www.passbolt.com/pricing](https://www.passbolt.com/pricing/pro) for more info on differences and prices.
+
+
+## Setup Passbolt on Digital Ocean
+
+The passbolt guide can be found [here](https://help.passbolt.com/hosting/install/ce/digital-ocean). Just follow it, and give up on Passbolt Docker.
+
+**TLDR:**
+- Sign up for Digital Ocean
+- Create an email address you can send from (e.g. `passbolt@mydomain.com`) and get the SMTP server, and password you can use to send from it.
+- Create a Droplet from the marketplace (search for passbolt)
+- Set up an A-record in your DNS records pointing to the IP you're given, e.g. `vault.mydomain.org --> 23.123.45.123`
+- Wait until the DNS is updated
+- SSH into the droplet, and go through the guide
+- Go to your newly setup domain name e.g. **https**://vault.mydomain.org
+- Follow the guide (your DB url is `127.0.0.1`)
+
+Profit!
