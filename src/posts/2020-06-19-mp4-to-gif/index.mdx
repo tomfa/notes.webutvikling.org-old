@@ -1,0 +1,93 @@
+---
+title: "Convert mp4 to gif"
+date: 2020-06-19
+image: ./ahmad-odeh-ckm1yAe6jhU-unsplash.jpg
+tags: ["brew", "gif"]
+author: tomfa
+status: publish
+---
+
+Converting mp4 to gif on can be done with [ffmpeg](https://ffmpeg.org/). On a Mac it can be done from command line with the following script:
+
+
+```bash
+# Add this to your ~/.bash_profile file
+makeGif() {
+    FRAMERATE=12
+    SCALE=480
+
+    # Make gif out of video
+    if [ "$1" = "" ] ; then
+        echo "Missing input video"
+        return;
+    fi
+    if [ -f "$1" ]; then
+        echo "$1 exists."
+    else
+        echo "$1 does not exists."
+        return;
+    fi
+    if ! [ "$2" = "" ] ; then
+        FRAMERATE=$2
+    fi
+    if ! [ "$3" = "" ] ; then
+        SCALE=$3
+    fi
+    type ffmpeg >/dev/null 2>&1 || { echo >&2 "I require ffmpeg but it’s not installed.  Install with 'brew install ffmpeg'" & return }
+    ffmpeg -i "$1" -r $FRAMERATE -vf scale="$SCALE":-1 $1.gif
+}
+alias giphify=makeGif
+```
+
+Now you can convert videos with
+```
+giphify my-video.mp4
+```
+
+_Note: you'll have to reopen your terminal first, or source the file_ 
+
+The gif will default to 12 FPS and a 480px width with a pretty hard compression, making it suitable to host online.
+
+If you wish, you can override the FPS and SCALE in the script, or by passing it as the second and third argument:
+
+```bash
+# Creating a Gif with 24 FPS and 1080px width.
+gipify my-video.mp4 24 1080
+```
+
+### An example
+
+#### Original GIF from giphify (*5.2MB*)
+
+![Original gif](https://media.giphy.com/media/DHFUvl7EK111mMKobq/giphy.gif)
+
+
+
+#### Directly compressed GIF (*4.4MB*)
+
+![Compressed version of original gif](https://user-images.githubusercontent.com/1502702/95243703-4f219800-0811-11eb-9e61-c0480c0963d4.gif)
+
+```
+giphify facemask-original.gif
+```
+
+#### Quicktime screen capture (*4.1MB .mov*)
+
+<video width="480" autoplay loop>
+  <source src="/resources/facemask.mov" type="video/mp4" />
+</video>
+
+Mac have a built in screen capture tool which is quite handy. You with the default hotkey CMD + SHIFT + 5 or by using QuickTime manually.
+Capturing the original gif reduces the file size, but changes the file type to `.mov`.
+
+_When I create GIFs from features in Github PRs, I usually use this, combined with the giphify'ing below._
+
+#### GIF from screen capture (*1.8MB*)
+
+![mov file converted to lower quality gif](https://user-images.githubusercontent.com/1502702/95243685-49c44d80-0811-11eb-9811-a19bc42bedf5.gif)
+
+```
+giphify screencapture.mov
+```
+
+The quality here is notably worse: more choppy, less details and somethings a bit off with colors. I think it's still acceptable for most use cases remaining for GIF images, and most importantly my own use cases :)
