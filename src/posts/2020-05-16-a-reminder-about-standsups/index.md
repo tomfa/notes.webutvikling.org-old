@@ -1,5 +1,5 @@
 ---
-title: "A reminder about standsups"
+title: "A reminder about standups"
 date: 2020-05-16
 image: ./saksham-gangwar-YVgOh8w1R4s-unsplash-1.jpg
 tags: [habits, standup]
@@ -7,7 +7,7 @@ author: tomfa
 status: publish
 ---
 
-Standsup can become a chore without an obvious value. Either 1) because I work very tightly with the team. I care about what they do, and know what they're doing today. We hold each other accountable on progress through frequent interaction. Or 2) Because I am too stressed around my own tasks. I "don't have the time" to hear about others plans and their progress. If this is the case, I could need a timeout and reminder on why we do standups:
+Standup can become a chore without an obvious value. Either 1) because I work very tightly with the team. I care about what they do, and know what they're doing today. We hold each other accountable on progress through frequent interaction. Or 2) Because I am too stressed around my own tasks. I "don't have the time" to hear about others plans and their progress. If this is the case, I could need a timeout and reminder on why we do standups:
 
 1.  Telling people I trust **my goals for today**, helps me focus and motivated to do those things.
 
