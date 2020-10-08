@@ -113,3 +113,4 @@ touch .local_profile .zshrc.local
 - **Remove the bad shortcuts** –> Alfred-search "Keyboard" -> *Shortcuts* -> Generally remove every you don't know or use. 
 - **Make Spectacle start automatically** - Alfred-search "Spectacle" -> settings and check it.
 - **Hide that Dock** – Put in on the right side, autohide and make it small.
+- **Set finder to always open in list view** – Open finder, click your harddisk, [click cmd-J and configure](https://apple.stackexchange.com/questions/284467/how-to-set-finder-to-always-use-list-view).
