@@ -1,0 +1,46 @@
+---
+title: "Loading web fonts quickly"
+date: 2021-04-19
+image: ./arno-senoner-JNxMtUFOUHs-unsplash.jpg
+tags: ["google fonts", "webfonts", "performance"]
+imageAlt: "Photo by Arno Senoner on Unsplash"
+author: tomfa
+status: publish
+---
+
+When loading webfonts, there's a few tricks you can use to speed up the performance:
+
+1. **Preconnect** to external sources that deliver content critical to your rendering.
+
+```html
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+```
+
+2. Use [font-display: swap](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display)
+```html
+<link rel="preload"
+      as="style"
+      href="https://CSS_URL?&display=swap" />
+```
+
+3. If you need to support older browsers, that are [not supporting font-display: swap](https://caniuse.com/?search=font-display%3A%20swap), use this swap-hack
+```html
+<link rel="stylesheet"
+      href="$CSS&display=swap"
+      media="print" onload="this.media='all'" />
+```
+
+4. If you need to support [browsers that do not support preload](https://caniuse.com/?search=preload), without Javascript enabled, fall back to the regular way
+```html
+<noscript>
+  <link rel="stylesheet"
+        href="$CSS&display=swap" />
+</noscript>
+```
+
+_This note is a steal from [csswizardry.com/2020/05/the-fastest-google-fonts/](https://csswizardry.com/2020/05/the-fastest-google-fonts/)._
+
+## Related
+- [csswizardry.com/2018/11/css-and-network-performance/](https://csswizardry.com/2018/11/css-and-network-performance/)
