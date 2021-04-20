@@ -1,0 +1,19 @@
+---
+title: "Lower case postgres table names"
+date: 2021-05-01
+image: ./damian-patkowski-QeC4oPdKu7c-unsplash.jpg
+tags: ["Postgres", "conventions"]
+imageAlt: "Photo by @damianpatkowski on Unsplash"
+author: tomfa
+status: publish
+---
+
+In Postgres, [unquoted column names are internally lower cased](https://stackoverflow.com/questions/21796446/postgres-case-sensitivity).
+
+Therefore, create all tables as with [lower_cased column names](https://stackoverflow.com/questions/2878248/postgresql-naming-conventions).
+
+Or else, psql suggestions is broken, and unquoted column selections [break things somewhere](https://stackoverflow.com/questions/45253713/camelcase-column-in-postgresql-database-in-rails-activerecord), but [not necessarily in your tool if you configed things your way](https://github.com/typeorm/typeorm/issues/458).
+
+So don't cling to your language-specific way of doing casing. Postgres columns are Postgres columns – not Javascript columns.
+
+![Video of autocomplete struggling](https://user-images.githubusercontent.com/1502702/115443636-c948c580-a213-11eb-8ff3-8ecc87b9cbc8.gif)
