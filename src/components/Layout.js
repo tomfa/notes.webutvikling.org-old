@@ -10,7 +10,7 @@ import './style.css';
 
 const Main = styled.main`
   max-width: ${props => (!props.wide ? '40rem' : null)};
-  margin: ${props => (!props.wide ? '0 auto' : null)};
+  margin: 0 auto;
   padding-bottom: 2rem;
 
   @media (max-width: 800px) {
@@ -22,6 +22,10 @@ const Main = styled.main`
     & > small {
       padding: 1rem;
     }
+  }
+  
+  @media (min-width: 800px) {
+    max-width: ${props => (!props.wide ? '50rem' : '100rem')};
   }
 `;
 const SiteWrapper = styled.div`
