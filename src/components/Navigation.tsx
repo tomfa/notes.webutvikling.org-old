@@ -4,6 +4,8 @@ import { Link } from "gatsby"
 import { useMeta } from "../hooks/use-meta"
 
 const Nav = styled.nav`
+  margin: 0 auto;
+  max-width: 100rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

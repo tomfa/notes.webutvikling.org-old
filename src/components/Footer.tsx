@@ -1,19 +1,22 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { useTags } from "../hooks/use-tags"
 
-const FooterTag = styled.footer`
+const FooterBg = styled.div`
   background-color: #3a3a3a;
+`
+
+const FooterTag = styled.footer`
   color: #dedede;
   padding: 2rem;
-  margin-bottom: 0;
+  margin: 0 auto;
   min-height: 10rem;
   display: grid;
   grid-template-areas:
     "what"
     "whoami";
   grid-gap: 1rem;
+  max-width: 100rem;
 
   @media (min-width: 800px) {
     grid-template-areas: "what whoami";
@@ -36,8 +39,8 @@ const List = styled.ul`
   margin: 0;
 
   & > li {
-    line-height: "1.5rem";
-    font-size: "1rem";
+    line-height: 1.5rem;
+    font-size: 1rem;
   }
 `
 
@@ -62,6 +65,7 @@ const FooterHeader = styled.h3`
 export const Footer = () => {
   const tags = useTags().slice(0, 12)
   return (
+    <FooterBg>
     <FooterTag>
       <Div area="what">
         <FooterHeader>What</FooterHeader>
@@ -88,5 +92,6 @@ export const Footer = () => {
         </List>
       </Div>
     </FooterTag>
+    </FooterBg>
   )
 }
