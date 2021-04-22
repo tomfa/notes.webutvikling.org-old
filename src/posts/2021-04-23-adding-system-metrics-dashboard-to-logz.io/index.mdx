@@ -1,0 +1,96 @@
+---
+title: "Adding system metrics dashboard to logz.io"
+date: 2021-04-23
+image: ./lukas-blazek-mcSDtbWXUZU-unsplash.jpg
+tags: ["metrics", "dashboard", "elasticsearch"]
+imageAlt: "Photo by @goumbik on Unsplash"
+author: tomfa
+status: publish
+---
+
+There's system logs and there's application logs.
+
+System logs are quite similar across different services. HTTP servers typically include info about the request and the response,
+such as timestamps, response times, urls, http methods, status codes. Services such as Heroku will often autogenerate these for you 
+– allowing you little or no control over them yourself.
+
+Application logs are created by you in your app, and differ between applications. The simplest are just a message string, 
+which can be useful itself for debugging. You can structure the logs too, e.g. as JSON logging. In these you can add data such as 
+userId, the related url path, a request ID or what ever you find useful. Application logs can be used to identify errors or aggregate 
+business metrics such as number of sales or payment option selection.
+
+The purpose of this post is to make use of Heroku system logs with [Kibana](https://www.elastic.co/kibana), through the use of [logz.io](https://logz.io/),
+and find which metrics we want to include in our dashboard.
+
+## Purpose of a dashboard
+
+In my mind, a dashboard is suppose to give _someone_ an overview at a glance, that lets them prioritize. 
+A dashboard should not include "everything" – more than ~5 metrics or graphs easily becomes too much 
+information that we quickly learn to ignore, or don't know how to react to.
+
+I think of dashboards as belonging to one of three categories:
+
+#### Motivational dashboard: How are we doing on our progress?
+A motivational dashboard is ment to give feedback on how you're progressing on the metrics you're focusing on.
+This is usually not based on system logs, though it could be.
+
+__Example metric: Convertion rate, displayed as a timeline over the last 3 months.__
+
+#### High level dashboard: Is everything OK?
+A high level dashboard can tell you if you need to drop what you had planned to go extinguish a fire.
+
+__Example metric: HTTP 400+ as a percentage of total requests, displayed over the last 1-2 weeks.__
+
+#### Detail dashboard: Where is something not OK?
+A low level dashboard can let you narrow your search for the causes of something being "wrong".
+
+__Example: List of URLs taking over 1000ms to respond, sorted by request counts over the last 1-2 weeks.__
+
+
+## Suggested metrics
+
+### High level: Response times and traffic
+
+If an eye isn't put on performance, it'll often deteriorate as new features and libraries are added.
+We want to identify which URLs are both commonly used and slow, so we can target our efforts in improving performance to where it matters.
+
+- A list of the slowest URLs: their count (amount of requests), their median (50th percentile) response time, 90th percentile and 98th percentile.
+- A line chart showing the amount of requests, our response times (50th, 90th, 98th percentile) across all paths
+
+_Which percentiles to choose depends on the nature of your system, but the three above is a good place to start._
+
+
+### High level: HTTP status >= 400
+
+Having many metrics to pay attention to, can lower the engagement with a dashboard. 
+If there's "usually something wrong" and you don't react to it, the dashboard looses its value. 
+Similarily if you have a lot of metrics – it can become too much and we become blind to them.
+
+In an overview dashboard, you can skip 400, 404 and 500, and just show the percentage of requests that are "bad", 
+i.e. HTTP status 400 and above. When that number becomes large, a developer can then dive deeper into the numbers to identify 
+what kind of 400+ status codes is happening, and where it 
+
+
+### Detail: HTTP status 500
+
+HTTP status 500 means we have an bug in our code, or not handled edge cases in our API. 
+We want to identify at what urls people get 500 errors, and fix these bugs.
+
+- A list that shows which paths are most common to give 500, lets us find what endpoints we should investigate first.
+- A line chart showing the amount of 500 errors over the last 2 weeks can tells us if something is going terribly wrong today.
+
+### Detail: HTTP status 404
+
+HTTP status 404 means someone requested an URL that isn't there. 
+This can happen if we remove an endpoint that is still depended on, or a link or url has been mistyped in text or in application code.
+We'll want to identify the sources of these requests, and fix them.
+
+- A list that shows which paths are most common to give 404, lets us identify dead urls. 
+- A line chart showing the amount of 404 errors over the last 2 weeks can tells us if something has recently changed for the worse.
+
+### Detail: HTTP status 400
+
+HTTP status 400 means someone has requested or passed data that doesn't conform to API specifications.
+This can be an API that changed, without the consumer application being updated.
+We want to identify these URLs, the consuming application and fix them.
+
