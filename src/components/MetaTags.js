@@ -12,7 +12,7 @@ export function MetaTags({
   const siteMeta = useMeta();
   const metaDescription = description || siteMeta.description;
   const metaTitle = title || siteMeta.title;
-  const metaKeywords = keywords.length ? keywords : siteMeta.keywords;
+  const metaKeywords = keywords?.length ? keywords : siteMeta.keywords;
 
   return (
     <Helmet
