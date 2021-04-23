@@ -1,0 +1,72 @@
+---
+title: "Find bugs with git bisect"
+date: 2021-04-23
+image: ./teodor-drobota-nsjZyJn-KRc-unsplash.jpg
+tags: ["git", "bisect", "tests", "commit"]
+imageAlt: "Photo by @teodordrobota on Unsplash"
+author: tomfa
+status: publish
+---
+
+Git bisect is the underutilized superhero of debugging. To use it effectively, keep your commits small and simple – and write tests.
+
+----
+
+### Add a bisect script to your bash_profile
+
+```bash
+# ~/.bash_profile
+bisect() {
+    git bisect start
+    git bisect good $1
+    git bisect bad HEAD
+    shift
+    echo "$@" > ./test.sh
+    chmod 755 ./test.sh
+    git bisect run ./test.sh
+    rm ./test.sh
+    git bisect reset
+}
+```
+
+### Use it like this from the command line
+
+1. Navigate to a known commit where things do not work (e.g. `feature-branch`)
+2. Find a known commit where things work (e.g. `master`)
+3. Identify a command you can run to highlight if the bug is present (e.g. running `yarn test`)
+
+```bash
+git checkout [bad-commit]
+bisect [good-commit] [test command]
+```
+
+for instance
+
+```bash
+git checkout my-feature-branch
+bisect master yarn test
+```
+
+The script will churn away and identify the sinful commit like this:
+
+```
+8cbf7dc670544ea69d0b24003249cc9f1ba7904f is the first bad commit
+commit 8cbf7dc670544ea69d0b24003249cc9f1ba7904f
+Author: Tomas Fagerbekk <tomas.a.fagerbekk@gmail.com>
+Date:   Fri Apr 23 16:24:38 2021 +0200
+
+    logging: add dev logging of requests
+
+ src/config/index.ts                                  | 3 ---
+ src/config/initializers/express.ts                   | 8 ++++++++
+ src/services/Logger/local/providers/Winston/index.ts | 5 -----
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+```
+
+From there, you should have no problem finding the reason for your bug (given the commit is small).
+
+### Prerequisites
+
+- Have small commits. (Do NOT squash your pull requests!).
+- Every commit should be made in a working-state of the application
+- Write testable code (ideally by writing tests)
