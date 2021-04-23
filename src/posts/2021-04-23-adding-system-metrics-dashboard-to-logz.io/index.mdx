@@ -26,28 +26,31 @@ and find which metrics we want to include in our dashboard.
 
 In my mind, a dashboard is suppose to give _someone_ an overview at a glance, that lets them prioritize. 
 A dashboard should not include "everything" – more than ~5 metrics or graphs easily becomes too much 
-information that we quickly learn to ignore, or don't know how to react to.
+information that we quickly learn to ignore, or don't know how to react to. Hence it makes sense to create different dashboards
+for different teams.
 
-I think of dashboards as belonging to one of three categories:
+I think of dashboards as belonging to one of three categories, each answering their own variant of the question "What's up?".
 
-#### Motivational dashboard: How are we doing on our progress?
-A motivational dashboard is ment to give feedback on how you're progressing on the metrics you're focusing on.
-This is usually not based on system logs, though it could be.
+#### Motivational dashboard: How are we progressing?
+A motivational dashboard is ment to give feedback on how you're progressing on the metrics you're caring about (this year/quarter/month).
+This is usually not based on system logs, though it could be. 
 
-__Example metric: Convertion rate, displayed as a timeline over the last 3 months.__
+_Example metric: Successful signup ratio, displayed as a timeline over the last 3 months._
 
 #### High level dashboard: Is everything OK?
-A high level dashboard can tell you if you need to drop what you had planned to go extinguish a fire.
+A high level dashboard can tell you if something is wrong, or out of the ordinary.
 
-__Example metric: HTTP 400+ as a percentage of total requests, displayed over the last 1-2 weeks.__
+_Example metric: HTTP status 400+ as a percentage of total requests, displayed over the last 1-2 weeks._
 
 #### Detail dashboard: Where is something not OK?
 A low level dashboard can let you narrow your search for the causes of something being "wrong".
 
-__Example: List of URLs taking over 1000ms to respond, sorted by request counts over the last 1-2 weeks.__
+_Example: List of URLs taking over 1000ms to respond, sorted by request counts over the last 1-2 weeks._
 
 
 ## Suggested metrics
+
+Here's a few metrics from system logs that is useful in most API systems, and can be a starting point for a high level and a detailed system dashboard.
 
 ### High level: Response times and traffic
 
@@ -94,3 +97,229 @@ HTTP status 400 means someone has requested or passed data that doesn't conform 
 This can be an API that changed, without the consumer application being updated.
 We want to identify these URLs, the consuming application and fix them.
 
+
+## Setting it up in Logz.io
+
+### Adding a Logz.io log drain (Heroku)
+
+All Heroku apps have the ability to have [their logs](https://devcenter.heroku.com/articles/logging) connected to your 
+[log drain](https://devcenter.heroku.com/articles/log-drains). We use this to send our Heroku system and application logs to Logz.io with the following command
+
+```bash
+heroku drains:add "https://listener-uk.logz.io:8081?token=myLogzToken&appName=my-heroku-application" -a my-heroku-application
+```
+
+_You'll need [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) to run the command above, along with a [token from your Logz.io account](https://docs.logz.io/shipping/log-sources/heroku.html)_
+
+After this has been set up, logz will start pouring into Logz.io.
+
+#### Adding logs (NodeJS) 
+
+If you don't use Heroku, logz.io has a ton of [log integrations](https://app-uk.logz.io/#/dashboard/send-your-data/log-sources) with good documention. A popular option for my crowd would be the [NodeJS logger](https://app-uk.logz.io/#/dashboard/send-your-data/log-sources/nodejs).
+
+_They even included info regarding Serverless environments in the Node setup ❤_
+
+### Mapping fields
+
+When your Heroku system logs starts coming in, click on them to expand and see their details. 
+You can notice a couple of things.
+
+![Service is mapped as text](./service-is-text.png)
+
+"service" and "status" are interpreted as text. This is a problem when we want to aggregate and filter on them. 
+In order to fix this, we'll actually have to contact support. Show them your logs, and ask them to remove "ms" on the service field.
+
+_Sidenote: Logz.io has amazing support_
+
+After "ms" is removed, you can change the type of status and service to integers. 
+
+Do this by going to Kibana -> Setting -> Index patters.
+
+![Set index patterns](./setting-index-patterns.png)
+
+Then, search for status, edit it and change its type to integer
+
+![Changing status type to integer](./change-status-type.png)
+
+Great! While you're at it, you can consider the same to your application log fields. 
+
+_The need for mapping is minimized in your application logs if you use JSON logging with appropriate types._
+
+### Have a tea break
+
+Before creating any charts, we must let our application generate som logs that we can use. Meanwhile: have a well deserved tea break (coffee is ok too 💚)
+
+### Creating dashboard: API response times
+
+Setting up a dashboard is done in three steps, which maps to the icons in the left menu:
+
+1. Discover relevant log data
+2. Visualize a graph 
+3. Add graph to a dashboard
+
+#### 1. Discover logs with "service" field
+
+![Discover](./discover.png)
+
+The "service" field is the Heroku variable tellings us how many millisecond a HTTP request took to complete.
+We filter our logs to only show logs where this exists.
+
+![](./require-service.png)
+
+Then save it as e.g. "HTTP requests"
+
+#### 2. Visualize HTTP request response times
+
+![Visualise](./visualize.png)
+
+Go to "Visualize" in the left menu, add a new "Line chart", and select the "HTTP requests" that we just created.
+
+![](./new-line-chart.png)
+
+We now have an empty chart. Great!
+
+![An empty graph](./graph-empty.png)
+
+On the left side under "buckets", Add "X-axis". Select "Dato Histogram", which should autoselect our "@timestamp" field. 
+
+![Selecting date histogram for the X-axis](./buckets-date-histogram.png)
+
+Click play. We now have a chart showing the amount of request! 🤩
+
+![A graph showing amount of requests](./graph-count.png)
+
+- Save that visualization as "HTTP traffic".
+- Then Save it again, as a new visualization named "HTTP response times"
+
+To replace the traffic with response times, replace Y-axis: count with the following:
+
+![](./service-percentiles.png)
+
+We've now got a graph, showing aggregated response times for our application. Yay! 🎉
+
+![](./graph-service-percentiles.png)
+
+In your case, the graph might be empty, or (if you zoom in on time in the top right corner), very spiky – like mine.
+
+Mine is very spiky because I zoom in on a small period with very little data. Little data means huge deviations. 
+Don't worry though – After you let it run for a day or two, we get more meaningful graphs.
+
+### Dashboard
+
+Go to the dashboard from the left hand side. Add an existing visualization, and select the "HTTP response times" we just created. 
+
+![Create new dashboard](./dashboard-add.png)
+
+Repeat it again for the "HTTP traffic". We now got a simple performance dashboard! 😲
+
+![Initial performance dashbard](./dashboard-start.png)
+
+But it's hard to see if our performance changes are due to increased traffic load or not. 
+It would be nice if the traffic could include a response time indication in the same graph.
+
+Click the cogwheel for the HTTP traffic visualization, and Edit it.
+
+![Edit visualization](./dashboard-edit-vis.png)
+
+On the left hand side, add a Y axis with mediuan aggregation on the service field.
+
+![Add Response time aggregation](./add-y-axis.png)
+
+If you click Play now, the response times and counts are graphed on the same value axis. Usually, the response time graph is now so small it's completely useless.
+We fix this by using left and right value axis. 
+
+Click the Metrics & Axes, select "response times" and change the value axis.
+
+![Change y axis](./vis-change-y-axis-=metrics.png)
+
+Done! The graph shows both traffic count (left axis) and median response time (right axis)
+![Traffic graph](./vis-2-y-axis.png)
+
+If you go back to the performance dashboard, it's now complete! 🎀
+
+
+### Creating visualization: HTTP errors
+
+Let's create a visualization for different types of error HTTP status. 
+
+Go to visualizations, select our "HTTP requests" data source.
+
+Again, select the Bucket X-axis to be a Date historgram based on timestamp
+
+![Selecting date histogram for the X-axis](./buckets-date-histogram.png)
+
+Now filter based on status being above 400 – we don't care about successful requets here.
+
+![Filter HTTP status above 400](./vis-filter-above-400.png)
+
+Under Buckets, add a "Split series" sub bucket.
+
+![Split buckets for each status code](./vis-split-series.png)
+
+Click play, and your visualization is done. Add it to your dashboard 📈
+
+_As with other visualizations, note that it may look useless until you have a few days worth of logs._
+
+
+### Detail data: Identifying slow URLS
+
+Add a new visualization, this time of the type Data Table.
+
+We'll select the "HTTP requests" data source, and get a simple row with 1 value "Count". This is the number of requests.
+
+Let's split the rows by its url, by adding a "Split rows" bucket, ordering them by slow response times.
+
+![Splitting bucket by url](./table-split-bucket.png)
+
+We now got a table showing us the most requested urls.
+
+![Most popular urls](./table-url-count.png)
+
+Now we can add a new metric, for the percentiles of response times. 
+Add a metric on the left side for Percentieles aggregation of "service" field, on 50, 90 and 98 percents.
+
+![Splitting resposne time percentiles](./table-response-time-percentiles.png)
+
+Voilla, we got ourselves a table of slow urls. A great place to start if our performance is bad 🕵️‍♀️
+
+![Table visualization](./table-vis.png)
+
+I'm sure you now know how to add it to a dashboard 🙌
+
+
+### Detail data: Identifying HTTP error URLs
+
+Add a new visualization, again of type Data Table and again with "HTTP requests" data source. Let's call it "HTTP errors"
+
+Let's split the rows by its url as we did before, by adding a "Split rows" bucket, but this time ordering them by Count
+
+![Splitting bucket by url ordered by count](./vis-split-bucket-count.png)
+
+Again, we got a table showing us the most requested urls.
+
+![Most popular urls](./table-url-count.png)
+
+Now lets filter away any status < 400. 
+
+![Filter away any OK status](./vis-filter-above-400.png)
+
+This shows us which URLs got the most "bad" responses. You can add this to a new debugging dashboard as is, and create separate lists for specific statuses.
+
+Alternatively, you can add columns for the statuses such as 400, 404 and 500. Lets see how:
+
+Add a new metric of aggregation "Sum bucket". Use aggregation "Filters", with filter 1 being "status:404". In custom label at the bottom, write "404".
+
+![Sum filter aggregation](./metrics-bucket-sum-aggregatgion.png)
+
+_Repeat the process for the different statuses you care about to add more columns._
+
+Tada! 🎉 You now got a list of URLs that responds with bad status codes, and their amount. You can click on each header column to sort by e.g. most 500 erros, most 404 errors etc.
+
+![View of debugging list](./debugging-list.png)
+
+_As we see in my example, there seems to be a bot trying to log in to my non-existing Wordpress. And my app has 0 visitors – what's new 🙊_
+
+## Related links
+
+- [logz.io academy](https://logz.io/learn/training/)
+- [logz.io docs](https://docs.logz.io/)

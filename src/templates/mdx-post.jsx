@@ -10,6 +10,7 @@ import Layout from '../components/Layout';
 import PostHero from '../components/PostHero';
 import PostFooter from '../components/PostFooter';
 import { MetaTags } from '../components/MetaTags';
+import GatsbyImage from "gatsby-image"
 
 const VideoContainer = styled.div`
   max-width: 100%;
@@ -21,7 +22,11 @@ const Video = props => (
   <ReactPlayer {...props} controls wrapper={VideoContainer} />
 );
 
-const shortcodes = { Link, Video };
+const Image = ({ maxWidth, src, alt } = {}) => (
+  <p style={{ border: '3px solid black', maxWidth }} src={src} alt={alt} >WHAT</p>
+);
+
+const shortcodes = { Link, Video, Image };
 
 export default function PageTemplate({ data, pageContext }) {
   const { mdx } = data;
