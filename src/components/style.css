@@ -64,14 +64,8 @@ blockquote {
   margin-left: inherit;
 }
 
-@media (max-width: 800px) {
-  main > p,
-  main > h1,
-  main > h2,
-  main > h3,
-  main > h4,
-  main > span,
-  main > small {
-    padding: 1rem;
-  }
+h1, h2, h3, h4 {
+  margin-block-start: 2em;
+  margin-block-end: 0.5em;
 }
+

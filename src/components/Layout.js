@@ -20,7 +20,8 @@ const Main = styled.main`
     & > h3,
     & > h4,
     & > small {
-      padding: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
   
