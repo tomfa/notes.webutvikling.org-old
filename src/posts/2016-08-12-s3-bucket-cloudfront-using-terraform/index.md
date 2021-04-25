@@ -28,7 +28,10 @@ Case: I have some frontend app that consists of static files, e.g. a React app 
 
 Alright, that should be it. You can confirm that terraform is setup by typing `terraform` in the terminal. It should respond something that seems sensible.
 
-### Quick version
+### Short version
+
+_2021 update: Follow the wizard at [ihasabucket.it](https://ihasabucket.it/) to generate terraform files. This supports static pages better, and terraform v0.12+. The code below is written for terraform v0.11-)_
+
 
 When you have Terraform installed, all you need to do is do the line below. It will prompt you for anything it needs, and set up a buckets on AWS, with Cloudfront caches in front of it to optimize site speed.
 
@@ -36,7 +39,9 @@ When you have Terraform installed, all you need to do is do the line below. It w
 terraform apply github.com/tomfa/terraform-sandbox/s3-webfiles-with-cloudfront
 ```
 
-Alternatively, if you want to specify things yourself, see the code below. Replace the marked variables with your desired region and bucket name. **Long version**
+Alternatively, if you want to specify things yourself, see the code below. Replace the marked variables with your desired region and bucket name. 
+
+### Long version
 
 ```yaml
 # Specifies your AWS credentials and region
@@ -67,10 +72,10 @@ resource "aws_iam_user_policy" "prod_user_ro" {
     "Statement": [
     {
         "Effect": "Allow",
-        "Action": "s3:\*",
+        "Action": "s3:*",
         "Resource": [
             "arn:aws:s3:::YOUR-BUCKET-NAME",
-            "arn:aws:s3:::YOUR-BUCKET-NAME/\*"
+            "arn:aws:s3:::YOUR-BUCKET-NAME/*"
         ]
      }]
 }
@@ -83,9 +88,9 @@ resource "aws_s3_bucket" "prod_bucket" {
     acl = "public-read"
 
     cors_rule {
-        allowed_headers = ["\*"]
+        allowed_headers = ["*"]
         allowed_methods = ["PUT","POST"]
-        allowed_origins = ["\*"]
+        allowed_origins = ["*"]
         expose_headers = ["ETag"]
         max_age_seconds = 3000
     }
@@ -98,20 +103,20 @@ resource "aws_s3_bucket" "prod_bucket" {
         "Sid": "PublicReadForGetBucketObjects",
         "Effect": "Allow",
         "Principal": {
-            "AWS": "\*"
+            "AWS": "*"
          },
          "Action": "s3:GetObject",
-         "Resource": "arn:aws:s3:::YOUR-BUCKET-NAME/\*"
+         "Resource": "arn:aws:s3:::YOUR-BUCKET-NAME/*"
     }, {
         "Sid": "",
         "Effect": "Allow",
         "Principal": {
             "AWS": "${aws_iam_user.prod_user.arn}"
         },
-        "Action": "s3:\*",
+        "Action": "s3:*",
         "Resource": [
             "arn:aws:s3:::YOUR-BUCKET-NAME",
-            "arn:aws:s3:::YOUR-BUCKET-NAME/\*"
+            "arn:aws:s3:::YOUR-BUCKET-NAME/*"
         ]
     }]
 }
