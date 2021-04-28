@@ -1,0 +1,72 @@
+---
+title: "Make Raspberry Pi display an URL on boot"
+date: 2021-04-27
+image: ./luke-chesser-JKUTrJ4vK00-unsplash.jpg
+tags: ["raspberry pi", "status screen", "dashboard"]
+imageAlt: "Photo by @lukechesser on Unsplash"
+author: tomfa
+status: publish
+---
+
+There's often a couple of Raspberry Pi laying around, or an old laptop. Let's make it into a status screen, that'll show any URL on boot.
+
+### Reinstall Raspberry Pi OS or Debian
+
+In case of an old computer, [install debian](https://www.google.com/search?q=how+to+install+debian). In case of Raspberry Pi, install [Raspberry Pi OS](https://www.raspberrypi.org/software/)
+
+**"Do I have to, it already got an OS?"** No you don't, but there's a risk that you'll regreat that you didn't – especially if your Pi or laptop is old.
+
+### Add Firefox
+
+```bash
+# Firefox
+apt-get install iceweasel -y
+```
+
+### Write startup script
+
+Add this script as `/home/pi/startup.sh`.
+
+```
+#!/bin/sh
+
+# open build screen url in firefox
+iceweasel --kiosk http://url.to.build.screen.com
+
+```
+
+#### Add script to startup
+
+```
+chmod 755 /home/pi/startup.sh
+mkdir -p .config/lxsession/LXDE-pi
+vim .config/lxsession/LXDE-pi
+```
+
+This is the boot file, saying what the Po should do on startup.
+If you have a public display, where the Pi should be locked down, simply write the following and save.
+
+```bash
+@./startup.sh
+```
+
+If you want to have the desktop available, and easy access to config things, write the following instead.
+
+```bash
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+#@xscreensaver -no-splash
+point-rpi
+@./startup.sh
+```
+
+This boots up the desktop too.
+
+### Done!
+
+That's it! You can test it by rebooting :)
+
+If you want to get out of a locked down kiosk-mode, press ctrl + alt + F2 to get a login terminal.
+
+_If you need to login or send key presses to the browser, e.g. typing in a password or similar, 
+check out [/build-screen-bootup/ post](/build-screen-bootup/), using xdotools._
