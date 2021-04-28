@@ -2,7 +2,7 @@
 title: "git: Replace master branch"
 date: 2014-02-03
 image: ./simon-berger-Qa2tSHWgh84-unsplash.jpg
-imageAlt: A tree    
+imageAlt: Image by Simon Berger on Unsplash    
 tags: [git]
 author: tomfa
 status: publish

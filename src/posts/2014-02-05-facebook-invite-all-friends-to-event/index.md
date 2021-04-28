@@ -2,7 +2,7 @@
 title: "Facebook: Invite all friends to event"
 date: 2014-02-05
 image: ./kon-karampelas-HUBofEFQ6CA-unsplash.jpg
-imageAlt: Facebook
+imageAlt: Image by Kon Karampelas on Unsplash
 tags: [developer tools, facebook]
 author: tomfa
 status: publish

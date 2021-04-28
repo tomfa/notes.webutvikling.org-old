@@ -2,7 +2,7 @@
 title: "Alfred for Windows"
 date: 2013-12-03
 image: ./markus-winkler-afW1hht0NSs-unsplash.jpg
-imageAlt: Search image
+imageAlt: Image by Markus Winkler on Unsplash
 tags: [Alfred, idea, Windows]
 author: tomfa
 status: publish
