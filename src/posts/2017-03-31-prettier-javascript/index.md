@@ -2,7 +2,7 @@
 title: "Don't write Javascript without Prettier"
 date: 2017-03-31
 image: ./Screen-Shot-2017-03-31-at-13.15.37.png
-tags: [talk, statment, eslint, "code quality", react]
+tags: [talk, statement, eslint, "code quality", javascript]
 author: tomfa
 status: publish
 ---

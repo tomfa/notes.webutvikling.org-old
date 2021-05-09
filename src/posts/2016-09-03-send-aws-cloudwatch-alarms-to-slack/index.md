@@ -2,7 +2,7 @@
 title: "Send AWS CloudWatch Alarms to Slack"
 date: 2016-09-03
 image: ./slack-large.png
-tags: ["guide", AWS, CloudWatch, howto, Lambda, SimpleNotificationService, slack, SNS]
+tags: ["guide", monitoring, AWS, CloudWatch, Lambda, Slack]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Github + Clickup"
 date: 2020-06-22
 image: ./clickhub.png
-tags: ["guide", "statement", "ClickUp", "Github"]
+tags: ["guide", "statement", management, "ClickUp", "Github"]
 author: tomfa
 status: publish
 ---

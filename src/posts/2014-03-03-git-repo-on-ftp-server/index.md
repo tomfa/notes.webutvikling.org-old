@@ -2,7 +2,7 @@
 title: "Git repo on FTP-server"
 date: 2014-03-03
 image: ./markus-spiske-hL8slYnc-bM-unsplash.jpg
-tags: [ftp, git]
+tags: [guide, ftp, git]
 author: tomfa
 status: publish
 ---

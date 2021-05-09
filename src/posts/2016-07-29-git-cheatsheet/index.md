@@ -2,7 +2,7 @@
 title: "git cheatsheet"
 date: 2016-07-29
 image: ./git-cheat-sheet.jpg
-tags: ["guide", alias, bash, cheatsheet, git]
+tags: ["guide", efficiency, alias, bash, cheatsheet, git]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Adding system metrics dashboard to logz.io"
 date: 2021-04-23
 image: ./lukas-blazek-mcSDtbWXUZU-unsplash.jpg
-tags: ["guide", "learning", "metrics", "dashboard", "elasticsearch"]
+tags: ["guide", "learning", "monitoring", "elasticsearch"]
 imageAlt: "Photo by @goumbik on Unsplash"
 author: tomfa
 status: publish
@@ -11,12 +11,12 @@ status: publish
 There's system logs and there's application logs.
 
 System logs are quite similar across different services. HTTP servers typically include info about the request and the response,
-such as timestamps, response times, urls, http methods, status codes. Services such as Heroku will often autogenerate these for you 
+such as timestamps, response times, urls, http methods, status codes. Services such as Heroku will often autogenerate these for you
 – allowing you little or no control over them yourself.
 
-Application logs are created by you in your app, and differ between applications. The simplest are just a message string, 
-which can be useful itself for debugging. You can structure the logs too, e.g. as JSON logging. In these you can add data such as 
-userId, the related url path, a request ID or what ever you find useful. Application logs can be used to identify errors or aggregate 
+Application logs are created by you in your app, and differ between applications. The simplest are just a message string,
+which can be useful itself for debugging. You can structure the logs too, e.g. as JSON logging. In these you can add data such as
+userId, the related url path, a request ID or what ever you find useful. Application logs can be used to identify errors or aggregate
 business metrics such as number of sales or payment option selection.
 
 The purpose of this post is to make use of Heroku system logs with [Kibana](https://www.elastic.co/kibana), through the use of [logz.io](https://logz.io/),
@@ -24,8 +24,8 @@ and find which metrics we want to include in our dashboard.
 
 ## Purpose of a dashboard
 
-In my mind, a dashboard is suppose to give _someone_ an overview at a glance, that lets them prioritize. 
-A dashboard should not include "everything" – more than ~5 metrics or graphs easily becomes too much 
+In my mind, a dashboard is suppose to give _someone_ an overview at a glance, that lets them prioritize.
+A dashboard should not include "everything" – more than ~5 metrics or graphs easily becomes too much
 information that we quickly learn to ignore, or don't know how to react to. Hence it makes sense to create different dashboards
 for different teams.
 
@@ -33,7 +33,7 @@ I think of dashboards as belonging to one of three categories, each answering th
 
 #### Motivational dashboard: How are we progressing?
 A motivational dashboard is ment to give feedback on how you're progressing on the metrics you're caring about (this year/quarter/month).
-This is usually not based on system logs, though it could be. 
+This is usually not based on system logs, though it could be.
 
 _Example metric: Successful signup ratio, displayed as a timeline over the last 3 months._
 
@@ -65,18 +65,18 @@ _Which percentiles to choose depends on the nature of your system, but the three
 
 ### High level: HTTP status >= 400
 
-Having many metrics to pay attention to, can lower the engagement with a dashboard. 
-If there's "usually something wrong" and you don't react to it, the dashboard looses its value. 
+Having many metrics to pay attention to, can lower the engagement with a dashboard.
+If there's "usually something wrong" and you don't react to it, the dashboard looses its value.
 Similarily if you have a lot of metrics – it can become too much and we become blind to them.
 
-In an overview dashboard, you can skip 400, 404 and 500, and just show the percentage of requests that are "bad", 
-i.e. HTTP status 400 and above. When that number becomes large, a developer can then dive deeper into the numbers to identify 
-what kind of 400+ status codes is happening, and where it 
+In an overview dashboard, you can skip 400, 404 and 500, and just show the percentage of requests that are "bad",
+i.e. HTTP status 400 and above. When that number becomes large, a developer can then dive deeper into the numbers to identify
+what kind of 400+ status codes is happening, and where it
 
 
 ### Detail: HTTP status 500
 
-HTTP status 500 means we have an bug in our code, or not handled edge cases in our API. 
+HTTP status 500 means we have an bug in our code, or not handled edge cases in our API.
 We want to identify at what urls people get 500 errors, and fix these bugs.
 
 - A list that shows which paths are most common to give 500, lets us find what endpoints we should investigate first.
@@ -84,11 +84,11 @@ We want to identify at what urls people get 500 errors, and fix these bugs.
 
 ### Detail: HTTP status 404
 
-HTTP status 404 means someone requested an URL that isn't there. 
+HTTP status 404 means someone requested an URL that isn't there.
 This can happen if we remove an endpoint that is still depended on, or a link or url has been mistyped in text or in application code.
 We'll want to identify the sources of these requests, and fix them.
 
-- A list that shows which paths are most common to give 404, lets us identify dead urls. 
+- A list that shows which paths are most common to give 404, lets us identify dead urls.
 - A line chart showing the amount of 404 errors over the last 2 weeks can tells us if something has recently changed for the worse.
 
 ### Detail: HTTP status 400
@@ -102,7 +102,7 @@ We want to identify these URLs, the consuming application and fix them.
 
 ### Adding a Logz.io log drain (Heroku)
 
-All Heroku apps have the ability to have [their logs](https://devcenter.heroku.com/articles/logging) connected to your 
+All Heroku apps have the ability to have [their logs](https://devcenter.heroku.com/articles/logging) connected to your
 [log drain](https://devcenter.heroku.com/articles/log-drains). We use this to send our Heroku system and application logs to Logz.io with the following command
 
 ```bash
@@ -113,7 +113,7 @@ _You'll need [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) to r
 
 After this has been set up, logz will start pouring into Logz.io.
 
-#### Adding logs (NodeJS) 
+#### Adding logs (NodeJS)
 
 If you don't use Heroku, logz.io has a ton of [log integrations](https://app-uk.logz.io/#/dashboard/send-your-data/log-sources) with good documention. A popular option for my crowd would be the [NodeJS logger](https://app-uk.logz.io/#/dashboard/send-your-data/log-sources/nodejs).
 
@@ -121,17 +121,17 @@ _They even included info regarding Serverless environments in the Node setup ❤
 
 ### Mapping fields
 
-When your Heroku system logs starts coming in, click on them to expand and see their details. 
+When your Heroku system logs starts coming in, click on them to expand and see their details.
 You can notice a couple of things.
 
 ![Service is mapped as text](./service-is-text.png)
 
-"service" and "status" are interpreted as text. This is a problem when we want to aggregate and filter on them. 
+"service" and "status" are interpreted as text. This is a problem when we want to aggregate and filter on them.
 In order to fix this, we'll actually have to contact support. Show them your logs, and ask them to remove "ms" on the service field.
 
 _Sidenote: Logz.io has amazing support_
 
-After "ms" is removed, you can change the type of status and service to integers. 
+After "ms" is removed, you can change the type of status and service to integers.
 
 Do this by going to Kibana -> Setting -> Index patters.
 
@@ -141,7 +141,7 @@ Then, search for status, edit it and change its type to integer
 
 ![Changing status type to integer](./change-status-type.png)
 
-Great! While you're at it, you can consider the same to your application log fields. 
+Great! While you're at it, you can consider the same to your application log fields.
 
 _The need for mapping is minimized in your application logs if you use JSON logging with appropriate types._
 
@@ -154,7 +154,7 @@ Before creating any charts, we must let our application generate som logs that w
 Setting up a dashboard is done in three steps, which maps to the icons in the left menu:
 
 1. Discover relevant log data
-2. Visualize a graph 
+2. Visualize a graph
 3. Add graph to a dashboard
 
 #### 1. Discover logs with "service" field
@@ -180,7 +180,7 @@ We now have an empty chart. Great!
 
 ![An empty graph](./graph-empty.png)
 
-On the left side under "buckets", Add "X-axis". Select "Dato Histogram", which should autoselect our "@timestamp" field. 
+On the left side under "buckets", Add "X-axis". Select "Dato Histogram", which should autoselect our "@timestamp" field.
 
 ![Selecting date histogram for the X-axis](./buckets-date-histogram.png)
 
@@ -201,12 +201,12 @@ We've now got a graph, showing aggregated response times for our application. Ya
 
 In your case, the graph might be empty, or (if you zoom in on time in the top right corner), very spiky – like mine.
 
-Mine is very spiky because I zoom in on a small period with very little data. Little data means huge deviations. 
+Mine is very spiky because I zoom in on a small period with very little data. Little data means huge deviations.
 Don't worry though – After you let it run for a day or two, we get more meaningful graphs.
 
 ### Dashboard
 
-Go to the dashboard from the left hand side. Add an existing visualization, and select the "HTTP response times" we just created. 
+Go to the dashboard from the left hand side. Add an existing visualization, and select the "HTTP response times" we just created.
 
 ![Create new dashboard](./dashboard-add.png)
 
@@ -214,7 +214,7 @@ Repeat it again for the "HTTP traffic". We now got a simple performance dashboar
 
 ![Initial performance dashbard](./dashboard-start.png)
 
-But it's hard to see if our performance changes are due to increased traffic load or not. 
+But it's hard to see if our performance changes are due to increased traffic load or not.
 It would be nice if the traffic could include a response time indication in the same graph.
 
 Click the cogwheel for the HTTP traffic visualization, and Edit it.
@@ -226,7 +226,7 @@ On the left hand side, add a Y axis with mediuan aggregation on the service fiel
 ![Add Response time aggregation](./add-y-axis.png)
 
 If you click Play now, the response times and counts are graphed on the same value axis. Usually, the response time graph is now so small it's completely useless.
-We fix this by using left and right value axis. 
+We fix this by using left and right value axis.
 
 Click the Metrics & Axes, select "response times" and change the value axis.
 
@@ -240,7 +240,7 @@ If you go back to the performance dashboard, it's now complete! 🎀
 
 ### Creating visualization: HTTP errors
 
-Let's create a visualization for different types of error HTTP status. 
+Let's create a visualization for different types of error HTTP status.
 
 Go to visualizations, select our "HTTP requests" data source.
 
@@ -275,7 +275,7 @@ We now got a table showing us the most requested urls.
 
 ![Most popular urls](./table-url-count.png)
 
-Now we can add a new metric, for the percentiles of response times. 
+Now we can add a new metric, for the percentiles of response times.
 Add a metric on the left side for Percentieles aggregation of "service" field, on 50, 90 and 98 percents.
 
 ![Splitting resposne time percentiles](./table-response-time-percentiles.png)
@@ -299,7 +299,7 @@ Again, we got a table showing us the most requested urls.
 
 ![Most popular urls](./table-url-count.png)
 
-Now lets filter away any status < 400. 
+Now lets filter away any status < 400.
 
 ![Filter away any OK status](./vis-filter-above-400.png)
 

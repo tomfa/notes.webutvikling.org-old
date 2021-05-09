@@ -2,7 +2,7 @@
 title: "Center content in HTML mails for OWA"
 date: 2015-08-26
 image: ./onlineprinters-oIpJ8koLx_s-unsplash.jpg
-tags: [email, litmus, outlook, putsmail]
+tags: [guide, email, litmus, outlook, putsmail]
 author: tomfa
 status: publish
 ---
