@@ -2,7 +2,7 @@
 title: "Monitor-driven development"
 date: 2015-11-04
 image: ./carlos-muza-hpjSkU2UYSU-unsplash.jpg
-tags: [devops, montoring]
+tags: ["learning", "monitoring", devops, montoring]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "No module named '_sqlite3'"
 date: 2014-12-08
 image: ./tim-gouw-1K9T5YiZ2WU-unsplash.jpg
-tags: [django, python, python3, sqlite]
+tags: ["debugging", django, python, python3, sqlite]
 author: tomfa
 status: publish
 ---

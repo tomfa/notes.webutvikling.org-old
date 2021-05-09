@@ -2,7 +2,7 @@
 title: "Get python, pip, virtualenv without sudo"
 date: 2014-12-28
 image: ./david-clode-cxMJYcuCLEA-unsplash.jpg
-tags: [python, sudo, vps]
+tags: ["guide", python, sudo, vps]
 author: tomfa
 status: publish
 ---

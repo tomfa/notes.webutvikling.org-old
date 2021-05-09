@@ -3,7 +3,7 @@ title: "7 ineffective coding habits"
 date: 2014-06-13
 image: ./7-ineffective-habits.png
 video: https://vimeo.com/97329157
-tags: [clean code, video]
+tags: [talk, "clean code", video]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Running Django with nginx (on webfaction)"
 date: 2015-01-06
 image: ./sporlab-XiZ7pRvCzro-unsplash.jpg
-tags: [apache, django, nginx, rant, webfaction]
+tags: ["guide", apache, django, nginx, rant, webfaction]
 author: tomfa
 status: publish
 ---

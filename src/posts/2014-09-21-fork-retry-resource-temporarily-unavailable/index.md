@@ -2,7 +2,7 @@
 title: "fork: retry: Resource temporarily unavailable"
 date: 2014-09-21
 image: ./mae-mu-Pvclb-iHHYY-unsplash.jpg
-tags: [unix, webfaction]
+tags: [debugging, unix, webfaction]
 author: tomfa
 status: publish
 ---

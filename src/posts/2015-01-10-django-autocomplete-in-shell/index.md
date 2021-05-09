@@ -2,7 +2,7 @@
 title: "Django autocomplete in (virtualenv) shell"
 date: 2015-01-10
 image: ./joan-you-KFuX5rmAWZ4-unsplash.jpg
-tags: [autocomplete, bash, django, python, shell]
+tags: ["guide", autocomplete, bash, django, python, shell]
 author: tomfa
 status: publish
 ---

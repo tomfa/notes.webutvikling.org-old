@@ -3,7 +3,7 @@ title: Typesafe React Redux hooks
 date: 2020-06-28
 image: "./zyanya-bmo-6Y-4NXkY9G4-unsplash.jpg"
 imageAlt: A drawn hook. Photo by Zyanya BMO on Unsplash.
-tags: ["React", "Redux"]
+tags: ["guide", "React", "Redux"]
 ---
 
 Going from `mapStateToProps` and `mapStateToDispatch` to `useDispatch, useSelector` or custom hooks: What's the benefits? Does typing inference work? 

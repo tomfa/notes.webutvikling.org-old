@@ -2,7 +2,7 @@
 title: "Creating a Google Chrome Extension"
 date: 2017-04-02
 image: ./trello-chrome-ext.png
-tags: [chrome extention, css, google chrome, javascript]
+tags: ["guide", chrome extention, css, google chrome, javascript]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Using AWS Route 53 and SES to handle DNS and e-mail"
 date: 2016-09-20
 image: ./mails.png
-tags: [AWS, domain names, email, forwarding, Lambda, ses]
+tags: ["guide", AWS, domain names, email, forwarding, Lambda, ses]
 author: tomfa
 status: publish
 ---

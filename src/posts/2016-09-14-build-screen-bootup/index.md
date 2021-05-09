@@ -2,7 +2,7 @@
 title: "Build screen bootup"
 date: 2016-09-14
 image: ./buildscreen.png
-tags: [bash, build screen, jenkins, reload page, xdotool]
+tags: ["guide", bash, build screen, jenkins, reload page, xdotool]
 author: tomfa
 status: publish
 ---

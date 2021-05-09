@@ -1,8 +1,8 @@
 ---
-title: "Prettier Javascript"
+title: "Don't write Javascript without Prettier"
 date: 2017-03-31
 image: ./Screen-Shot-2017-03-31-at-13.15.37.png
-tags: [eslint, linting, prettifier, react]
+tags: [talk, statment, eslint, "code quality", react]
 author: tomfa
 status: publish
 ---

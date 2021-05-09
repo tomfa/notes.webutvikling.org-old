@@ -2,7 +2,7 @@
 title: "Automatic MySQL and FTP backup"
 date: 2014-02-18
 image: ./markus-spiske-5yEiCUynJ9w-unsplash.jpg
-tags: [backup, ftp, mysql]
+tags: [guide, backup, ftp, mysql]
 author: tomfa
 status: publish
 ---

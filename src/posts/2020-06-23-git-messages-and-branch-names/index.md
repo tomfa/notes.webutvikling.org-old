@@ -2,7 +2,7 @@
 title: "Git commits"
 date: 2020-06-23
 eImage: "https://unsplash.com/photos/lUaaKCUANVI/download?force=true&w=1920"
-tags: [clickup, github]
+tags: ["guide", "statement", "git", "github"]
 author: tomfa
 status: draft
 ---

@@ -2,7 +2,7 @@
 title: "How to add Web App Manifest"
 date: 2016-11-29
 image: ./theme-color.png
-tags: [progressive apps, web app manifest]
+tags: ["guide", "learning", "progressive apps", "web app manifest"]
 author: tomfa
 status: publish
 ---

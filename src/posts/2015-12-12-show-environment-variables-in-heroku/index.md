@@ -2,7 +2,7 @@
 title: "Show environment variables in Heroku"
 date: 2015-12-12
 image: ./megumi-nachev-8rVSeXEJG1g-unsplash.jpg
-tags: [env variables, heroku, toolbelt]
+tags: ["guide", "heroku"]
 author: tomfa
 status: publish
 ---

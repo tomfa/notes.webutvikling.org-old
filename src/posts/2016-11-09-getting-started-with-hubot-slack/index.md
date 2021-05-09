@@ -2,7 +2,7 @@
 title: "Getting started with Hubot + Slack"
 date: 2016-11-09
 image: ./bot.png
-tags: [es2015, es6, example, hubot, slack, slash]
+tags: ["guide", es2015, es6, example, hubot, slack, slash]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Sending SMS from python via your phone"
 date: 2015-12-27
 image: ./markus-winkler-8cP_6sC7Hhw-unsplash.jpg
-tags: []
+tags: ["guide", "python", "twilio", "pushbullet"]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Send AWS EC2 logs to Slack"
 date: 2016-09-03
 image: ./slack-large.png
-tags: [CloudWatch, ec2, Lambda, logs, slack]
+tags: ["guide", CloudWatch, ec2, Lambda, logs, slack]
 author: tomfa
 status: publish
 ---

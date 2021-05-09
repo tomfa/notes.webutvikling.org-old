@@ -2,7 +2,7 @@
 title: "How to add hubot to slack"
 date: 2016-05-25
 image: ./hubot.png
-tags: [heroku, hubot, slack]
+tags: ["guide", heroku, hubot, slack]
 author: tomfa
 status: publish
 ---

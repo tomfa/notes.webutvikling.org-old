@@ -2,7 +2,7 @@
 title: "Cron tabs: create and delete"
 date: 2014-02-03
 image: ./lukas-blazek-UAvYasdkzq8-unsplash.jpg
-tags: [bash, cron, scheduling]
+tags: [guide, learning, bash, cron, scheduling]
 author: tomfa
 status: publish
 ---

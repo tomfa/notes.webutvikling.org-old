@@ -2,14 +2,12 @@
 title: "curl headers only"
 date: 2015-12-13
 image: ./viktor-talashuk-bhoj9tHlsiY-unsplash.jpg
-tags: [AWS, curl, unix]
+tags: ["guide", AWS, curl, unix]
 author: tomfa
 status: publish
 ---
 
-```
 How to grep only the response headers
-```
 
 **Show headers response**
 

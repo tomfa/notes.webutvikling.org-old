@@ -2,7 +2,7 @@
 title: "Adding a python API handler with serverless"
 date: 2017-10-22
 image: ./allow-200-response.png
-tags: [API-Gateway, AWS, Lambda, python, Serverless]
+tags: ["guide", API-Gateway, AWS, Lambda, python, Serverless]
 author: tomfa
 status: publish
 ---

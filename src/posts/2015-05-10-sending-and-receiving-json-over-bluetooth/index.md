@@ -2,7 +2,7 @@
 title: "Sending and receiving JSON over Bluetooth"
 date: 2015-05-10
 image: ./harrison-broadbent-__LXdDYiL-w-unsplash.jpg
-tags: [bluetooth, iot, javascript, json]
+tags: ["guide", bluetooth, iot, javascript, json]
 author: tomfa
 status: publish
 ---

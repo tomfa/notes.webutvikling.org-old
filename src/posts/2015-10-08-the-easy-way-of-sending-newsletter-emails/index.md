@@ -1,8 +1,8 @@
 ---
-title: "The easy way of designing newsletter emails"
+title: "Do not design your own newsletter emails!"
 date: 2015-10-08
 image: ./erica-steeves-G_lwAp0TF38-unsplash.jpg
-tags: [email, mailchimp, rant]
+tags: ["statement", email, mailchimp, rant]
 author: tomfa
 status: publish
 ---
@@ -16,4 +16,4 @@ I've spent -SO- **-MUCH-** time doing **stupid** style changes for an html e
 
 Honestly. It'll suck the will to live right out of you. 
 
-Instead, use something like [MailChimp](http://mailchimp.com). For < 2000 subscribers and < 12000 emails/month, **it's free**. And its got a drag and drop editor, which will make your costumers **so** happy. Or you can create the templates in the editor yourself and **hook your website** onto MailChimp. It's a no-brainer.
+Instead, use something like [MailChimp](http://mailchimp.com). For < 2000 subscribers and < 12000 emails/month, **it's free**. And its got a drag and drop editor, which will make your custumers **so** happy. Or you can create the templates in the editor yourself and **hook your website** onto MailChimp. It's a no-brainer.

@@ -2,7 +2,7 @@
 title: "Create Elastic Beanstalk app with Java 8"
 date: 2016-09-07
 image: ./jellybeans.jpg
-tags: [awsebcli, beanstalk, java]
+tags: ["guide", awsebcli, beanstalk, java]
 author: tomfa
 status: publish
 ---

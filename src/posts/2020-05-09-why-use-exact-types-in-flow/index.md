@@ -1,8 +1,8 @@
 ---
-title: "Why use Exact types in Flow"
+title: "Always use Exact types in Flow"
 date: 2020-05-09
 image: ./yelling.jpeg
-tags: [flow, react, typing]
+tags: [statement, flow, react, typing]
 author: tomfa
 status: publish
 ---

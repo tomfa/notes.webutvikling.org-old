@@ -2,7 +2,7 @@
 title: "django rewrite / redirect to new urls"
 date: 2015-12-13
 image: ./nick-fewings-zF_pTLx_Dkg-unsplash.jpg
-tags: [django, redirect, rewrite, urls]
+tags: ["guide", django, redirect, rewrite, urls]
 author: tomfa
 status: publish
 ---

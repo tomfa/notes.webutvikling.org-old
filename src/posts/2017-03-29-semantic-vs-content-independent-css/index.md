@@ -1,8 +1,8 @@
 ---
-title: "Semantic vs Content-Independent CSS"
+title: "Write content-independent instead of semantic CSS"
 date: 2017-03-29
 image: ./Screen-Shot-2017-03-29-at-23.17.34.png
-tags: [css]
+tags: ["learning", "statement", css]
 author: tomfa
 status: publish
 ---

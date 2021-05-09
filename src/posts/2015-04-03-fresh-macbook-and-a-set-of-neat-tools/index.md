@@ -2,7 +2,7 @@
 title: "Fresh Macbook and a set of neat tools"
 date: 2015-04-03
 image: ./patrick-ward-z_dLXnQg0JY-unsplash.jpg
-tags: [developer tools, Mac, software]
+tags: [tools, Mac, software]
 author: tomfa
 status: publish
 ---

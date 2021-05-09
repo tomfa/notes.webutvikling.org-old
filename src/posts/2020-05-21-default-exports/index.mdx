@@ -1,14 +1,14 @@
 ---
-title: Default exports in JS
+title: Stop using default exports
 date: 2020-05-21
 image: ./andy-li-CpsTAUPoScw-unsplash.jpg
 imageAlt: Container ships. Photo by Andy Li on Unsplash
-tags: ["javascript", "import"]
+tags: ["statement", "javascript", "import"]
 ---
 
-Stop using default exports! Yes, they make the import line look better, and
-they come at no real cost at first, but I'll show how it hinders refactoring
-and decrease your productivity.
+Unless you're making a library for others to consume, don't use default exports! 
+Yes, they make the import line look better, and they come at obvious cost, 
+but I'll show how it hinders refactoring and decrease your productivity.
 
 _Disclaimer: This post is about default exports in your own project. When creating libraries for others to consume: a default export makes a lot of sense since it simplifies use. How is it different? IDEs don't autocomplete nearly as detailed (sensibly enough) when importing from libraries, and the consumer rarely cares (or know) about the inner function names of external libraries._
 
@@ -67,15 +67,16 @@ const LandingPage = () => <div>Welcome</div>
 export default LandingPage
 
 // App.js
-import FrontPage from "./pages/HomePage"
+import HomePage from "./pages/HomePage"
 return (
   <Wrapper>
-    <FrontPage />
+    <HomePage />
   </Wrapper>
 )
 ```
 
-Searching or greping for LandingPage would not yield any results from `App.js`.
+- Going to class "HomePage" would yield no results.
+- Searching or greping for LandingPage would not yield any results from `App.js`.
 
 You'd might argue that it's because LandingPage is in a file called `HomePage.js`,
 and you would always name the file and the class similarly. But accidents happen.
@@ -122,7 +123,9 @@ return (
 
 ![Webstorm: me refactoring a class name](./rename.png)
 
-> IDE: Done! Except for the default imports, because I can't touch those.
+> IDE: Done! Except for the default imports, because you've selected your name for those yourself.
+
+Even if your IDE decides to rename default impors, you might have imported it as `LadningPage` once.
 
 ```js
 // FrontPage.js
@@ -143,7 +146,8 @@ return (
 **Code becomes harder to read, since the same component is more often renamed on import**.
 
 Why do we use default exports at all? Due to code readability _in the import statement_.
-But that's never the place where we have problems understanding what happens.
+But that's never the place where we have problems understanding what happens. Modern
+IDEs autoimport, and ESLint can automatically remove unused imports. I almost _never read the import statement_ anyway
 Isn't it then ironic that it actually decreases code readability?
 
 ```js

@@ -2,10 +2,12 @@
 title: "Add S3 bucket using Terraform (example)"
 date: 2015-12-13
 image: ./elena-mozhvilo-eA32JIBsSu8-unsplash.jpg
-tags: [AWS, bucket, heroku, iam, S3, terraform]
+tags: ["guide", AWS, bucket, heroku, iam, S3, terraform]
 author: tomfa
 status: publish
 ---
+
+_2021 update: This content is somewhat dated. Consider following the click-through guide at [ihasabucket.it](https://ihasabucket.it/) instead_.
 
 _Edit: I was going to make the s3 bucket with cloudfront, but Terraform has no native support for it, though it [looks like it's coming soon](https://github.com/hashicorp/terraform/pull/3330). I'll probably make a followup later._ _Edit 2: I made a followup on how to do it with [Cloudfront](http://notes.webutvikling.org/s3-bucket-cloudfront-using-terraform/)_ A concrete, developer friendly guide on how to create a proper **s3** bucket with terraform. If manual GUI guides are more you thing, go to [Amazon docs](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html). This is made in contrast to the [aws-cli guide](http://notes.webutvikling.org/add-s3-bucket-using-awscli-example/), which accomplishes the same thing, but using a different tool
 
