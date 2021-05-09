@@ -2,7 +2,7 @@
 title: "Adding Freshdesk to Slack"
 date: 2016-08-02
 image: ./freshdesk.jpg
-tags: [freshdesk, slack]
+tags: ["guide", freshdesk, slack]
 author: tomfa
 status: publish
 ---

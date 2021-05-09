@@ -2,7 +2,7 @@
 title: "Creating a presentation"
 date: 2015-10-22
 image: ./teemu-paananen-bzdhc5b3Bxs-unsplash.jpg
-tags: [presentation]
+tags: ["learning", "presentation", "slides.com", "reveal.js"]
 author: tomfa
 status: publish
 ---

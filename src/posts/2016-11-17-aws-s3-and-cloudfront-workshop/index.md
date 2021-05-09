@@ -2,7 +2,7 @@
 title: "AWS S3 and CloudFront workshop"
 date: 2016-11-17
 image: ./latency.png
-tags: [AWS, cloudfront, performance, react, S3]
+tags: ["learning", AWS, cloudfront, performance, react, S3]
 author: tomfa
 status: publish
 ---

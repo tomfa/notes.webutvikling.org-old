@@ -2,7 +2,7 @@
 title: "Quick http benchmarking with curl"
 date: 2018-11-15
 image: ./chuttersnap-gts_Eh4g1lk-unsplash.jpg
-tags: [bash, performance]
+tags: ["guide", "tools", bash, performance]
 author: tomfa
 status: publish
 ---

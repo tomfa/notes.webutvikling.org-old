@@ -3,7 +3,7 @@ title: "Building a better bootstrap"
 date: 2014-10-07
 image: ./a-better-bootstrap.jpg
 video: https://vimeo.com/97318798
-tags: [notes, video]
+tags: ["talk", notes, video]
 author: tomfa
 status: publish
 ---

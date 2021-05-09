@@ -3,7 +3,7 @@ title: "Web Icon Fonts"
 date: 2014-02-04
 image: ./harpal-singh-_zKxPsGOGKg-unsplash.jpg
 imageAlt: Image by Harpal Singh on Unsplash
-tags: [icon]
+tags: ["resource", icon]
 author: tomfa
 status: publish
 ---

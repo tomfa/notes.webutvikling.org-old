@@ -2,7 +2,7 @@
 title: "AWS CodePipeline"
 date: 2016-08-11
 image: ./PGC_Pipeline_Data.jpg
-tags: [AWS, codepipeline, git, github]
+tags: ["learning", AWS, codepipeline, git, github]
 author: tomfa
 status: publish
 ---

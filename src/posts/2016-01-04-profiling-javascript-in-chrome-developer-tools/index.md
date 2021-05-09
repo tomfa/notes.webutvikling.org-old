@@ -2,7 +2,7 @@
 title: "Profiling JavaScript in Chrome Developer Tools"
 date: 2016-01-04
 image: ./christian-englmeier-J7EUjSlNQtg-unsplash.jpg
-tags: [chrome, devtools, javascript, profiling]
+tags: ["guide", chrome, devtools, javascript, profiling]
 author: tomfa
 status: publish
 ---

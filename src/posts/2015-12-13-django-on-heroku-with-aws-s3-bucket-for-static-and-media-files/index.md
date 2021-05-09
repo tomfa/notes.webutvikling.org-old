@@ -2,7 +2,7 @@
 title: "Django on Heroku with AWS S3 bucket for static and media files"
 date: 2015-12-13
 image: ./djangodesktop-1280x1024.jpg
-tags: [AWS, cloudfront, django, heroku, python3]
+tags: ["guide", AWS, cloudfront, django, heroku, python3]
 author: tomfa
 status: publish
 ---

@@ -1,8 +1,8 @@
 ---
-title: "A reminder about standups"
+title: "A good standup has 3 points"
 date: 2020-05-16
 image: ./saksham-gangwar-YVgOh8w1R4s-unsplash-1.jpg
-tags: [habits, standup]
+tags: ["statement", standup, management]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "React intro notes"
 date: 2016-07-04
 image: ./react.png
-tags: [es6, react, redux]
+tags: ["learning", es6, react, redux]
 author: tomfa
 status: publish
 ---

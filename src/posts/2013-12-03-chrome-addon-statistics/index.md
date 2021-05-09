@@ -4,7 +4,7 @@ date: 2013-12-03
 image: ./luke-chesser-JKUTrJ4vK00-unsplash.jpg
 tags: [API, chrome, Google, idea]
 author: tomfa
-status: publish
+status: draft
 ---
 
 **Hvor mange timer bruker du på hvilke nettsider?** **Fordeler og ulemper**

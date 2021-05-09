@@ -3,14 +3,14 @@ title: "Passbolt on AWS"
 date: 2020-09-15
 image: ./vault.jpg
 imageAlt: "Photo by Morning Brew on Unsplash"
-tags: ["passbolt", "aws", "docker", "elastic beanstalk", "heroku", "digitalocean"]
+tags: ["guide", "security", "passbolt", "digitalocean"]
 author: tomfa
 status: publish
 ---
 
 This is a guide on how to setup Passbolt on <s>Heroku using Docker image</s>, shit, <s>AWS using Elastic Beanstalk with Docker</s>, fuck <s>AWS EC2  with Terraform</s> GOD DAMN IT... **Droplets on Digital Ocean**?
 
-_I tried Heroku first, but [passbolt docker](https://help.passbolt.com/hosting/install/ce/docker.html) 
+_I tried Heroku first, but [passbolt docker](https://help.passbolt.com/hosting/install/ce/docker.html)
 requires Volumes, which [is not supported]((https://devcenter.heroku.com/articles/container-registry-and-runtime#unsupported-dockerfile-commands)). I then went on to attempting AWS ELB with Docker, but it kept abruptly aborting without any useful errors. Close to giving up, I got [some tracktion using Terraform and AWS EC2 instances + RDS](https://gist.github.com/tomfa/b4236ed2776cca5b756251d08e31a226), but got so frustrated when Passbolt didn't out of the box support the default AWS Linux 2 AMI that I tried Digital Ocean Droplet. THAT worked like a CHARM!_
 
 [Passbolt](https://www.passbolt.com) is an open source password manager for teams. The community version does not support storing files, but it'll be enought for most. See [https://www.passbolt.com/pricing](https://www.passbolt.com/pricing/pro) for more info on differences against Hosted or Pro version (with files and folders).

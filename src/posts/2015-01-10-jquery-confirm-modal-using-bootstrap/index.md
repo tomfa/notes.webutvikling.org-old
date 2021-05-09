@@ -2,7 +2,7 @@
 title: "jquery confirm modal using bootstrap"
 date: 2015-01-10
 image: ./jon-tyson-hhq1Lxtuwd8-unsplash.jpg
-tags: [bootstrap, jquery, modal]
+tags: ["guide", bootstrap, jquery, modal]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: "Pull request mountain code"
 date: 2020-05-18
 image: ./tobias-cornille-4QWR5geRC9I-unsplash.jpg
-tags: [github, pull-request, qa, review]
+tags: ["statement", "guide", "github", pull-request]
 author: tomfa
 status: publish
 ---

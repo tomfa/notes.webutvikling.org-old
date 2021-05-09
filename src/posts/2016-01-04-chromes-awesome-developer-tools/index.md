@@ -3,7 +3,7 @@ title: "Chromes Awesome Developer Tools"
 date: 2016-01-04
 image: ./arthur-osipyan-5OyvN4Yx46E-unsplash.jpg
 video: https://vimeo.com/114158767
-tags: [chrome, css, developer tools, frontend, js]
+tags: ["talk", chrome, css, developer tools, frontend, js]
 author: tomfa
 status: publish
 ---

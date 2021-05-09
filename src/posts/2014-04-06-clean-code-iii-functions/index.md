@@ -3,7 +3,7 @@ title: "Clean Code III: Functions"
 date: 2014-04-06
 image: ./robert-clean.jpg
 video: http://vimeo.com/12643301
-tags: [clean code, video]
+tags: [talk, clean code, video]
 author: tomfa
 status: publish
 ---

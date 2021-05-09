@@ -2,7 +2,7 @@
 title: "Boto3 - copying and creating files + cloudfront invalidations"
 date: 2017-10-31
 image: ./maksym-kaharlytskyi-Q9y3LRuuxmg-unsplash.jpg
-tags: [AWS, python, S3]
+tags: ["guide", AWS, python, S3]
 author: tomfa
 status: publish
 ---

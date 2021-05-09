@@ -26,7 +26,7 @@ const Nav = styled.nav`
 
 const HomeLink = styled(Link)`
   font-size: 3rem;
-  color: white;
+  color: #c8c8c8;
   text-decoration: none;
 `
 
@@ -43,9 +43,6 @@ export const Navigation = () => {
       <HomeLink to={`/`} title="Home">
         {shortTitle}
       </HomeLink>
-      <a href={`https://tomfa.github.io`}>
-        <Logo src="/images/logo.svg" alt="Projects" />
-      </a>
     </Nav>
   )
 }

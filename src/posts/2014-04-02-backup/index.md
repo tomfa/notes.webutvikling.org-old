@@ -2,7 +2,7 @@
 title: "bash backup of webserver (FTP and SQL)"
 date: 2014-04-02
 image: ./jc-gellidon-56eqH9opaUU-unsplash.jpg
-tags: [backup, bash, ftp, script, sql, webserver]
+tags: [guide, backup, bash, ftp, script, sql, webserver]
 author: tomfa
 status: publish
 ---

@@ -7,11 +7,12 @@ import { usePostQuery } from '../hooks/use-posts';
 import { PostResult } from '../components/PostResult';
 import { PostList } from '../components/PostList';
 import { useMeta } from '../hooks/use-meta';
+import { PostTags } from '../components/PostTag';
 
 const Intro = styled.div`
   max-width: 40rem;
   padding: 1rem;
-  margin: 0 auto;
+  margin: 6rem auto 4rem;
 `;
 
 export default function Home() {
@@ -24,8 +25,25 @@ export default function Home() {
 
       <Layout wide>
         <Intro>
-          <h1>{title}</h1>
-          <h4>{data.totalCount} Posts</h4>
+          <h1 style={{ marginTop: '0' }}>{title}</h1>
+          <p>Random notes, anecdotes and random scribbling from my tech life and work brain.</p>
+          <h4>{data.totalCount} Posts about ...</h4>
+          <PostTags
+            tags={[
+              'learning',
+              'book',
+              'guide',
+              'talk',
+              'debugging',
+              'tools',
+              'management',
+              'efficiency',
+              'monitoring',
+              'startup',
+              'code quality',
+            ]}
+            useLink
+          />
         </Intro>
         <PostList>
           {data.edges.map(({ node }) => (

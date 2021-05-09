@@ -2,7 +2,7 @@
 title: "Porting a React app to Phonegap"
 date: 2016-07-31
 image: ./react-app.jpg
-tags: [cordova, es6, mobile app, phonegap, react]
+tags: ["guide", cordova, es6, mobile app, phonegap, react]
 author: tomfa
 status: publish
 ---

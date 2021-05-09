@@ -2,7 +2,7 @@
 title: "Django + Heroku bootstrap"
 date: 2015-10-05
 image: ./herangob.png
-tags: [django, heroku, how-to, script]
+tags: ["guide", django, heroku, how-to, script]
 author: tomfa
 status: publish
 ---
