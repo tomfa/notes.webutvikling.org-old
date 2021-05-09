@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import { MetaTags } from '../components/MetaTags';
 import { PostResult } from '../components/PostResult';
 import { PostList } from '../components/PostList';
+import { PostTag } from '../components/PostTag';
 
 const Intro = styled.div`
   max-width: 40rem;
@@ -23,8 +24,7 @@ export default function TagTemplate({ data, pathContext }) {
       <Layout wide>
         <Intro>
           <h1>
-            Posts about
-            {tag}
+            Posts about <PostTag style={{ fontSize: '2rem'}}>{tag}</PostTag>
           </h1>
           <h4>{totalCount} Posts</h4>
         </Intro>

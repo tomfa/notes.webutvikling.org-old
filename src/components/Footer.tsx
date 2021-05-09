@@ -8,8 +8,8 @@ const FooterBg = styled.div`
 
 const FooterTag = styled.footer`
   color: #dedede;
-  padding: 2rem;
-  margin: 0 auto;
+  padding: 10rem 2rem;
+  margin: 10rem auto 0;
   min-height: 10rem;
   display: grid;
   grid-template-areas:
@@ -37,11 +37,6 @@ const List = styled.ul`
   color: white;
   padding: 0;
   margin: 0;
-
-  & > li {
-    line-height: 1.5rem;
-    font-size: 1rem;
-  }
 `
 
 const ListItem = styled.li`

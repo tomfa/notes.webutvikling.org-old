@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Header } from './Header';
 import { Footer } from './Footer';
 import { Navigation } from './Navigation';
 
@@ -37,9 +36,6 @@ const SiteWrapper = styled.div`
 export default function Layout({ children, wide = false }) {
   return (
     <SiteWrapper>
-      <Header>
-        <Navigation />
-      </Header>
       <Main wide={wide}>{children}</Main>
       <Footer />
     </SiteWrapper>

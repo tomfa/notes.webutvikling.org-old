@@ -7,7 +7,7 @@ const Tag = styled.span`
   background-color: ${props => props.bgColor};
   color: ${props => props.color};
   padding: 0.1rem 0.5rem;
-  margin-right: 0.3rem;
+  margin: 0 0.3rem 0.3rem 0;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 0.3rem;
@@ -82,8 +82,8 @@ const Tags = styled.div`
   margin-left: ${props => (props.inline ? "1rem" : "")};
 `
 
-export const PostTag = ({ children, tagUrl }) => (
-  <Tag {...getTagStyle(children)}>
+export const PostTag = ({ children, tagUrl, style = undefined}) => (
+  <Tag {...getTagStyle(children)} style={style}>
     {(tagUrl && <a href={`/tag/${tagUrl}`}>{children}</a>) || children}
   </Tag>
 )

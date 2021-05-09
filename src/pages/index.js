@@ -7,6 +7,7 @@ import { usePostQuery } from '../hooks/use-posts';
 import { PostResult } from '../components/PostResult';
 import { PostList } from '../components/PostList';
 import { useMeta } from '../hooks/use-meta';
+import { PostTags } from '../components/PostTag';
 
 const Intro = styled.div`
   max-width: 40rem;
