@@ -4,12 +4,12 @@ import { Link } from "gatsby"
 import { useMeta } from "../hooks/use-meta"
 
 const Nav = styled.nav`
+  max-width: ${props => (!props.wide ? '50rem' : '100rem')};
   margin: 0 auto;
-  max-width: 100rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+  justify-content: flex-end;
+  padding: 0;
   > ul {
     display: none;
   }
@@ -25,16 +25,18 @@ const Nav = styled.nav`
 `
 
 const HomeLink = styled(Link)`
+  background-color: rgba(255,255,255,0.8);
   font-size: 3rem;
-  color: #c8c8c8;
+  color: black;
   text-decoration: none;
+  padding: 1.2rem 2rem;
 `
 
-export const Navigation = () => {
+export const Navigation = ({ wide }: { wide?: boolean }) => {
   const { shortTitle } = useMeta()
 
   return (
-    <Nav>
+    <Nav wide={wide}>
       <HomeLink to={`/`} title="Home">
         {shortTitle}
       </HomeLink>

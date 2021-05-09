@@ -21,7 +21,7 @@ export default function TagTemplate({ data, pathContext }) {
     <div>
       <MetaTags />
 
-      <Layout wide>
+      <Layout>
         <Intro>
           <h1>
             Posts about <PostTag style={{ fontSize: '2rem'}}>{tag}</PostTag>
