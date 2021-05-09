@@ -13,6 +13,10 @@ html {
   font-size: 10px;
 }
 
+img {
+  max-width: 100%;
+}
+
 @media (min-width: 800px) {
   html {
     font-size: 12px;
