@@ -25,7 +25,6 @@ const Article = styled.article`
   }
 
   @media (min-width: 800px) {
-    margin: 2rem;
     flex-basis: 30rem;
     flex-shrink: 1;
     flex-grow: 5;

@@ -12,7 +12,11 @@ import { PostTags } from '../components/PostTag';
 const Intro = styled.div`
   max-width: 40rem;
   padding: 1rem;
-  margin: 6rem auto 4rem;
+  margin: 2rem auto 4rem;
+  
+  @media (min-width: 786px) {
+    margin-top: 6rem;
+  }
 `;
 
 export default function Home() {

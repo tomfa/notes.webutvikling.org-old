@@ -14,7 +14,8 @@ const Nav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 786px) {
+    justify-content: flex-start;
     > ul {
       display: inline-block;
       list-style-type: none;
@@ -29,7 +30,12 @@ const HomeLink = styled(Link)`
   font-size: 3rem;
   color: black;
   text-decoration: none;
-  padding: 1.2rem 2rem;
+  padding: 0 1rem;
+  
+  @media (min-width: 786px) {
+    padding: 1rem;
+    width: 100%;
+  }
 `
 
 export const Navigation = ({ wide }: { wide?: boolean }) => {

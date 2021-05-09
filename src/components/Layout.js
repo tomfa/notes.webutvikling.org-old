@@ -38,8 +38,8 @@ export default function Layout({ children, wide = false, hideHeader = false }) {
   return (
     <SiteWrapper>
       {!hideHeader && (
-        <Header wide={wide}>
-          <Navigation />
+        <Header>
+          <Navigation wide={wide} />
         </Header>
       )}
       <Main wide={wide}>{children}</Main>

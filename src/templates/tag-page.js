@@ -9,8 +9,9 @@ import { PostList } from '../components/PostList';
 import { PostTag } from '../components/PostTag';
 
 const Intro = styled.div`
+  padding: 1rem;
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 0;
 `;
 
 export default function TagTemplate({ data, pathContext }) {
@@ -23,7 +24,7 @@ export default function TagTemplate({ data, pathContext }) {
 
       <Layout>
         <Intro>
-          <h1>
+          <h1 style={{ marginTop: '0'}}>
             Posts about <PostTag style={{ fontSize: '2rem'}}>{tag}</PostTag>
           </h1>
           <h4>{totalCount} Posts</h4>
