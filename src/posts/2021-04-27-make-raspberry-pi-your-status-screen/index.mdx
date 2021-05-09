@@ -55,7 +55,9 @@ If you want to have the desktop available, and easy access to config things, wri
 ```bash
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
-#@xscreensaver -no-splash
+@xset s off
+@xset -dpms   # Turns off screensaver  
+@xset s noblank
 point-rpi
 @./startup.sh
 ```
@@ -66,7 +68,8 @@ This boots up the desktop too.
 
 That's it! You can test it by rebooting :)
 
-If you want to get out of a locked down kiosk-mode, press ctrl + alt + F2 to get a login terminal.
+- If you want to get out of a locked down kiosk-mode, press ctrl + alt + F2 to get a login terminal.
+- If your screensaver is not turned off, see 
 
-_If you need to login or send key presses to the browser, e.g. typing in a password or similar, 
+- _If you need to login or send key presses to the browser, e.g. typing in a password or similar, 
 check out [/build-screen-bootup/ post](/build-screen-bootup/), using xdotools._
