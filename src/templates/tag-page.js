@@ -41,6 +41,7 @@ export default function TagTemplate({ data, pathContext }) {
 export const pageQuery = graphql`
   query TagPageQuery($tag: String) {
     allMdx(
+      sort: { order: DESC, fields: frontmatter___date }
       filter: {
         fields: { relativeFolder: { regex: "/posts*/" } }
         frontmatter: { tags: { eq: $tag }, status: { ne: "draft" } }
