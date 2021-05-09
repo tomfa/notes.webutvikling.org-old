@@ -12,7 +12,7 @@ import { PostTags } from '../components/PostTag';
 const Intro = styled.div`
   max-width: 40rem;
   padding: 1rem;
-  margin: 0 auto;
+  margin: 6rem auto 4rem;
 `;
 
 export default function Home() {
@@ -25,9 +25,9 @@ export default function Home() {
 
       <Layout wide>
         <Intro>
-          <h1>{title}</h1>
+          <h1 style={{ marginTop: '0' }}>{title}</h1>
           <p>Random notes, anecdotes and random scribbling from my tech life and work brain.</p>
-          <h4>{data.totalCount} Posts</h4>
+          <h4>{data.totalCount} Posts about ...</h4>
           <PostTags
             tags={[
               'learning',
