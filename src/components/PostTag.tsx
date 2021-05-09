@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { asUrl } from "../utils/urlize"
+import { Link } from 'gatsby';
 
 const Tag = styled.span`
   display: inline-block;
@@ -84,7 +85,7 @@ const Tags = styled.div`
 
 export const PostTag = ({ children, tagUrl, style = undefined}) => (
   <Tag {...getTagStyle(children)} style={style}>
-    {(tagUrl && <a href={`/tag/${tagUrl}`}>{children}</a>) || children}
+    {(tagUrl && <Link to={`/tag/${tagUrl}`}>{children}</Link>) || children}
   </Tag>
 )
 export const PostTags = ({ tags, useLink = false, inline = false }) =>
