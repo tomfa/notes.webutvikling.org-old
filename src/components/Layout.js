@@ -6,6 +6,7 @@ import { Navigation } from './Navigation';
 
 import 'normalize.css';
 import './style.css';
+import { Header } from './Header';
 
 const Main = styled.main`
   max-width: ${props => (!props.wide ? '40rem' : null)};
@@ -23,7 +24,7 @@ const Main = styled.main`
       margin-right: 1rem;
     }
   }
-  
+
   @media (min-width: 800px) {
     max-width: ${props => (!props.wide ? '50rem' : '100rem')};
   }
@@ -33,9 +34,14 @@ const SiteWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export default function Layout({ children, wide = false }) {
+export default function Layout({ children, wide = false, hideHeader = false }) {
   return (
     <SiteWrapper>
+      {!hideHeader && (
+        <Header>
+          <Navigation />
+        </Header>
+      )}
       <Main wide={wide}>{children}</Main>
       <Footer />
     </SiteWrapper>

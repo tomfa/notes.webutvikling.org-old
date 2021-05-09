@@ -8,7 +8,7 @@ const FooterBg = styled.div`
 
 const FooterTag = styled.footer`
   color: #dedede;
-  padding: 10rem 2rem;
+  padding: 10rem 0 4rem;
   margin: 10rem auto 0;
   min-height: 10rem;
   display: grid;
@@ -40,6 +40,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.li`
+  padding: 0.4rem 0;
   & > a {
     color: white;
   }
@@ -62,7 +63,7 @@ export const Footer = () => {
   return (
     <FooterBg>
     <FooterTag>
-      <Div area="what">
+      <Div area="what" style={{ paddingBottom: '4rem'}}>
         <FooterHeader>What</FooterHeader>
         <List>
           <ListItem>These are just notes and scribbl.</ListItem>
@@ -75,6 +76,9 @@ export const Footer = () => {
       <Div area="whoami" ta="right">
         <FooterHeader>Me</FooterHeader>
         <List>
+          <ListItem>
+            <a href="https://webutvikling.org">Homepage</a>
+          </ListItem>
           <ListItem>
             <a href="https://github.com/tomfa">Github</a>
           </ListItem>

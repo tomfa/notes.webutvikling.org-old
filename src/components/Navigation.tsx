@@ -30,11 +30,6 @@ const HomeLink = styled(Link)`
   text-decoration: none;
 `
 
-const Logo = styled.img`
-  display: inline-block;
-  height: 4rem;
-`
-
 export const Navigation = () => {
   const { shortTitle } = useMeta()
 

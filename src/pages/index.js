@@ -23,7 +23,7 @@ export default function Home() {
     <div>
       <MetaTags />
 
-      <Layout wide>
+      <Layout wide hideHeader>
         <Intro>
           <h1 style={{ marginTop: '0' }}>{title}</h1>
           <p>Random notes, anecdotes and random scribbling from my tech life and work brain.</p>
