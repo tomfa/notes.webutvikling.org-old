@@ -26,7 +26,24 @@ export default function Home() {
       <Layout wide>
         <Intro>
           <h1>{title}</h1>
+          <p>Random notes, anecdotes and random scribbling from my tech life and work brain.</p>
           <h4>{data.totalCount} Posts</h4>
+          <PostTags
+            tags={[
+              'learning',
+              'book',
+              'guide',
+              'talk',
+              'debugging',
+              'tools',
+              'management',
+              'efficiency',
+              'monitoring',
+              'startup',
+              'code quality',
+            ]}
+            useLink
+          />
         </Intro>
         <PostList>
           {data.edges.map(({ node }) => (
