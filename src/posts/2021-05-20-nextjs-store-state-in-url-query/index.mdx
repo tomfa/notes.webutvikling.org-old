@@ -1,0 +1,32 @@
+---
+title: "NextJS: Add state to URL query params"
+date: 2021-05-20
+image: ./nextjs.png
+tags: [guide, nextjs]
+imageAlt: "NextJS logo"
+author: tomfa
+status: publish
+---
+
+I lovehate putting state in the url. You can create complex wizards or flows with a shareable url-state
+which you can store or send to a team. All without even having a backend or a login.
+
+_See [ihasabucket.it](https://ihasabucket.it/) for an example_.
+
+There are a few things to get correctly and watch out for, though:
+
+- You want to read the initial state from the url, but not update state on subsequent URL-changes.
+- You want changes in state to cause URL updates, usually without changing the history.
+- To avoid poor performance: let state be updated freely without waiting for potentially slow _location_ change in the browser.
+- The URL data needs to be URL-safe, so characters like `/?=` should to be encoded or escaped.
+- "Outdated" urls with a (now) invalid payload should be handled gently.
+
+### Short story
+
+Below are two different gists, for storing JSON objects (if you need that), or if strings are enough (preferable).
+
+- (Simple) [Gist for storing string variables in URL](https://gist.github.com/tomfa/9bf850bbaeb421c77d2b1bd2a158ae10)
+- (Harder) [Gist for storing JSON state in URL](https://gist.github.com/tomfa/fcb8838881080788e139cb2fc2364fcd)
+
+_There is one gotcha: You can not call two different `setQueryState` functions in the same render.
+The latter will override changes to the query params done by the former._
