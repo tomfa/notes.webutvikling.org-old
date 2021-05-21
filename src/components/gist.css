@@ -377,7 +377,6 @@
 }
 .gist .markdown-body .csv-data td,
 .gist .markdown-body .csv-data th {
-  font-size: 12px;
   line-height: 1;
   overflow: hidden;
   padding: 5px;
@@ -549,7 +548,6 @@
 }
 .gist .blob-interaction-bar .octicon-search {
   color: #586069;
-  font-size: 12px;
   left: 10px;
   position: absolute;
   top: 10px;
@@ -557,7 +555,6 @@
 .gist .blob-filter {
   border: 0;
   border-radius: 0;
-  font-size: 12px;
   outline: none;
   padding: 4px 20px 5px 30px;
   width: 100%;
@@ -654,7 +651,6 @@
   cursor: pointer;
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
   monospace;
-  font-size: 12px;
   line-height: 20px;
   min-width: 50px;
   padding-left: 10px;
@@ -689,7 +685,6 @@
   color: #24292e;
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
   monospace;
-  font-size: 12px;
   overflow: visible;
   white-space: pre;
   word-wrap: normal;
@@ -780,7 +775,6 @@
   border-top: 1px solid #eaecef;
 }
 .gist .blob-num-expandable {
-  font-size: 12px;
   padding: 0;
   text-align: center;
 }
@@ -1101,7 +1095,6 @@
   color: #333;
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
   monospace;
-  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   margin: 0;

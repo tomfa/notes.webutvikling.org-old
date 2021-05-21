@@ -24,53 +24,16 @@ script names to start the project really grinds my gears.
 
 ### 2. Add a script for installing packages 🎀
 
-Add the script below in `~/.bash_profile`. This will alias `ins` to install packages in the current repo, using whatever .
+Add the script below to your bash profile. This will alias `ins` to install packages in the current repo, using whatever .
 
-```sh
-install() {
-    if test -f "package.json"; then
-        if test -f "package-lock.json"; then
-            npm install
-        elif test -f "yarn.lock"; then
-            yarn
-        else
-            echo "warning: no lock file"
-            yarn
-        fi
-    else
-        echo "Missing package.json"
-    fi
-}
-alias ins=install
-```
+`gist:259e3903e924ec64b32aa48e317cd07d#yarn.npm.install.sh`
 
-Now you can install the packages by just typing `ins` 🎀
 
 ### 3. Add a script for starting the app 🚀
 
-Add the script below in `~/.bash_profile`. This will alias `sta` to start the repo, with the commonly used dev script that the repo uses.
+Add the script below to your bash profile. This will alias `sta` to start the repo, with the commonly used dev script that the repo uses.
 
-```sh
-start() {
-    if test -f "package.json"; then
-        if grep -q "\"dev\"" "package.json"; then
-            yarn dev
-        elif grep -q "\"develop\"" "package.json"; then
-            yarn develop
-        elif grep -q "\"start:dev\"" "package.json"; then
-            yarn start:dev
-        elif grep -q "\"start:all\"" "package.json"; then
-            yarn start:all
-        else
-            yarn start
-        fi
-    else
-        echo "Missing package.json"
-    fi
-}
-alias sta=start
-```
+`gist:259e3903e924ec64b32aa48e317cd07d#yarn.npm.start.sh`
 
-Now you can start most apps by just typing `sta` 🚀
 
 
