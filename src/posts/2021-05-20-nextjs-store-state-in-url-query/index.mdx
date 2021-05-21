@@ -18,76 +18,11 @@ which you can store or send to a team. All without even having a backend or a lo
 
 #### Simple string
 
-```ts
-import { useQueryState } from 'next-usequerystate'
-
-export default () => {
-  const [name, setName] = useQueryState('name')
-  return (
-    <>
-      <h1>Hello, {name || 'anonymous visitor'}!</h1>
-      <input value={name || ''} onChange={e => {
-        // Note: do not try to call two different useQueryState 
-        // functions in one render. Only the last will apply.
-        setName(e.target.value)
-      }} />
-      <button onClick={() => setName(null)}>Clear</button>
-    </>
-  )
-}
-```
+`gist:1881e789120830ee8a805f3dd2959a25#SimpleComponent.tsx`
 
 #### JSON
 
-```ts
-import { useQueryState } from 'next-usequerystate';
-import { useEffect } from 'react';
-
-const defaultData = {
-  name: 'Robert Paulsen',
-  age: 37,
-}
-const parser = (query) => {
-  try {
-    const json = JSON.parse(String(query));
-    return {
-      name: json.name || defaultData.name,
-      age: json.age || defaultData.age,
-    };
-  } catch {
-    return defaultData;
-  }
-};
-const serializer = (catInfo) => JSON.stringify(catInfo);
-
-export default () => {
-  const [data, setData] = useQueryState('data', {
-    parse: parser,
-    serialize: serializer,
-  });
-
-  useEffect(() => {
-    if (!data) {
-      setData(defaultData);
-    }
-  }, []);
-
-  if (!data) {
-    return null;
-  }
-
-  return (
-    <>
-      <h1>
-        Hello, {data.name || 'anonymous visitor'}, aged {data.age}!
-      </h1>
-      <input value={data.name || ''} onChange={(e) => setData(existing => ({ ...existing, name: e.target.value }))} />
-      <button onClick={() => setData(defaultData)}>Clear</button>
-    </>
-  );
-};
-
-```
+`gist:1881e789120830ee8a805f3dd2959a25#Component.tsx`
 
 
 ### The long story
