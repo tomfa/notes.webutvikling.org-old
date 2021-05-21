@@ -11,19 +11,110 @@ status: publish
 I lovehate putting state in the url. You can create complex wizards or flows with a shareable url-state
 which you can store or send to a team. All without even having a backend or a login.
 
-_See [ihasabucket.it](https://ihasabucket.it/) for an example_.
+### TLDR
+
+`yarn add next-usequerystate`
+
+
+#### Simple string
+
+```ts
+import { useQueryState } from 'next-usequerystate'
+
+export default () => {
+  const [name, setName] = useQueryState('name')
+  return (
+    <>
+      <h1>Hello, {name || 'anonymous visitor'}!</h1>
+      <input value={name || ''} onChange={e => {
+        // Note: do not try to call two different useQueryState 
+        // functions in one render. Only the last will apply.
+        setName(e.target.value)
+      }} />
+      <button onClick={() => setName(null)}>Clear</button>
+    </>
+  )
+}
+```
+
+#### JSON
+
+```ts
+import { useQueryState } from 'next-usequerystate';
+import { useEffect } from 'react';
+
+const defaultData = {
+  name: 'Robert Paulsen',
+  age: 37,
+}
+const parser = (query) => {
+  try {
+    const json = JSON.parse(String(query));
+    return {
+      name: json.name || defaultData.name,
+      age: json.age || defaultData.age,
+    };
+  } catch {
+    return defaultData;
+  }
+};
+const serializer = (catInfo) => JSON.stringify(catInfo);
+
+export default () => {
+  const [data, setData] = useQueryState('data', {
+    parse: parser,
+    serialize: serializer,
+  });
+
+  useEffect(() => {
+    if (!data) {
+      setData(defaultData);
+    }
+  }, []);
+
+  if (!data) {
+    return null;
+  }
+
+  return (
+    <>
+      <h1>
+        Hello, {data.name || 'anonymous visitor'}, aged {data.age}!
+      </h1>
+      <input value={data.name || ''} onChange={(e) => setData(existing => ({ ...existing, name: e.target.value }))} />
+      <button onClick={() => setData(defaultData)}>Clear</button>
+    </>
+  );
+};
+
+```
+
+
+### The long story
+
+Check out how the URL changes based on your answers at [ihasabucket.it](https://ihasabucket.it/).
+
+There's many reasons for putting the state in the URL: 
+
+- You can share the results to your team, or store them for later. 
+- When helping someone out you can link them a prefilled form, saying "I think this is right for you".
+- There's no backend to implement.
+- Loading data from the browser is faster than from an API.
+- Error logging to a third party service like Sentry, includes the state in which the error occured.
 
 There are a few things to get correctly and watch out for, though:
 
-- You want to read the initial state from the url, but not update state on subsequent URL-changes.
-- You want changes in state to cause URL updates, usually without changing the history.
-- To avoid poor performance: let state be updated freely without waiting for potentially slow _location_ change in the browser.
-- The URL data needs to be URL-safe, so characters like `/?=` should to be encoded or escaped.
-- "Outdated" urls with a (now) invalid payload should be handled gently.
+- You can quickly end up in a rerender loop as you write to and read from the history api. 
+- Avoid poor performance by updating the URL query async from the state changes.
+- You want to _consider_ using [replaceState over pushState](https://developer.mozilla.org/en-US/docs/Web/API/History_API) – but not always.
+- Make your data URL safe before updating history.
+- If you store JSON, you may want to base64 encode it or compress it. 
+- If you store JSON, your application should handle old (now invalid) data structures.
+- With NextJS, do not call `router.push` twice in one function. The latter change will override the first.
+- With NextJS (SSR/SSG), [do not rely on `router.query` to provide a variables initial value](https://github.com/vercel/next.js/discussions/11484). Instead, update the variable with `useMemo` (due to how rehydration). 
 
-### Short story
-
-Below are two different gists, for storing JSON objects (if you need that), or if strings are enough (preferable).
+Below are my attempts at getting around these things. For the future, I'd recommend using 
+[next-usequerystate](https://www.npmjs.com/package/next-usequerystate) to handle the complexity.
 
 - (Simple) [Gist for storing string variables in URL](https://gist.github.com/tomfa/9bf850bbaeb421c77d2b1bd2a158ae10)
 - (Harder) [Gist for storing JSON state in URL](https://gist.github.com/tomfa/fcb8838881080788e139cb2fc2364fcd)
