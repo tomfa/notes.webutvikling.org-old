@@ -6,6 +6,7 @@ import { Navigation } from './Navigation';
 
 import 'normalize.css';
 import './style.css';
+import './gist.css';
 import { Header } from './Header';
 
 const Main = styled.main`
