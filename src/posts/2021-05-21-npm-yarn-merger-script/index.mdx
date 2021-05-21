@@ -1,0 +1,76 @@
+---
+title: "Launching with yarn and npm side by side"
+date: 2021-05-21
+image: ./spacex-OHOU-5UVIYQ-unsplash.jpg
+tags: [guide, npm, yarn]
+imageAlt: "Launching like a professional. Photo by @spacex on Unsplash."
+author: tomfa
+status: publish
+---
+
+As a person working with different people indifferent repos, mixing up npm with yarn and inconsistent
+script names to start the project really grinds my gears. 
+
+- Do I run npm install or yarn install? 
+- Did someone just add a package-lock.json to a yarn repo?
+- Do I run yarn dev, yarn start, yarn start:dev or yarn start:all to fire up the dev server?
+- Did linting/build/deployment just fail on CI because we use yarn there, but npm and package-lock in this repo?
+
+### 1. Select yarn (or npm)
+
+- Decide on using one of them (_yarn for speed, and monorepo support_). 
+- Remove and add the _other_ lock file to `.gitignore`
+- Make sure your CI scripts use the same package manager
+
+### 2. Add a script for installing packages 🎀
+
+Add the script below in `~/.bash_profile`. This will alias `ins` to install packages in the current repo, using whatever .
+
+```sh
+install() {
+    if test -f "package.json"; then
+        if test -f "package-lock.json"; then
+            npm install
+        elif test -f "yarn.lock"; then
+            yarn
+        else
+            echo "warning: no lock file"
+            yarn
+        fi
+    else
+        echo "Missing package.json"
+    fi
+}
+alias ins=install
+```
+
+Now you can install the packages by just typing `ins` 🎀
+
+### 3. Add a script for starting the app 🚀
+
+Add the script below in `~/.bash_profile`. This will alias `sta` to start the repo, with the commonly used dev script that the repo uses.
+
+```sh
+start() {
+    if test -f "package.json"; then
+        if grep -q "\"dev\"" "package.json"; then
+            yarn dev
+        elif grep -q "\"develop\"" "package.json"; then
+            yarn develop
+        elif grep -q "\"start:dev\"" "package.json"; then
+            yarn start:dev
+        elif grep -q "\"start:all\"" "package.json"; then
+            yarn start:all
+        else
+            yarn start
+        fi
+    else
+        echo "Missing package.json"
+    fi
+}
+alias sta=start
+```
+
+Now you can start most apps by just typing `sta` 🚀
+
+
