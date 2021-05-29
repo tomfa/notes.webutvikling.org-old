@@ -3,11 +3,12 @@ import { Helmet } from 'react-helmet';
 import { useMeta } from '../hooks/use-meta';
 
 export function MetaTags({
-  description = '',
+  description = 'Random scribbling from my everyday work and life.',
   lang = 'en',
   meta = [],
-  keywords = [],
-  title = '',
+  keywords = ['tech', 'blog'],
+  title = 'Notes & Anecdotes',
+  imageUrl = 'https://notes.webutvikling.org/images/na.png',
 } = {}) {
   const siteMeta = useMeta();
   const metaDescription = description || siteMeta.description;
@@ -37,6 +38,10 @@ export function MetaTags({
         {
           property: 'og:description',
           content: metaDescription,
+        },
+        {
+          property: 'og:image',
+          content: imageUrl,
         },
         {
           property: 'og:type',

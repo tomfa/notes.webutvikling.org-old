@@ -25,7 +25,13 @@ export default function Home() {
 
   return (
     <div>
-      <MetaTags />
+      <MetaTags
+        title="Notes & Anecdotes"
+        description="Random scribbling from my everyday work and life."
+        keywords={
+          ['blog', 'startup', 'guides', 'aws', 'management', 'monitoring']
+        }
+      />
 
       <Layout wide hideHeader>
         <Intro>
