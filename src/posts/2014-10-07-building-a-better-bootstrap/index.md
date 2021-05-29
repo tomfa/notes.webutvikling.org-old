@@ -1,9 +1,9 @@
 ---
-title: "Building a better bootstrap"
+title: 'Building a better bootstrap'
 date: 2014-10-07
 image: ./a-better-bootstrap.jpg
 video: https://vimeo.com/97318798
-tags: ["talk", notes, video]
+tags: ['talk', notes, video]
 author: tomfa
 status: publish
 ---
@@ -20,7 +20,7 @@ _(Or clear:both?)_ Can help with those fesky times where an outer container does
 
 What this does, is include padding and border in the width of an element. Tim G. Thomas sayss he usually does this for all elements
 
-*   Get stats for your css at [cssstats.com](http://www.cssstats.com/#/)
-*   Check out video podcasts at [atozcss.com](http://atozcss.com)
-*   Write and see your compiled sass at [sassmeister.com](http://sassmeister.com)
-*   Read about sass-functions at [thesassway](http://thesassway.com/intermediate/if-for-each-while)
+- Get stats for your css at [cssstats.com](http://www.cssstats.com/#/)
+- Check out video podcasts at [atozcss.com](http://atozcss.com)
+- Write and see your compiled sass at [sassmeister.com](http://sassmeister.com)
+- Read about sass-functions at [thesassway](http://thesassway.com/intermediate/if-for-each-while)

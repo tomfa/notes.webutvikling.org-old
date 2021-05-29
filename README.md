@@ -9,12 +9,13 @@ Static site generator for [notes.webutvikling.org](https://notes.webutvikling.or
 ```
 yarn start
 ```
+
 ...serves the content with hot-reloading on port 8000
 
+### Write
 
-### Write 
 Write `.mdx` files in `./src/posts`
 
 ## Deploy
 
-Happens automatically on push to master. 
+Happens automatically on push to master.

@@ -1,8 +1,8 @@
 ---
-title: "Export data from one Django to another over ssh"
+title: 'Export data from one Django to another over ssh'
 date: 2015-10-18
 image: ./steinar-engeland-_2G4EeyeoeA-unsplash.jpg
-tags: ["guide", database, django, loaddata, readdata]
+tags: ['guide', database, django, loaddata, readdata]
 author: tomfa
 status: publish
 ---
@@ -16,7 +16,7 @@ ssh username@hostname
 2. Navigate to the folder
 
 ```
-cd /path/to/remote/django 
+cd /path/to/remote/django
 ```
 
 3. Extract data to **db.json**
@@ -28,19 +28,19 @@ python manage.py dumpdata db.json
 4. Open a **local** terminal and copy down the file
 
 ```
- scp username@hostname:/path/to/remote/django/db.json /path/to/local/django/db.json 
+ scp username@hostname:/path/to/remote/django/db.json /path/to/local/django/db.json
 ```
 
 5. Navigate to the folder locally
 
 ```
- cd /path/to/local/django/ 
+ cd /path/to/local/django/
 ```
 
 6. Import the data from the file
 
 ```
-python manage.py loaddata db.json 
+python manage.py loaddata db.json
 ```
 
 Source: [this guide](https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata)

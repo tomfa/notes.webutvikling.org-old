@@ -1,8 +1,8 @@
 ---
-title: "git: Replace master branch"
+title: 'git: Replace master branch'
 date: 2014-02-03
 image: ./simon-berger-Qa2tSHWgh84-unsplash.jpg
-imageAlt: Image by Simon Berger on Unsplash    
+imageAlt: Image by Simon Berger on Unsplash
 tags: [guide, git]
 author: tomfa
 status: publish
@@ -14,16 +14,16 @@ If you want to get back on track, and make master be identical to BESTBRANCH, do
 
 ```bash
 # Go to BESTBRANCH
-git checkout BESTBRANCH 
+git checkout BESTBRANCH
 
-# Take master things into BESTBRANCH, 
+# Take master things into BESTBRANCH,
 # but let BESTBRANCH "win" over master
-git merge -s ours master 
+git merge -s ours master
 
 # Take bestbranch into master
-git checkout master 
+git checkout master
 git merge BESTBRANCH
-``` 
+```
 
 Voilla! Now master is best.
 

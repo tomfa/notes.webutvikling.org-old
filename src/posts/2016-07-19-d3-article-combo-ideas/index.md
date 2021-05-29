@@ -1,8 +1,8 @@
 ---
-title: "D3 + article combo ideas"
+title: 'D3 + article combo ideas'
 date: 2016-07-19
 image: ./d3-simple-1.png
-tags: ["idea", d3]
+tags: ['idea', d3]
 author: tomfa
 status: publish
 ---

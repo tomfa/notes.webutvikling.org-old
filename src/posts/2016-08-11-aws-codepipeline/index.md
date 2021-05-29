@@ -1,13 +1,13 @@
 ---
-title: "AWS CodePipeline"
+title: 'AWS CodePipeline'
 date: 2016-08-11
 image: ./PGC_Pipeline_Data.jpg
-tags: ["learning", AWS, codepipeline, git, github]
+tags: ['learning', AWS, codepipeline, git, github]
 author: tomfa
 status: publish
 ---
 
-CodePipeline is a specification of how your code runs out to production. 
+CodePipeline is a specification of how your code runs out to production.
 
 What it does is connecting source code with a builder (optional) and a deployment platform. For example, you can set it to trigger a deploy to AWS Beanstalk when a Github repository is updated. And with its 1$ / month, it's practically free to use. However, CodePipeline is currently **only [available in](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) eu-west (ireland), us-west (oregon) and us-east (n. virginia).** A pipeline consists of:
 

@@ -1,8 +1,8 @@
 ---
-title: "Parallax. CSS it, please."
+title: 'Parallax. CSS it, please.'
 date: 2015-10-22
 image: ./parallax.png
-tags: ["statement", css]
+tags: ['statement', css]
 author: tomfa
 status: publish
 ---

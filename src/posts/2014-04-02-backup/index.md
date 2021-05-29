@@ -1,5 +1,5 @@
 ---
-title: "bash backup of webserver (FTP and SQL)"
+title: 'bash backup of webserver (FTP and SQL)'
 date: 2014-04-02
 image: ./jc-gellidon-56eqH9opaUU-unsplash.jpg
 tags: [guide, backup, bash, ftp, script, sql, webserver]
@@ -7,8 +7,7 @@ author: tomfa
 status: publish
 ---
 
-Quick and dirty backup from remote SQL and FTP server
------------------------------------------------------
+## Quick and dirty backup from remote SQL and FTP server
 
 ### Introduction
 
@@ -16,9 +15,9 @@ The following is a quick and dirty, simple implementation of a backup from mysql
 
 ### Dependencies
 
-*    lftp
-*   mysqldump
-*   git
+- lftp
+- mysqldump
+- git
 
 ### The Code
 
@@ -26,41 +25,41 @@ The following is a quick and dirty, simple implementation of a backup from mysql
 #!/bin/bash
 
 # START CONFIG
-# The local directory  
+# The local directory
 LOCAL_DIR="/home/user/backup/yourpath"
 
 # FTP user
-FTP_USR="ftp_username"                
+FTP_USR="ftp_username"
 
 # FTP password
-FTP_PWD="ftp_password"                
+FTP_PWD="ftp_password"
 
 # FTP host
-FTP_HOST="ftp.server.com"             
+FTP_HOST="ftp.server.com"
 
 # Folder on remote host
-FTP_FOLDER="remote_folder"            
+FTP_FOLDER="remote_folder"
 
 # Use SFTP?
-USING_SFTP=true                       
+USING_SFTP=true
 
 # SQL username
-SQL_USR="sql_user"                    
+SQL_USR="sql_user"
 
 # SQL password
-SQL_PWD="sql_password"                
+SQL_PWD="sql_password"
 
 # name of SQL-dump file
-SQL_DUMP_LOC="local_file.sql"         
+SQL_DUMP_LOC="local_file.sql"
 
 # SQL host
-SQL_HOST="sql.server.com"             
+SQL_HOST="sql.server.com"
 
 # Name of database
-DB_NAME="database_name"               
+DB_NAME="database_name"
 
 # Date format
-DATE=`date +%Y-%m-%d`                 
+DATE=`date +%Y-%m-%d`
 
 # END CONFIG
 
@@ -85,4 +84,4 @@ git commit -m "Scheduled backup $DATE"
 
 ### Scheduling
 
-See [cron-tabs](http://notes.webutvikling.org/cron-tabs/ "Cron tabs: create and delete") on how to set up this file to run every hour/day/week/month.
+See [cron-tabs](http://notes.webutvikling.org/cron-tabs/ 'Cron tabs: create and delete') on how to set up this file to run every hour/day/week/month.

@@ -1,5 +1,5 @@
 ---
-title: "Git repo on FTP-server"
+title: 'Git repo on FTP-server'
 date: 2014-03-03
 image: ./markus-spiske-hL8slYnc-bM-unsplash.jpg
 tags: [guide, ftp, git]
@@ -13,14 +13,14 @@ Often, you have to deal with limited web hotels that only provide a customly mad
 
 Let's call the cheap hotel for _"SimpleHost"_ and your own server/machine for "_MyAwesomeClient"_.
 
-*   You have FTP-access to _SimpleHost. _
-*   You have sudo on _MyAwesomeClient_
-*   _MyAwesomeClient_ has git
+- You have FTP-access to *SimpleHost. *
+- You have sudo on _MyAwesomeClient_
+- _MyAwesomeClient_ has git
 
 **Incorrect Step-by-step (How you hope it would've been):**
 
 1.  Connect from MyAwesomeClient to SimpleHost with FTP from the command line.
-2. [Mount FTP-server in debian using curlftpfs](http://notes.webutvikling.org/mount-ftp-server-in-debian-using-curlftpfs/)
+2.  [Mount FTP-server in debian using curlftpfs](http://notes.webutvikling.org/mount-ftp-server-in-debian-using-curlftpfs/)
 3.  Use git as normally.
 
 Unfortunately, that's not how it is. You'll get stuff like :
@@ -50,7 +50,7 @@ Go to your local repo that you want tracked remotely and initialize it remotely 
 
 ```bash
 cd my_clean_repo
-git ftp init -u [username] -p [password] \ 
+git ftp init -u [username] -p [password] \
   ftp://server.com/public_html
 ```
 
@@ -63,12 +63,12 @@ git ftp push -u [username] -p [password] \
 
 ### Limitations
 
-*   You can't track changes done on the remote server.
-*   It is careless with remote files. That is, if a file that is tracked in the local repository is changed on the remote server AND the local server, git ftp will overwrite it without warning.
-*   The two above is important to have in mind when collaborating with others.
+- You can't track changes done on the remote server.
+- It is careless with remote files. That is, if a file that is tracked in the local repository is changed on the remote server AND the local server, git ftp will overwrite it without warning.
+- The two above is important to have in mind when collaborating with others.
 
 ### Worth mentioning
 
-*   You can set default ftp paths and login info. See [git ftp man page](https://github.com/git-ftp/git-ftp/blob/develop/man/git-ftp.1.md)
-*   You can use sftp, ftps, ftpes as well.
-*   You can skip specifying password in the command line, and will then be prompted instead.
+- You can set default ftp paths and login info. See [git ftp man page](https://github.com/git-ftp/git-ftp/blob/develop/man/git-ftp.1.md)
+- You can use sftp, ftps, ftpes as well.
+- You can skip specifying password in the command line, and will then be prompted instead.

@@ -1,13 +1,13 @@
 ---
-title: "Quick http benchmarking with curl"
+title: 'Quick http benchmarking with curl'
 date: 2018-11-15
 image: ./chuttersnap-gts_Eh4g1lk-unsplash.jpg
-tags: ["guide", "tools", bash, performance]
+tags: ['guide', 'tools', bash, performance]
 author: tomfa
 status: publish
 ---
 
-From time to time, I'd like to see how the performance gain/loss was after a code change. Say I've updated locahost:8000/search and I'd like to do 100 http calls to localhost:8000/search?q=fish to see how it performs: 
+From time to time, I'd like to see how the performance gain/loss was after a code change. Say I've updated locahost:8000/search and I'd like to do 100 http calls to localhost:8000/search?q=fish to see how it performs:
 
 1.  Save the file below as **benchmark.sh**
 

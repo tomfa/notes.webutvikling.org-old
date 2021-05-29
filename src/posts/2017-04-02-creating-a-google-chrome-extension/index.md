@@ -1,8 +1,8 @@
 ---
-title: "Creating a Google Chrome Extension"
+title: 'Creating a Google Chrome Extension'
 date: 2017-04-02
 image: ./trello-chrome-ext.png
-tags: ["guide", chrome extention, css, google chrome, javascript]
+tags: ['guide', chrome extention, css, google chrome, javascript]
 author: tomfa
 status: publish
 ---
@@ -23,19 +23,19 @@ First off, I want to override Chromes _new tab_ page. New Tab, Bookmarks and His
 
 ### Part 2: Making functionality
 
-So I'm thinking I'd like to see a specific board from Trello, optionally with a filter, with the topmost matching ticket in extra large fonts, to keep my head focused on that task. Something like this: 
+So I'm thinking I'd like to see a specific board from Trello, optionally with a filter, with the topmost matching ticket in extra large fonts, to keep my head focused on that task. Something like this:
 
-![](./trello-chrome-ext.png) 
+![](./trello-chrome-ext.png)
 
 > So it's basically a [todomvc](http://todomvc.com/) with a trello integration?
 
-> – Yes, that's exactly what it is! 
+> – Yes, that's exactly what it is!
 
 > Well, can I use my favorite framework, like React + Redux, Angular or Ember, pack it with Webpack, and just use that?
 
 > – Sure. There's nothing stopping you!
 
-Remember that it'll pop up every time you open a new tab, so I'd say it's perfectly acceptable to write some plain old ES5 JavaScript without any libraries or frameworks, in order to get the best performance. But whatever you like – this is suppose to be fun after all! 
+Remember that it'll pop up every time you open a new tab, so I'd say it's perfectly acceptable to write some plain old ES5 JavaScript without any libraries or frameworks, in order to get the best performance. But whatever you like – this is suppose to be fun after all!
 
 But the base line is: **Just create any frontend app**. As long as it's only static files (or compiled to it), it's OK to be a start-page extension.
 
@@ -65,15 +65,15 @@ You should put in `manifest_version: 2`. Name and version is [required](https://
 
 #### Where can I see the extension you made?
 
-[https://github.com/tomfa/chrome-app-demo](https://github.com/tomfa/chrome-app-demo)  
+[https://github.com/tomfa/chrome-app-demo](https://github.com/tomfa/chrome-app-demo)
 
 #### How do I make those non-start page extensions?
 
 For those non-start page extensions (i.e. the Pocket-button), there's many other guides, e.g:
 
-*   [SitePoint - How to Create a Chrome Extension in 10 minutes flat](https://www.sitepoint.com/create-chrome-extension-10-minutes-flat/)
-*   [LifeHacker - How to build a chrome extension ](http://lifehacker.com/5857721/how-to-build-a-chrome-extension)
-*   [Thoughtbot - How to make a chrome extension](https://robots.thoughtbot.com/how-to-make-a-chrome-extension)
+- [SitePoint - How to Create a Chrome Extension in 10 minutes flat](https://www.sitepoint.com/create-chrome-extension-10-minutes-flat/)
+- [LifeHacker - How to build a chrome extension ](http://lifehacker.com/5857721/how-to-build-a-chrome-extension)
+- [Thoughtbot - How to make a chrome extension](https://robots.thoughtbot.com/how-to-make-a-chrome-extension)
 
 #### How do I publish my extension to Chrome Store?
 
@@ -89,11 +89,11 @@ Chrome Apps are not the same as extensions. Chrome Apps are basically regular w
 
 Due to that last one, I haven't mentioned it before, and will probably not mention Apps much ever again.
 
-* * *
+---
 
 **Links:**
 
-*   [Chrome Developer - Getting started](https://developer.chrome.com/extensions/getstarted)
-*   [Chrome Developer - Manifest File Format](https://developer.chrome.com/extensions/manifest)
-*   [Chrome Developer - Override Pages](https://developer.chrome.com/extensions/override)
-*   [Chrome Developer - Examples](https://developer.chrome.com/extensions/samples)
+- [Chrome Developer - Getting started](https://developer.chrome.com/extensions/getstarted)
+- [Chrome Developer - Manifest File Format](https://developer.chrome.com/extensions/manifest)
+- [Chrome Developer - Override Pages](https://developer.chrome.com/extensions/override)
+- [Chrome Developer - Examples](https://developer.chrome.com/extensions/samples)

@@ -24,8 +24,8 @@ export default function TagTemplate({ data, pathContext }) {
 
       <Layout>
         <Intro>
-          <h1 style={{ marginTop: '0'}}>
-            Posts about <PostTag style={{ fontSize: '2rem'}}>{tag}</PostTag>
+          <h1 style={{ marginTop: '0' }}>
+            Posts about <PostTag style={{ fontSize: '2rem' }}>{tag}</PostTag>
           </h1>
           <h4>{totalCount} Posts</h4>
         </Intro>

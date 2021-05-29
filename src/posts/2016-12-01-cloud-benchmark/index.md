@@ -1,5 +1,5 @@
 ---
-title: "Cloud benchmark"
+title: 'Cloud benchmark'
 date: 2016-12-01
 tags: []
 author: tomfa

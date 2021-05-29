@@ -1,8 +1,8 @@
 ---
-title: "django rewrite / redirect to new urls"
+title: 'django rewrite / redirect to new urls'
 date: 2015-12-13
 image: ./nick-fewings-zF_pTLx_Dkg-unsplash.jpg
-tags: ["guide", django, redirect, rewrite, urls]
+tags: ['guide', django, redirect, rewrite, urls]
 author: tomfa
 status: publish
 ---
@@ -17,20 +17,20 @@ from django.views.generic.base import RedirectView
 
 if settings.MEDIA_URL != "/media/":
     urlpatterns += url(
-        r'^media/(?P<path>.\*), 
+        r'^media/(?P<path>.\*),
         RedirectView.as_view(
-            url=settings.MEDIA_URL + '%(path)s', 
+            url=settings.MEDIA_URL + '%(path)s',
             permanent=True
-        ), 
+        ),
         name='cloud-media'
     )
 
 if settings.STATIC_URL != "/static/":
     urlpatterns += url(
-        r'^static/(?P<path>.\*), 
+        r'^static/(?P<path>.\*),
         RedirectView.as_view(
             url=settings.STATIC_URL + '%(path)s', permanent=True
-        ), 
+        ),
         name='cloud-static'
     )
 ```

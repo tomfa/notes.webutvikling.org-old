@@ -1,37 +1,37 @@
 ---
-title: "git cheatsheet"
+title: 'git cheatsheet'
 date: 2016-07-29
 image: ./git-cheat-sheet.jpg
-tags: ["guide", efficiency, alias, bash, cheatsheet, git]
+tags: ['guide', efficiency, alias, bash, cheatsheet, git]
 author: tomfa
 status: publish
 ---
 
-git is genious. Hands down brilliant. Every 6 months or so, I come across another command I didn't know I needed before I needed it. And those regular ones I type all the time. So here's a collection of handy git aliases that saves some typing and/or remembering. 
+git is genious. Hands down brilliant. Every 6 months or so, I come across another command I didn't know I needed before I needed it. And those regular ones I type all the time. So here's a collection of handy git aliases that saves some typing and/or remembering.
 
 _Learning one or two at a time is a good idea._
 
 ```bash
 // Create commit
-alias gc='git commit'                                      
+alias gc='git commit'
 
 // Show unstaged changes
-alias gd='git diff'    
+alias gd='git diff'
 
 // Show staged changes
-alias gdca='git diff --cached'     
+alias gdca='git diff --cached'
 
 // Check status
-alias gst='git status'     
+alias gst='git status'
 
 // remove changes to file or checkout branch (followed by sha/path/branchname)
-alias gco='git checkout '                                  
+alias gco='git checkout '
 
 // create and checkout new branch (followed by name)
-alias gcob='git checkout -b '                                  
+alias gcob='git checkout -b '
 
 // checkout master
-alias gcom='git checkout master'                     
+alias gcom='git checkout master'
 
 // Rebase on master
 alias grbm='git rebase master'
@@ -52,7 +52,7 @@ alias gb='git branch --sort=-committerdate'
 alias ggpush='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
 
 // Show (followed by commit hash)
-alias gs='git show'          
+alias gs='git show'
 
 // Append staged changes to previous commit
 alias 'gca!'='git commit -v --no-edit --amend'

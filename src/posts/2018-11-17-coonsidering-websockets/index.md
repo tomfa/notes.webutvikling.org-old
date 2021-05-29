@@ -1,5 +1,5 @@
 ---
-title: "Coonsidering Websockets"
+title: 'Coonsidering Websockets'
 date: 2018-11-17
 tags: []
 author: tomfa

@@ -1,8 +1,8 @@
 ---
-title: "Add S3 bucket using Terraform (example)"
+title: 'Add S3 bucket using Terraform (example)'
 date: 2015-12-13
 image: ./elena-mozhvilo-eA32JIBsSu8-unsplash.jpg
-tags: ["guide", AWS, bucket, heroku, iam, S3, terraform]
+tags: ['guide', AWS, bucket, heroku, iam, S3, terraform]
 author: tomfa
 status: publish
 ---
@@ -19,12 +19,10 @@ _Edit: I was going to make the s3 bucket with cloudfront, but Terraform has no 
     ```
     ~/bin/terraform/
     ```
-        
 4.  Add the path to your path by adding this line to `~/.bash_profile`
     ```bash
     export PATH=$PATH:~/bin/terraform
     ```
-        
 
 Alright, that should be it. You can confirm that terraform is setup by typing `terraform` in the terminal. It should respond something that seems sensible.
 
@@ -32,7 +30,7 @@ Alright, that should be it. You can confirm that terraform is setup by typing `t
 
 So [terraform](https://terraform.io/) is a tool that lets you be awesome without touching the Amazon GUI. You setup a config file, and run it with terraform, which lets you be awesome without spending much energy. (It does also much more, but that could be its own series of posts) **So what do I want?**
 
-*   Just a S3 bucket please
+- Just a S3 bucket please
 
 ```
 terraform apply github.com/tomfa/terraform-sandbox/s3-webfiles-bucket
@@ -40,37 +38,37 @@ terraform apply github.com/tomfa/terraform-sandbox/s3-webfiles-bucket
 
 **That's it! Shazam! You got a bucket up!** Uh, alright, but what if I want:
 
-*   Two S3 buckets, one for prod, and one for test
-*   Two new IAM users, one for each bucket, with write access
+- Two S3 buckets, one for prod, and one for test
+- Two new IAM users, one for each bucket, with write access
 
 ```
 terraform apply github.com/tomfa/terraform-sandbox/s3-double-webfiles-bucket
 ```
 
-Manual version
---------------
+## Manual version
 
 The terraform command above is sufficient to do everything we want. But for the sake of article length, let's say I hadn't helped you out with the config files, and you had to configure it all by yourself:
 
 1.  Create your _s3.tf_ file:
+
     ```yaml
     # This configures aws – required in all terraform files
     provider "aws" {
         access_key = "YOUR_ACCESS_KEY"
         secret_key = "YOUR_SECRET_KEY"
          # e.g. eu-west-1
-        region = "YOUR_REGION" 
+        region = "YOUR_REGION"
     }
-    
+
     # Defines a user that should be able to write to you test bucket
     resource "aws_iam_user" "test_user" {
         name = "YOUR_TEST_BUCKET_USER"
     }
-    
+
     resource "aws_iam_access_key" "test_user" {
         user = "${aws_iam_user.test_user.name}"
     }
-    
+
     resource "aws_iam_user_policy" "test_user_ro" {
         name = "test"
         user = "${aws_iam_user.test_user.name}"
@@ -90,15 +88,15 @@ The terraform command above is sufficient to do everything we want. But for the
     }
     EOF
     }
-    
+
     resource "aws_iam_user" "prod_user" {
         name = "YOUR_PROD_BUCKET_USER"
     }
-    
+
     resource "aws_iam_access_key" "prod_user" {
         user = "${aws_iam_user.prod_user.name}"
     }
-    
+
     resource "aws_iam_user_policy" "prod_user_ro" {
         name = "prod"
         user = "${aws_iam_user.prod_user.name}"
@@ -118,11 +116,11 @@ The terraform command above is sufficient to do everything we want. But for the
     }
     EOF
     }
-    
+
     resource "aws_s3_bucket" "prod_bucket" {
         bucket = "YOUR_PROD_BUCKET_NAME"
         acl = "public-read"
-    
+
         cors_rule {
             allowed_headers = ["*"]
             allowed_methods = ["PUT","POST"]
@@ -130,7 +128,7 @@ The terraform command above is sufficient to do everything we want. But for the
             expose_headers = ["ETag"]
             max_age_seconds = 3000
         }
-    
+
         policy = <<EOF
     {
         "Version": "2008-10-17",
@@ -160,11 +158,11 @@ The terraform command above is sufficient to do everything we want. But for the
     }
     EOF
     }
-    
+
     resource "aws_s3_bucket" "test_bucket" {
         bucket = "YOUR_TEST_BUCKET_NAME"
         acl = "public-read"
-    
+
         cors_rule {
             allowed_headers = ["*"]
             allowed_methods = ["PUT","POST"]
@@ -172,7 +170,7 @@ The terraform command above is sufficient to do everything we want. But for the
             expose_headers = ["ETag"]
             max_age_seconds = 3000
         }
-    
+
         policy = <<EOF
     {
         "Version": "2008-10-17",
@@ -202,15 +200,14 @@ The terraform command above is sufficient to do everything we want. But for the
     }
     EOF
     }
-    
-    
+
+
     ```
-        
+
 2.  Run it
     ```
     terraform apply
     ```
-        
 
 ### Profit
 

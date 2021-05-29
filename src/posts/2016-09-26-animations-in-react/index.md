@@ -1,5 +1,5 @@
 ---
-title: "Animations in React"
+title: 'Animations in React'
 date: 2016-09-26
 tags: []
 author: tomfa

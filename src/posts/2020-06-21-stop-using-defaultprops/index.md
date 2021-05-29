@@ -1,51 +1,49 @@
 ---
-title: "Stop using defaultProps"
+title: 'Stop using defaultProps'
 date: 2020-06-21
 image: ./raphael-biscaldi-5PEy9UraJ5c-unsplash.jpg
-tags: ["statement", "React", "javascript"]
+tags: ['statement', 'React', 'javascript']
 author: tomfa
 status: published
 ---
 
 Question of the day:
 
-## Should we use defaultProps, or defaultValues? 
+## Should we use defaultProps, or defaultValues?
 
 ```jsx
 // Default values
-const Hand = ({ hand = 'left' }) => <h1>{left}</h1>
-
+const Hand = ({ hand = 'left' }) => <h1>{left}</h1>;
 
 // Default props
-const Hand = ({ hand }) => <h1>{left}</h1>
-Hand.defaultProps = { hand: 'left' } 
+const Hand = ({ hand }) => <h1>{left}</h1>;
+Hand.defaultProps = { hand: 'left' };
 ```
 
 ## TLDR:
 
 **Default values.** But you can leave defaultProps alone when you find them
-in non-functional components, because readability for React class components 
+in non-functional components, because readability for React class components
 are better as deafultProps.
 
-Why? Because utilizing the language features is better than utilizing library 
-features (all else equal). And because [Dan says default be deprecated from 
-React](https://twitter.com/dan_abramov/status/1133878326358171650]), and the 
-only reason we use them to begin with, is React. 
-
+Why? Because utilizing the language features is better than utilizing library
+features (all else equal). And because [Dan says default be deprecated from
+React](https://twitter.com/dan_abramov/status/1133878326358171650]), and the
+only reason we use them to begin with, is React.
 
 ### Performance
 
-By spec, default values are re-evaluated on every invocation of the function. defaultProps, on the other hand, are evaluated once and cached at the module level - across every invocation of the function. 
+By spec, default values are re-evaluated on every invocation of the function. defaultProps, on the other hand, are evaluated once and cached at the module level - across every invocation of the function.
 
-This may sound like defaultProps are more performant *if you have computationally heavy default args*. But that's so rare I don't think I've ever seen it. A cache isn't free either, and I doubt caching default values is your best use of a cache?
+This may sound like defaultProps are more performant _if you have computationally heavy default args_. But that's so rare I don't think I've ever seen it. A cache isn't free either, and I doubt caching default values is your best use of a cache?
 
-**Performance: whatever.** 
+**Performance: whatever.**
 
 There are other, better arguments for and against.
 
 ### Readability
 
-**When a function becomes large, you can not see default props values when navigating to the function** 
+**When a function becomes large, you can not see default props values when navigating to the function**
 
 ```jsx
 // Default values: easy to see values immediately
@@ -60,44 +58,44 @@ Here's the same method with defaultProps
 const Hand = ({ hand }) => {
   // Many many lines, can't see below
 ```
-*** 
+
+---
 
 **Maybe defaultProps are more readable when you have (too) many props?**
 
 ```jsx
 // default values: messy method signature
-const Body = ({ 
-  arm, 
-  ear="2", 
-  eye="brown", 
-  head="round", 
-  nail="polished", 
-  toe="stubbed", 
+const Body = ({
+  arm,
+  ear = '2',
+  eye = 'brown',
+  head = 'round',
+  nail = 'polished',
+  toe = 'stubbed',
 }) => {
   // ...
-}
+};
 ```
 
-vs 
+vs
 
 ```jsx
 const Body = ({ arm, ear, eye, head, nail, toe }) => {
   // ...
-}
+};
 
-Body.defaultProps = { 
-  ear: "2", 
-  eye: "brown", 
-  head: "round", 
-  nail: "polished", 
-  toe: "stubbed", 
-}
+Body.defaultProps = {
+  ear: '2',
+  eye: 'brown',
+  head: 'round',
+  nail: 'polished',
+  toe: 'stubbed',
+};
 ```
 
-***
+---
 
 **defaultProps are more readable for Class components**
-
 
 ```jsx
 // default values
@@ -115,21 +113,20 @@ class Belly extends React.Component<Props, State> {
 }
 ```
 
-
 ### Typing
 
 I've found one question regarding Props that I don't know the answer to:
 
 ```jsx
 // Given this class
-const Belly = ({ 
-  bellyButton = 'outwards', 
+const Belly = ({
+  bellyButton = 'outwards',
   moleLocation = 'top right'
 }) => {
     ...
 }
 
-// Are these props correct? 
+// Are these props correct?
 // Or should they be optional?
 type Props = {
   bellyButton: string,
@@ -138,15 +135,15 @@ type Props = {
 ```
 
 - If you say that they should be required, then the type annotation does not
-serve as documentation for how to use the class. It then becomes important that your tools understand that they're not required.
+  serve as documentation for how to use the class. It then becomes important that your tools understand that they're not required.
 
 - If you say that they should be optional, then the type annotation does not
-tell you what assumptions you can have inside the class. It is then important that your tools understand that they'll always have values.
+  tell you what assumptions you can have inside the class. It is then important that your tools understand that they'll always have values.
 
 Conceptually, I personally I lean towards having them optional. Arguments is "How you instansiate" a class, not "What values are defined" (inside a class). Practically, I'm also more often uncertain about a class when I'm working outside it, than inside it.
 
-And it shouldn't really matter, as long as your TypeScript compiler or Flow 
-linter and your IDE know what's going on. 
+And it shouldn't really matter, as long as your TypeScript compiler or Flow
+linter and your IDE know what's going on.
 
 ### Summary
 

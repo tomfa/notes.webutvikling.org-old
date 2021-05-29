@@ -1,15 +1,15 @@
 ---
-title: "Build screen bootup"
+title: 'Build screen bootup'
 date: 2016-09-14
 image: ./buildscreen.png
-tags: ["guide", bash, build screen, jenkins, reload page, xdotool]
+tags: ['guide', bash, build screen, jenkins, reload page, xdotool]
 author: tomfa
 status: publish
 ---
 
 I have a "stupid computer" whos job is only to show a build screen. Its a debian, and I'd like for it to automatically reload the build page every 5 minutes, as well as enter the build screen in case of a reboot. Here's one way to do it.
 
-**1.  Install prerequisites**
+**1. Install prerequisites**
 
 ```bash
 apt-get install xdotool

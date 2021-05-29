@@ -1,5 +1,5 @@
 ---
-title: "Java Jersey JWT authentication for REST services"
+title: 'Java Jersey JWT authentication for REST services'
 date: 2016-09-20
 tags: []
 author: tomfa

@@ -1,18 +1,18 @@
 ---
-title: "Django on Heroku with AWS S3 bucket for static and media files"
+title: 'Django on Heroku with AWS S3 bucket for static and media files'
 date: 2015-12-13
 image: ./djangodesktop-1280x1024.jpg
-tags: ["guide", AWS, cloudfront, django, heroku, python3]
+tags: ['guide', AWS, cloudfront, django, heroku, python3]
 author: tomfa
 status: publish
 ---
 
 Case: You want efficient collectstatic and serving of files
 
-*   You want static files and media files to be hosted on an AWS S3 bucket.
-*   (optional) You have too many files for "normal" collectstatic to be efficient.
-*   (optional) You have a non-US S3 bucket.
-*   (optional) You use Heroku
+- You want static files and media files to be hosted on an AWS S3 bucket.
+- (optional) You have too many files for "normal" collectstatic to be efficient.
+- (optional) You have a non-US S3 bucket.
+- (optional) You use Heroku
 
 _Disclaimer: Have not tested with python 2.7, can't say if it's working there._
 
@@ -42,14 +42,14 @@ heroku plugins:install heroku-redis --app myherokuappname
 
 ##### 2\. Change your settings.py
 
-_Note: These settings file are not an easy example settings, but they're damn awesome. You can naively copy them (replace the red parts) ._ 
+_Note: These settings file are not an easy example settings, but they're damn awesome. You can naively copy them (replace the red parts) ._
 
-**If you** **do use heroku**, remember to set environment variables on the app dashboard. Required vars are AWS_ACCESS_KEY, S3_BUCKET, AWS_SECRET_KEY and AWS_REGION (e.g. eu-west-1) Also, if you use e.g. CloudFront to front your S3 bucket, you can set the MEDIA_URL and STATIC_URL environment variables to point to these (optional) 
+**If you** **do use heroku**, remember to set environment variables on the app dashboard. Required vars are AWS_ACCESS_KEY, S3_BUCKET, AWS_SECRET_KEY and AWS_REGION (e.g. eu-west-1) Also, if you use e.g. CloudFront to front your S3 bucket, you can set the MEDIA_URL and STATIC_URL environment variables to point to these (optional)
 
 **If you don't use heroku,** put your value for these 4 variables in between the ' ' at the end of the line.
 
 ```python
-AWS_REGION = os.environ.get('AWS_REGION', '')  # e.g. eu-west-1  
+AWS_REGION = os.environ.get('AWS_REGION', '')  # e.g. eu-west-1
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY', '')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY', '')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET', '')

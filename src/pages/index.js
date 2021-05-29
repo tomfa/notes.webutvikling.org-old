@@ -13,7 +13,7 @@ const Intro = styled.div`
   max-width: 40rem;
   padding: 1rem;
   margin: 2rem auto 4rem;
-  
+
   @media (min-width: 786px) {
     margin-top: 6rem;
   }
@@ -30,7 +30,10 @@ export default function Home() {
       <Layout wide hideHeader>
         <Intro>
           <h1 style={{ marginTop: '0' }}>{title}</h1>
-          <p>Random notes, anecdotes and random scribbling from my tech life and work brain.</p>
+          <p>
+            Random notes, anecdotes and random scribbling from my tech life and
+            work brain.
+          </p>
           <h4>{data.totalCount} Posts about ...</h4>
           <PostTags
             tags={[

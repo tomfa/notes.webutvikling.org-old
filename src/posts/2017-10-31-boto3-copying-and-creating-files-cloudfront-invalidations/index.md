@@ -1,8 +1,8 @@
 ---
-title: "Boto3 - copying and creating files + cloudfront invalidations"
+title: 'Boto3 - copying and creating files + cloudfront invalidations'
 date: 2017-10-31
 image: ./maksym-kaharlytskyi-Q9y3LRuuxmg-unsplash.jpg
-tags: ["guide", AWS, python, S3]
+tags: ['guide', AWS, python, S3]
 author: tomfa
 status: publish
 ---
@@ -18,8 +18,8 @@ copy_source = {
     'Key': 'index.html'
 }
 s3.copy_object(
-    CopySource=copy_source, 
-    Bucket='my-bucket-2', 
+    CopySource=copy_source,
+    Bucket='my-bucket-2',
     Key='index.html'
 )
 ```

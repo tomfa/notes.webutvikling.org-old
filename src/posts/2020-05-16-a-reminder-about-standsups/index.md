@@ -1,8 +1,8 @@
 ---
-title: "A good standup has 3 points"
+title: 'A good standup has 3 points'
 date: 2020-05-16
 image: ./saksham-gangwar-YVgOh8w1R4s-unsplash-1.jpg
-tags: ["statement", standup, management]
+tags: ['statement', standup, management]
 author: tomfa
 status: publish
 ---
@@ -19,8 +19,8 @@ Having standups also allow me to feel involved in what happens within the team a
 
 Mistakes I have done includes
 
-*   **Being unclear about whether I accomplished yesterdays goals.** This removes accountability when stating goals.
+- **Being unclear about whether I accomplished yesterdays goals.** This removes accountability when stating goals.
 
-*   **Start talking in depth** about a problem I've encountered, why I didn't accomplish goals, or things other than the 3 points above. This contribute to standups feeling ineffective, boring or feeling related to guilt. 
+- **Start talking in depth** about a problem I've encountered, why I didn't accomplish goals, or things other than the 3 points above. This contribute to standups feeling ineffective, boring or feeling related to guilt.
 
-*   **Not listening**, but instead thinking about what I am going to say. If I tend to do this, I should write down the 3 points before the standup.
+- **Not listening**, but instead thinking about what I am going to say. If I tend to do this, I should write down the 3 points before the standup.

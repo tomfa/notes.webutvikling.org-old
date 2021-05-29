@@ -1,15 +1,15 @@
 ---
-title: "Access Google Analytics API with OAuth token"
+title: 'Access Google Analytics API with OAuth token'
 date: 2016-11-29
 image: ./graphic-1142957_1280.jpg
-tags: ["guide", API, auth, ga, google analytics, java, javascript, jwt]
+tags: ['guide', API, auth, ga, google analytics, java, javascript, jwt]
 author: tomfa
 status: publish
 ---
 
 Notes on adding a Google Service worker that enables you to query Google Analytics with an access token.
 
-* * *
+---
 
 **Create service user and add key file on server side **
 
@@ -24,11 +24,11 @@ Notes on adding a Google Service worker that enables you to query Google Analyti
 7.  Click Enable
 8.  Click Go to Credentials
 9.  Select Analytics API, Other UI and Application data --> What Credentials do I need
-10.  Type an account name. Note down the service account ID for later
-11.  Role: Project viewer and Project browser
-12.  A JSON will be downloaded. Keep this safe – you have the only copy, and it grants you access to your Analytics data
+10. Type an account name. Note down the service account ID for later
+11. Role: Project viewer and Project browser
+12. A JSON will be downloaded. Keep this safe – you have the only copy, and it grants you access to your Analytics data
 
-* * *
+---
 
 **Allow service user read access to your google analytics**
 
@@ -36,7 +36,7 @@ Notes on adding a Google Service worker that enables you to query Google Analyti
 
 Add permissions to your google analytics for that service worker. Think of as service worker as a separate account. It will need to be added in your google analytics -> Admin -> User management
 
-* * *
+---
 
 **Extract access key from key file**
 
@@ -68,7 +68,7 @@ System.out.println(credential.getAccessToken());
 </dependency>
 ```
 
-* * *
+---
 
 **Use access key to do queries on the Google Analytics API**
 

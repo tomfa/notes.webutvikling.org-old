@@ -1,8 +1,8 @@
 ---
-title: "How to add hubot to slack"
+title: 'How to add hubot to slack'
 date: 2016-05-25
 image: ./hubot.png
-tags: ["guide", heroku, hubot, slack]
+tags: ['guide', heroku, hubot, slack]
 author: tomfa
 status: publish
 ---
@@ -27,6 +27,6 @@ heroku config:add HUBOT\_SLACK\_TOKEN=your-token-from-slack-integration
 git push heroku master
 ```
 
-* * *
+---
 
-*   [Hubot docs](https://hubot.github.com/docs/)
+- [Hubot docs](https://hubot.github.com/docs/)

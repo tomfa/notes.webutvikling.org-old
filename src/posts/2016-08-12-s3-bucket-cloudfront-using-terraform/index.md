@@ -1,8 +1,8 @@
 ---
-title: "Add S3 bucket + CloudFront using Terraform (example)"
+title: 'Add S3 bucket + CloudFront using Terraform (example)'
 date: 2016-08-12
 image: ./cloudds.jpg
-tags: ["guide", AWS, cloudfront, S3, terraform]
+tags: ['guide', AWS, cloudfront, S3, terraform]
 author: tomfa
 status: publish
 ---
@@ -19,12 +19,10 @@ Case: I have some frontend app that consists of static files, e.g. a React app 
     ```bash
     ~/bin/terraform/<files>
     ```
-        
 4.  Add the path to your path by adding this line to _~/.bash_profile_
     ```bash
     export PATH=$PATH:~/bin/terraform
     ```
-        
 
 Alright, that should be it. You can confirm that terraform is setup by typing `terraform` in the terminal. It should respond something that seems sensible.
 
@@ -32,14 +30,13 @@ Alright, that should be it. You can confirm that terraform is setup by typing `
 
 _2021 update: Follow the wizard at [ihasabucket.it](https://ihasabucket.it/) to generate terraform files. This supports static pages better, and terraform v0.12+. The code below is written for terraform v0.11-)_
 
-
 When you have Terraform installed, all you need to do is do the line below. It will prompt you for anything it needs, and set up a buckets on AWS, with Cloudfront caches in front of it to optimize site speed.
 
 ```
 terraform apply github.com/tomfa/terraform-sandbox/s3-webfiles-with-cloudfront
 ```
 
-Alternatively, if you want to specify things yourself, see the code below. Replace the marked variables with your desired region and bucket name. 
+Alternatively, if you want to specify things yourself, see the code below. Replace the marked variables with your desired region and bucket name.
 
 ### Long version
 
@@ -127,7 +124,7 @@ resource "aws_cloudfront_distribution" "prod_distribution" {
     origin {
         domain_name = "${aws_s3_bucket.prod.website_endpoint}"
         origin_id = "S3-${aws_s3_bucket.prod.bucket}"
- 
+
         custom_origin_config {
             http_port = 80
             https_port = 443

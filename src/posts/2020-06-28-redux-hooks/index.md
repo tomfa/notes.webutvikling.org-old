@@ -1,19 +1,19 @@
 ---
 title: Typesafe React Redux hooks
 date: 2020-06-28
-image: "./zyanya-bmo-6Y-4NXkY9G4-unsplash.jpg"
+image: './zyanya-bmo-6Y-4NXkY9G4-unsplash.jpg'
 imageAlt: A drawn hook. Photo by Zyanya BMO on Unsplash.
-tags: ["guide", "React", "Redux"]
+tags: ['guide', 'React', 'Redux']
 ---
 
-Going from `mapStateToProps` and `mapStateToDispatch` to `useDispatch, useSelector` or custom hooks: What's the benefits? Does typing inference work? 
+Going from `mapStateToProps` and `mapStateToDispatch` to `useDispatch, useSelector` or custom hooks: What's the benefits? Does typing inference work?
 
-***
+---
 
 _This post is a step-by-step description of how I tested and came to the conclusions.
 The code below exists at [github.com/tomfa/redux-hooks/](https://github.com/tomfa/redux-hooks/), and I'll be referencing commits as I go along._
 
-Warning: Post is long. There is a **TLDR at the bottom**. 
+Warning: Post is long. There is a **TLDR at the bottom**.
 
 ## First: How is Redux doing?
 
@@ -47,12 +47,12 @@ yarn start
 
 _Sweet. The browser should show you something ala the above_
 
-#### Add typescript 
+#### Add typescript
 
 Add types and the compiler ([666f61](https://github.com/tomfa/redux-hooks/commit/666f6123f54b938525839cc703deeb1496ffd4b2))
 
 ```bash
-yarn add -D \ 
+yarn add -D \
   typescript \
   @types/node \
   @types/react \
@@ -75,16 +75,11 @@ done
 
 Ok, sweet. Let's add a `tsconfig.json` with e.g. the following contents ([8b76f82](https://github.com/tomfa/redux-hooks/commit/8b76f82fd98830a99fadd2689164679e464a60eb)):
 
-
 ```json
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",  
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -98,9 +93,7 @@ Ok, sweet. Let's add a `tsconfig.json` with e.g. the following contents ([8b76f8
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
 ```
 
@@ -127,20 +120,20 @@ I decided to copy paste the state example from the [redux.js recipe: Usage with 
 The app is a simple Chat app, where it consists of two main UI components:
 
 - `ChatInput`
-- `ChatHistory` 
+- `ChatHistory`
 
-Some changes were made to the example code base, primarily to have self contained components without props that were using mapStateToProps and mapDispatchToProps. Below is the `ChatInputComponent.tsx`. 
+Some changes were made to the example code base, primarily to have self contained components without props that were using mapStateToProps and mapDispatchToProps. Below is the `ChatInputComponent.tsx`.
 
 _The connected components can be viewed in the diff [e877b50...6efc2a2](https://github.com/tomfa/redux-hooks/compare/e877b50...6efc2a2)._
 
 ```tsx
-import React from "react";
-import { RootState } from "../../store";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+import React from 'react';
+import { RootState } from '../../store';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-import { sendMessage, updateMessage } from "../../store/chat/actions";
-import "./ChatInput.css";
+import { sendMessage, updateMessage } from '../../store/chat/actions';
+import './ChatInput.css';
 
 interface OwnProps {}
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
@@ -158,7 +151,7 @@ const ChatInterface: React.FC<Props> = ({
   };
 
   function keyPress(e: React.KeyboardEvent<any>) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       send({ message, user });
     }
   }
@@ -208,7 +201,7 @@ export default connect<StateProps, DispatchProps, OwnProps, RootState>(
 
 _I decided to keep the UI logic (mapping events to data) within the component. I believe this gives a fairer comparison, as it is not related to state._
 
-#### With regards to types: this works great! 
+#### With regards to types: this works great!
 
 - **Automatic type inference** with these lines of boilerplate (in each connected component):
 
@@ -237,7 +230,7 @@ _It seems I have to explicitly type my action return types, which seems a bit re
 
 _Diff: [1310a50](https://github.com/tomfa/redux-hooks/commit/1310a50)_
 
-ChatHistory only used State. I feel the readability of the code is better, and it's also  shorter, going **from 29 to 21 lines**.
+ChatHistory only used State. I feel the readability of the code is better, and it's also shorter, going **from 29 to 21 lines**.
 
 _Sidenote in case you come across it too: I believed for a second that we rendered twice instead of once when doing the swap, but [that's a debug-feature](https://github.com/facebook/react/issues/15074)._
 
@@ -262,14 +255,14 @@ Even without this typing-related code, the inference is intact.
 
 _Diff: [1c5d82f](https://github.com/tomfa/redux-hooks/commit/1c5d82f)_
 
-ChatInput goes from 57 to 34 lines, but since we're adding two new _hooks_ files, we end up with a **+14 code line change**. With custom hooks, we can rename things as we please, and all we end up with (relating to redux) is: 
+ChatInput goes from 57 to 34 lines, but since we're adding two new _hooks_ files, we end up with a **+14 code line change**. With custom hooks, we can rename things as we please, and all we end up with (relating to redux) is:
 
 ```tsx
 const { inputValue, setInputValue, submit } = useChatInput();
 const { userName } = useAuth();
 ```
 
-It does require us to add (and maintain) extra "hooks files", but I think it reads _very easily_. 
+It does require us to add (and maintain) extra "hooks files", but I think it reads _very easily_.
 
 The separation of concerns are clear, with clean ability to reuse logic across components. Though this commit is some extra lines of code, it could become fewer if the hooks are reused; even just once.
 

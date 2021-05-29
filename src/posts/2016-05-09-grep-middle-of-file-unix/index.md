@@ -1,8 +1,8 @@
 ---
-title: "grep middle of file (unix)"
+title: 'grep middle of file (unix)'
 date: 2016-05-09
 image: ./thomas-griesbeck-9WWQWYmHBCk-unsplash.jpg
-tags: ["guide", "learning", bash, grep]
+tags: ['guide', 'learning', bash, grep]
 author: tomfa
 status: publish
 ---

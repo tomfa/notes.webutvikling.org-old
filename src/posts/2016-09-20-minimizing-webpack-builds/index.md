@@ -1,5 +1,5 @@
 ---
-title: "Minimizing Webpack builds"
+title: 'Minimizing Webpack builds'
 date: 2016-09-20
 tags: [react, webpack]
 author: tomfa
@@ -10,7 +10,7 @@ I'm making a webapp, using react and webpack, and the output bundle is a stagger
 
 #### Optimize webpack settings
 
-The first two changes come from [moduscreate.com](http://moduscreate.com/optimizing-react-es6-webpack-production-build/): **Set NODE\_ENV to "production"  **(webpack.config)****
+The first two changes come from [moduscreate.com](http://moduscreate.com/optimizing-react-es6-webpack-production-build/): **Set NODE_ENV to "production"  **(webpack.config)\*\*\*\*
 
 ```
 // webpack.prod.config.js
@@ -39,7 +39,7 @@ devtool: cheap-module-source-map,
 
 #### Remove heavy libraries
 
-OK, so this is the obvious solution that you don't want to hear: Remove heavy libraries. Removing the use of react-notification-system and its redux-addon react-notification-system-redux saved me **1.46 MB.** This turned out to be due to the import of **lodash**._Note: What you have installed in node\_modules does not matter. Only what you import into your JS files_. That's just one example. For you to get an overview of what happens with your bundle, run webpack with
+OK, so this is the obvious solution that you don't want to hear: Remove heavy libraries. Removing the use of react-notification-system and its redux-addon react-notification-system-redux saved me **1.46 MB.** This turned out to be due to the import of **lodash**._Note: What you have installed in node_modules does not matter. Only what you import into your JS files_. That's just one example. For you to get an overview of what happens with your bundle, run webpack with
 
 ```
 webpack --profile --json > stats.json

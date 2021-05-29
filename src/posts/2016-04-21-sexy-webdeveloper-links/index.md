@@ -1,5 +1,5 @@
 ---
-title: "Awesome webdeveloper links"
+title: 'Awesome webdeveloper links'
 date: 2016-04-21
 image: ./Screen-Shot-2016-11-26-at-14.00.47.png
 tags: [css]

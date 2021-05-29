@@ -1,9 +1,9 @@
 ---
-title: "Facebook: Invite all friends to event"
+title: 'Facebook: Invite all friends to event'
 date: 2014-02-05
 image: ./kon-karampelas-HUBofEFQ6CA-unsplash.jpg
 imageAlt: Image by Kon Karampelas on Unsplash
-tags: [guide, "developer tools", facebook]
+tags: [guide, 'developer tools', facebook]
 author: tomfa
 status: publish
 ---

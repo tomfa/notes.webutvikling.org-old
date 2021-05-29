@@ -1,5 +1,5 @@
 ---
-title: "Gradient background thing"
+title: 'Gradient background thing'
 date: 2016-09-20
 tags: []
 author: tomfa

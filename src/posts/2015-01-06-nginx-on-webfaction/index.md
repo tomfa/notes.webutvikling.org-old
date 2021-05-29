@@ -1,44 +1,45 @@
 ---
-title: "Running Django with nginx (on webfaction)"
+title: 'Running Django with nginx (on webfaction)'
 date: 2015-01-06
 image: ./sporlab-XiZ7pRvCzro-unsplash.jpg
-tags: ["guide", apache, django, nginx, rant, webfaction]
+tags: ['guide', apache, django, nginx, rant, webfaction]
 author: tomfa
 status: publish
 ---
 
-## Case: 
-You're using **virtualenv **and have used **apache** with a config somewhat like [this](http://michal.karzynski.pl/blog/2013/09/14/django-in-virtualenv-on-webfactions-apache-with-mod-wsgi/ "this").
+## Case:
+
+You're using **virtualenv **and have used **apache** with a config somewhat like [this](http://michal.karzynski.pl/blog/2013/09/14/django-in-virtualenv-on-webfactions-apache-with-mod-wsgi/ 'this').
 
 **Problem: Apache 'goes to sleep'**
 
 ## Reason:
 
-Apache caches your wsgi application, and if it's not used within a certain amount of time, it has to reload. And this takes like.. 10-15 seconds. 
+Apache caches your wsgi application, and if it's not used within a certain amount of time, it has to reload. And this takes like.. 10-15 seconds.
 
 ## Solution:
+
 Use nginx instead:
 
-Set up a custom application, and install nginx + uwsgi to point to your original application like [this](https://community.webfaction.com/questions/10242/installing-nginx-uwsgi "this").
+Set up a custom application, and install nginx + uwsgi to point to your original application like [this](https://community.webfaction.com/questions/10242/installing-nginx-uwsgi 'this').
 
 **Potential new problem 2:** Doesn't find python – Can happen if you've installed the python version manually.
-    
+
 ```
 build_uwsgi.sh: line 41: python3.4: command not found
 ```
-    
-**Solution 2:** specify path to python instead of python version in build_uwsgi.sh _(you can find it with 'which python3.4' if you're unsure)_
 
+**Solution 2:** specify path to python instead of python version in build*uwsgi.sh *(you can find it with 'which python3.4' if you're unsure)\_
 
 **Potential new problem 3:** Doesn't find application. Can happen if you're using virutalenv. Website responds with:
-    
+
 ```
 uWSGI Error
 Python application not found
 ```
-    
+
 **Solution 3**: activate virtualenv in wsgi.py like this
-    
+
 ```python
 import sys, os
 virtualenv_root = os.path.expanduser('~/webapps/your_app/env')
@@ -70,8 +71,8 @@ from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
 application = Cling(get_wsgi_application())
 ```
-    
+
 **Potential disappointment 4:** nginx was not really faster – if this happens, you've probably not enabled threading support for uwsgi.
 
 **Solution 4:** add the flag `--enable-threading`.
-For more flags, e.g. `--workers` to set number of processes spawned, see [uwsgi-docs](http://uwsgi-docs.readthedocs.org/en/latest/Options.html "wsgi docs").
+For more flags, e.g. `--workers` to set number of processes spawned, see [uwsgi-docs](http://uwsgi-docs.readthedocs.org/en/latest/Options.html 'wsgi docs').
