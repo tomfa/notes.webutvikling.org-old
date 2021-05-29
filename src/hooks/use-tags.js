@@ -19,14 +19,13 @@ export const useTags = () => {
     `
   );
   const tags = data.allMdx.distinct;
-  const tagCount = tags.reduce((obj, item) => {
-    obj[item] = 0;
-    return obj;
-  }, {});
+  const tagCount = tags.reduce((obj, item) => ({ ...obj, [item]: 0 }), {});
   const edges = data.allMdx.edges || [];
   edges.forEach(edge => {
-    const tags = (edge.node.frontmatter && edge.node.frontmatter.tags) || [];
-    tags.forEach(tag => (tagCount[tag] += 1));
+    const fmTags = (edge.node.frontmatter && edge.node.frontmatter.tags) || [];
+    fmTags.forEach(tag => {
+      tagCount[tag] += 1;
+    });
   });
 
   return tags

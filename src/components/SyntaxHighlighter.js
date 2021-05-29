@@ -1,5 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import theme from 'prism-react-renderer/themes/nightOwl';
 
 const getLanguage = props => {
@@ -25,9 +28,9 @@ export const SyntaxHighLighter = props => (
         style={{ padding: '1rem', paddingBottom: 0, ...style }}
       >
         {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })}>
+          <div key={i} {...getLineProps({ line, key: i })}>
             {line.map((token, key) => (
-              <span {...getTokenProps({ token, key })} />
+              <span key={key} {...getTokenProps({ token, key })} />
             ))}
           </div>
         ))}

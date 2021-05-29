@@ -3,6 +3,7 @@ const {
   createFilePath,
   createRemoteFileNode,
 } = require('gatsby-source-filesystem');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { slash } = require('gatsby-core-utils');
 const { asUrl } = require('./src/utils/urlize');
 
@@ -25,7 +26,7 @@ exports.onCreateNode = async ({
   if (blogPostTypes.includes(node.internal.type)) {
     const slug = createFilePath({ node, getNode })
       .replace(/^\/posts\//, '/')
-      .replace(/^\/\d{4}\-\d{2}\-\d{2}\-/, '/');
+      .replace(/^\/\d{4}-\d{2}-\d{2}-/, '/');
 
     createNodeField({
       node,
@@ -51,6 +52,7 @@ exports.onCreateNode = async ({
       });
       // if the file was created, attach the new node to the parent node
       if (fileNode) {
+        // eslint-disable-next-line no-param-reassign
         node.frontmatter.eImage___NODE = fileNode.id;
       }
     }
@@ -83,11 +85,13 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const posts = result.data.allMdx.edges
+  const allPosts = result.data.allMdx.edges
     .map(e => e.node)
     .reduce((posts, post) => {
       if (posts.length !== 0) {
+        // eslint-disable-next-line no-param-reassign
         posts[posts.length - 1].next = post;
+        // eslint-disable-next-line no-param-reassign
         post.prev = posts[posts.length - 1];
       }
       posts.push(post);
@@ -95,7 +99,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }, []);
   const tags = result.data.allMdx.distinct;
 
-  posts.forEach(node => {
+  allPosts.forEach(node => {
     createPage({
       path: node.fields.slug,
       component: path.resolve('./src/templates/mdx-post.jsx'),

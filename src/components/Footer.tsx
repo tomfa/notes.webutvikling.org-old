@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Navigation } from './Navigation';
 
 const FooterBg = styled.div`
   background-color: #3a3a3a;
@@ -92,9 +91,9 @@ export const Footer = () => {
           <FooterHeader>What</FooterHeader>
           <List>
             <ListItem>These are just notes and scribbl.</ListItem>
-            <ListItem>Don't take anything seriously.</ListItem>
+            <ListItem>Don&apos;t take anything seriously.</ListItem>
             <ListItem>Add a grain of salt.</ListItem>
-            <ListItem>Usually I don't know what I'm talking about.</ListItem>
+            <ListItem>Usually I don&apos;t know what I&apos;m talking about.</ListItem>
             <ListItem>↑ Also good rules for the Internet as a whole.</ListItem>
           </List>
         </What>

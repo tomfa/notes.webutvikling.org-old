@@ -3,7 +3,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { SyntaxHighLighter } from './src/components/SyntaxHighlighter';
 
 const components = {
-  wrapper: ({ children }) => <>{children}</>,
+  wrapper: ({ children }) => children,
   pre: SyntaxHighLighter,
 };
 

@@ -11,7 +11,7 @@ export default function MyFiles({ data }) {
           {data.allFile.edges
             .map(n => n.node)
             .map(n => (
-              <li>
+              <li key={n.relativePath}>
                 {n.relativePath},{n.birthTime}
               </li>
             ))}
