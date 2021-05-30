@@ -63,7 +63,8 @@ export function MetaTags({
           name: 'twitter:description',
           content: metaDescription,
         },
-      ].concat(meta)}
+        ...meta
+      ]}
     />
   );
 }
