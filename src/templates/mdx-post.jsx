@@ -26,12 +26,16 @@ const shortcodes = { Link, Video };
 export default function PageTemplate({ data, pageContext }) {
   const { mdx } = data;
   const { next, prev } = pageContext;
+  const image = mdx.frontmatter.image || mdx.frontmatter.eImage;
+  const imageUrl = image && image.childImageSharp.fluid || 'https://notes.webutvikling.org/images/na.png';
 
   return (
     <>
       <Layout>
         <MetaTags
           title={mdx.frontmatter.title}
+          description={mdx.excerpt}
+          imageUrl={imageUrl}
           keywords={mdx.frontmatter.tags}
         />
         <PostHero {...mdx.frontmatter} />
@@ -48,6 +52,7 @@ export const pageQuery = graphql`
   query BlogPostQuery($slug: String) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
+      excerpt(pruneLength: 200)
       body
       frontmatter {
         date(formatString: "DD MMMM, YYYY")
