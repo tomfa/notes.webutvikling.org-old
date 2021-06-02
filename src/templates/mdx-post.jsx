@@ -27,7 +27,7 @@ export default function PageTemplate({ data, pageContext }) {
   const { mdx } = data;
   const { next, prev } = pageContext;
   const image = mdx.frontmatter.image || mdx.frontmatter.eImage;
-  const imageUrl = image && image.childImageSharp.fluid || 'https://notes.webutvikling.org/images/na.png';
+  const imageUrl = image && image.childImageSharp.fluid.src || '/images/na.png';
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function PageTemplate({ data, pageContext }) {
         <MetaTags
           title={mdx.frontmatter.title}
           description={mdx.excerpt}
-          imageUrl={imageUrl}
+          imageUrl={`https://notes.webutvikling.org${imageUrl}`}
           keywords={mdx.frontmatter.tags}
         />
         <PostHero {...mdx.frontmatter} />
