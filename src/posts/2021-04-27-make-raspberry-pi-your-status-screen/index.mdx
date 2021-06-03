@@ -20,7 +20,7 @@ In case of an old computer, [install debian](https://www.google.com/search?q=how
 
 ```bash
 # Firefox
-apt-get install iceweasel -y
+apt-get install iceweasel xdotool -y
 ```
 
 ### Write startup script
@@ -32,6 +32,12 @@ Add this script as `/home/pi/startup.sh`.
 
 # open build screen url in firefox
 iceweasel --kiosk http://url.to.build.screen.com
+
+# refresh every 10 min
+while true; do
+sleep 600;
+xdotool key ctrl+r;
+done;
 
 ```
 
