@@ -1,0 +1,33 @@
+---
+title: "Aurora serverless starts at 100$ month"
+date: 2021-07-03
+image: ./nicolas-j-leclercq-va_nrBLonf8-unsplash.jpg
+tags: [aws, db, postgress, aurora]
+imageAlt: "AWS Aurora Serverless is a cool service. And my feelings towards it are currently ice cold. Photo by Nicolas J Leclercq (@nicolasjleclercq) on Unsplash."
+author: tomfa
+status: published
+---
+
+Aurora Serverless initially seemed like my new favorite friend. Pay-as-you-go Postgres is what's missing in my hobby dev life. 
+But there is a two-punch killer combo that makes it unusable for any personal project budget, none of them easily found in the documentation.
+
+
+### 20+ second cold startups
+
+AWS Aurora serverless v1 (and v2) both have 20+ second cold startups (in my tiny project). [1](https://forums.aws.amazon.com/message.jspa?messageID=866270), [2](https://dev.to/dvddpl/how-to-deal-with-aurora-serverless-coldstarts-ml0) 
+
+### 100$ per month is the first scale level.
+
+A minimum, always-on capacity – likely removing the cold startup wait time, starts at 0.08$/hour/ACU. Since 2 ACU is the minumum,
+it ends up at 2 ACU * 0.08$/h * 24 * 30 = 115$ /month.
+
+### I guess it's still nice when you got the budget?
+
+Not having to worry at all about scale, and paying per use is lovely. But Aurora Serverless is not suitable for my pet projects. 
+
+I guess I'd know that if I'd read the [fine print in the best practices](https://aws.amazon.com/blogs/database/best-practices-for-working-with-amazon-aurora-serverless/):
+
+> Some applications may require a fast resume. Resuming the cluster takes a few seconds and in some cases can be longer based 
+> on variables such as your ACU, storage size, and more. To avoid a cold start, consider disabling auto pause and, as discussed
+> in the previous section, set the proper minimum capacity.
+
