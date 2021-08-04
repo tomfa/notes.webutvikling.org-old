@@ -7,7 +7,7 @@ author: tomfa
 status: publish
 ---
 
-_See also [2020 version](http://localhost:8000/post-setup-setup-of-new-mac/)_
+_See also [2020 version](/post-setup-setup-of-new-mac/)_
 
 I recently bought a Macbook Pro Retina (Late 2014) with 128 GB of storage. I thought that if I needed 256 GB, I could just buy a regular SSD and swap them. Turns out i can't. Or.. I can, but it's a special SSD that costs a third of a new Mac. And I just bought one! I can't even afford milk! Anyhow, here's a **list of software that I "need" **as a software kind of guy:
 

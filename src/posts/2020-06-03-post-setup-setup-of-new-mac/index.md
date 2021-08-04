@@ -3,7 +3,7 @@ title: 'Setting up a new developer Macbook'
 date: 2020-06-03
 eImage: 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80'
 imageAlt: Laptop on a desk. Photo by Nick Morrison on Unsplash.
-tags: ['guide', 'brew', 'mac']
+tags: ['guide', 'brew', 'mac', 'tools']
 author: tomfa
 status: publish
 ---
