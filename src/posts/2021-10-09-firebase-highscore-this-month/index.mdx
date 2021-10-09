@@ -1,0 +1,126 @@
+---
+title: "Firebase: hot this week"
+date: 2021-10-09
+image: ./arny-mogensen-rRgO49i8w2s-unsplash.jpg
+tags: ["firebase", database]
+imageAlt: "Going from Postgres to Firebase, I sometimes find fires in the most unexpected places. Image by @arnykoor on Unsplash"
+author: tomfa
+status: publish
+---
+
+This post summarizes a frustrating limitation in Firebase that limits inequality filters, and how I ended up working around it.
+
+### Goal
+
+- Being able to add a Comment to a Post.
+- Retrieve a list of most commented posts, created this week.
+
+### Problem
+
+> [If you include a filter with a range comparison (<, <=, >, >=), your first ordering must be on the same field](https://cloud.google.com/firestore/docs/query-data/order-limit-data#limitations)
+
+Which means that when I naively run my query below, I end up with an error saying
+
+> Inequality filter property and first sort order must be the same: createdAt and numComments
+
+##### Naive unsupported query
+
+```ts
+// This won't work
+const query = firestore
+      .collection('posts')
+      .orderBy('numComments', 'desc')
+      .where('createdAt', '>', '2021-09-01')
+```
+
+### Context
+
+#### Firebase: data modelling
+
+Our Posts is a (root-level) Collection in Firebase, with Comments being a SubCollection under each post.
+
+_[Google: Firebase data structures](https://firebase.google.com/docs/firestore/manage-data/structure-data)_
+
+
+#### Firebase: calculating number of  comments
+
+Where we in Postgres could count number of references from a Comment table, there is no api for finding number of Comments
+for a Post.
+
+The way to solve it _(without having to read the entire subcollection)_, is to add a field on Post and increment it when adding a new Comment.
+
+```ts
+const postRef = firestore
+  .collection('posts')
+  .doc(postId);
+
+const commentRef = postRef
+  .collection('comments')
+  .doc('new-random-id');
+
+const comment = {
+  // comment to add
+};
+
+await firestore.runTransaction(
+  async (transaction) => {
+    transaction.update(postRef, {
+      numComments: FieldValue.increment(1),
+    });
+    transaction.set(commentRef, data);
+    return data;
+  })
+```
+
+_[Stackoverflow: Cloud Firestore collection count](https://stackoverflow.com/questions/46554091/cloud-firestore-collection-count)_
+
+
+#### Firebase: Adding date subfields
+
+Now comes the frustration: I can't order by `numComments`, while also filtering by date greater (or less) than.
+
+To work around this, I'm adding new date-related fields to the Post: `createdAtYear`, `createdAtMonth` and `createdAtWeek`. 
+
+I can then approximate my previous query with
+
+```ts
+const query = firestore
+      .collection('posts')
+      .orderBy('numComments', 'desc')
+      .where('createdAtYear', '==', 2021)
+      .where('createdAtWeek', '==', 39)
+```
+
+Obviously, this is no where near as flexible as having a greater-than filter. If I'd want to serve last 12 months for instance, 
+I'd have to query for last year + this year, and filter out the too-old posts client side.
+
+
+#### Sidenote: Firebase pagination
+
+Pagination is done with 
+
+```ts
+const query = firestore
+      .collection('posts')
+      .orderBy('numComments', 'desc')
+      // ....
+      .startAfter(cursor)
+```
+
+Note that the cursor have to match the value of the first orderBy clause. In the example above, `cursor` must be a number.
+
+If you have multiple `orderBy`, you can specify them all there, in the same order.
+
+```ts
+const query = firestore
+      .collection('posts')
+      .orderBy('numComments', 'desc')
+      .orderBy('createdAt', 'desc')
+      // ....
+      .startAfter(lastResultNumComments, lastResultCreatedAt)
+```
+
+For this reason, it's a good idea to have the last result when doing pagination (rather than just the value of a certain field).
+
+
+_[Stackoverflow: Cloud Firestore collection count](https://stackoverflow.com/questions/46554091/cloud-firestore-collection-count)_
