@@ -2,7 +2,7 @@
 title: "Firebase: hot this week"
 date: 2021-10-09
 image: ./arny-mogensen-rRgO49i8w2s-unsplash.jpg
-tags: ["firebase", database]
+tags: [gcp, "firebase"]
 imageAlt: "Going from Postgres to Firebase, I sometimes find fires in the most unexpected places. Image by @arnykoor on Unsplash"
 author: tomfa
 status: publish
@@ -79,7 +79,7 @@ _[Stackoverflow: Cloud Firestore collection count](https://stackoverflow.com/que
 
 Now comes the frustration: I can't order by `numComments`, while also filtering by date greater (or less) than.
 
-To work around this, I'm adding new date-related fields to the Post: `createdAtYear`, `createdAtMonth` and `createdAtWeek`. 
+To work around this, I'm adding new date-related fields to the Post: `createdAtYear`, `createdAtMonth` and `createdAtWeek`.
 
 I can then approximate my previous query with
 
@@ -91,13 +91,13 @@ const query = firestore
       .where('createdAtWeek', '==', 39)
 ```
 
-Obviously, this is no where near as flexible as having a greater-than filter. If I'd want to serve last 12 months for instance, 
+Obviously, this is no where near as flexible as having a greater-than filter. If I'd want to serve last 12 months for instance,
 I'd have to query for last year + this year, and filter out the too-old posts client side.
 
 
 #### Sidenote: Firebase pagination
 
-Pagination is done with 
+Pagination is done with
 
 ```ts
 const query = firestore

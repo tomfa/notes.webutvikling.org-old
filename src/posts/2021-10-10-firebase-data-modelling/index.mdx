@@ -1,0 +1,120 @@
+---
+title: "Firebase data modeling"
+date: 2021-10-10
+image: ./tobias-fischer-PkbZahEG2Ng-unsplash.jpg
+tags: [gcp, "firebase", database, fireship]
+imageAlt: "Coming from SQL, document databases are still weird for me. Image by @tofi on Unsplash"
+author: tomfa
+status: publish
+---
+
+This post summarizes my learnings from the course [Fireship: Firestore data modeling](https://fireship.io/courses/firestore-data-modeling/).
+
+Below are my initial preconceptions about Firebase (in bold), and my conclusions after the course.
+I'm using a blog as example, with posts, users and comments.
+
+### The data isn't normalized
+
+**Correct** – since database joins isn't really a thing, you would have to make additional queries to fetch related data.
+Data are therefore often duplicated to increase performance and reduce number of queries.
+
+For instance, a post has a user (author). But the post typically won't have a "authorId" field.
+Instead, it may have an author "object" field containing the user id, name and username.
+
+Two good rules of thumb are:
+- including all data shown about the author in a render of the Post
+- not including data that change often
+
+#### Due to denormalization, data is tricker to update
+
+**Correct.** That's why you avoid denormalizing data that update frequently.
+
+When you need to update denormalized data, you need to know all document paths
+that lead to this data. Then you can do a multi-path update call to Firestore.
+
+Also see [Firebase (Youtube): Data consistency with multi-path updates](https://www.youtube.com/watch?v=i1n9Kw3AORw)
+
+#### Due to denormalization, migrations isn't really a thing
+
+**Correct**, it seems to be manual labour.
+
+Say you want to delete a field "draft" on Post.
+You'll have to query for where draft exist, and run delete on each of them.
+
+```ts
+import { firestore, doc, updateDoc, deleteField } from "firebase/firestore";
+
+// Add limit() to delete in smaller batches
+const posts = await firestore
+  .collection('posts')
+  // orderBy excludes where draft is missing
+  .orderBy('draft')
+  .get()
+
+let batch = firestore.batch();
+
+posts.docs.forEach(doc => {
+  batch.update(doc.ref, {
+    capital: deleteField()
+  });
+})
+await batch.commit();
+```
+
+Same applies if you want to update a field or add a field.
+
+_See [Firebase: Delete data from Cloud Firestore](https://firebase.google.com/docs/firestore/manage-data/delete-data)
+and [Firebase (Youtube): Data consistency with multi-path updates](https://www.youtube.com/watch?v=i1n9Kw3AORw)_
+
+#### Due to denormalization, I must expect inconsistencies
+
+**Wrong.** You can make atomic changes across multiple documents.
+Inconsistencies happen if you do something wrong (which _is_ easier), but
+you shouldn't expect it.
+
+_See [Firebase (Youtube): Data consistency with multi-path updates](https://www.youtube.com/watch?v=i1n9Kw3AORw)_
+
+### Document databases are better suited for serverless environments
+
+**Yes, absolutely.**
+
+Horizontal scaling is already handled for me. It handles as many connections as you need. It's pay per use from 0 to infinity.
+This differs from relational databases which has a pay per capacity, with
+a price put on number of connections and slow connection time.
+
+I think this might change in the next few years with services like
+[Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/), but [we're
+not there yet](/aurora-serverless-is-not-for-your-hobby-project/).
+
+### Data modeling should match the UI
+**Somewhat correct.**
+
+The reason that we denormalize data is to reduce number of reads. We don't know
+what parts of User to include in Post without knowing how it will be used.
+
+For instance, if the UI will show the full name of an author and image in a list
+feed of recent posts, these fields should be included in the Post. If this is only
+visible when clicking and reading the Post, you might not include it.
+
+### Pricing starts at 0
+
+**Correct**. Firestore even throws in a hobby based capacity for free.
+
+_See [cloud.google.com/firestore/pricing](https://cloud.google.com/firestore/pricing)_
+
+### When done wrong, can get really expensive
+
+**Correct.** You _can_ write code that ends up in an endless while loops.
+And poor code can cost you 1000x as much as good code. How to avoid it
+centers around minimizing reads and writes, through correct denormalizing and avoiding excessive updates.
+
+In the Firebase Spark plan, you won't pay anything. But once you need to upgrade,
+remember to [set up a budget in GCP](https://firebase.google.com/docs/projects/billing/avoid-surprise-bills).
+
+_See [Fireship (Youtube): How to NOT get a 30K Firebase Bill](https://www.youtube.com/watch?v=Lb-Pnytoi-8) and [Fireship (Youtube): 100 Firebase Tips, Tricks, and Screw-ups](https://www.youtube.com/watch?v=iWEgpdVSZyg)_
+
+### Resources
+
+- [Fireship: Firestore Data Modelling Course](https://fireship.io/courses/firestore-data-modeling/)
+- [Fireship:(Youtube): Firestore Data Modeling - Five Cool Techniques](https://www.youtube.com/watch?v=35RlydUf6xo)
+- [Fireship (Youtube): How to NOT get a 30K Firebase Bill](https://www.youtube.com/watch?v=Lb-Pnytoi-8)

@@ -57,6 +57,7 @@ const tagStyles = {
   github: { bgColor: '#E4B81B', color: 'white' },
   heroku: { bgColor: '#E4B81B', color: 'white' },
   aws: { bgColor: '#E4B81B', color: 'white' },
+  gcp: { bgColor: '#E4B81B', color: 'white' },
 
   // // services
   // "google maps": { bgColor: "#E4B81B", color: "white" },
