@@ -52,6 +52,7 @@ const tagStyles = {
   python: { bgColor: '#3e953b', color: 'white' },
   node: { bgColor: '#3e953b', color: 'white' },
   react: { bgColor: '#3e953b', color: 'white' },
+  graphql: { bgColor: '#3e953b', color: 'white' },
 
   // platforms
   github: { bgColor: '#E4B81B', color: 'white' },

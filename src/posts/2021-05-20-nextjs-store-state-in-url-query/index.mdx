@@ -17,7 +17,6 @@ which you can store or send to a team. All without even having a backend or a lo
 
 
 #### Simple string
-
 `gist:1881e789120830ee8a805f3dd2959a25#SimpleComponent.tsx`
 
 #### JSON
@@ -29,9 +28,9 @@ which you can store or send to a team. All without even having a backend or a lo
 
 Check out how the URL changes based on your answers at [ihasabucket.it](https://ihasabucket.it/).
 
-There's many reasons for putting the state in the URL: 
+There's many reasons for putting the state in the URL:
 
-- You can share the results to your team, or store them for later. 
+- You can share the results to your team, or store them for later.
 - When helping someone out you can link them a prefilled form, saying "I think this is right for you".
 - There's no backend to implement.
 - Loading data from the browser is faster than from an API.
@@ -39,16 +38,16 @@ There's many reasons for putting the state in the URL:
 
 There are a few things to get correctly and watch out for, though:
 
-- You can quickly end up in a rerender loop as you write to and read from the history api. 
+- You can quickly end up in a rerender loop as you write to and read from the history api.
 - Avoid poor performance by updating the URL query async from the state changes.
 - You want to _consider_ using [replaceState over pushState](https://developer.mozilla.org/en-US/docs/Web/API/History_API) – but not always.
 - Make your data URL safe before updating history.
-- If you store JSON, you may want to base64 encode it or compress it. 
+- If you store JSON, you may want to base64 encode it or compress it.
 - If you store JSON, your application should handle old (now invalid) data structures.
 - With NextJS, do not call `router.push` twice in one function. The latter change will override the first.
-- With NextJS (SSR/SSG), [do not rely on `router.query` to provide a variables initial value](https://github.com/vercel/next.js/discussions/11484). Instead, update the variable with `useMemo` (due to how rehydration). 
+- With NextJS (SSR/SSG), [do not rely on `router.query` to provide a variables initial value](https://github.com/vercel/next.js/discussions/11484). Instead, update the variable with `useMemo` (due to how rehydration).
 
-Below are my attempts at getting around these things. For the future, I'd recommend using 
+Below are my attempts at getting around these things. For the future, I'd recommend using
 [next-usequerystate](https://www.npmjs.com/package/next-usequerystate) to handle the complexity.
 
 - (Simple) [Gist for storing string variables in URL](https://gist.github.com/tomfa/9bf850bbaeb421c77d2b1bd2a158ae10)

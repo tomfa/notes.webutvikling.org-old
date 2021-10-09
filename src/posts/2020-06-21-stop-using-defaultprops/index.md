@@ -24,12 +24,12 @@ Hand.defaultProps = { hand: 'left' };
 
 **Default values.** But you can leave defaultProps alone when you find them
 in non-functional components, because readability for React class components
-are better as deafultProps.
+are better as defaultProps.
 
 Why? Because utilizing the language features is better than utilizing library
-features (all else equal). And because [Dan says default be deprecated from
-React](https://twitter.com/dan_abramov/status/1133878326358171650]), and the
-only reason we use them to begin with, is React.
+features (all else equal). And because [Dan says defaultProps will be deprecated from
+React](https://twitter.com/dan_abramov/status/1133878326358171650]), which is the
+only reason we use them to begin with.
 
 ### Performance
 
