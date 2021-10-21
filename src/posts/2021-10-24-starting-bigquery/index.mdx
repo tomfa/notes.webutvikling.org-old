@@ -1,0 +1,147 @@
+---
+title: "Starting with Google BigQuery"
+date: 2021-10-24
+image: ./gbigquery.png
+tags: [gcp, "big query", python]
+imageAlt: "Just the logo of Google BigQuery. Stock photos that fit are kind of boring: a spreadsheet, magnifying glass, spreadsheets, binoculars?"
+author: tomfa
+status: publish
+---
+
+Notes made while using Google BigQuery for the first time. This includes creating my first BigQuery table, importing via python, queries, deletion and altering table schemas.
+
+## Creating a BigQuery project
+
+See the ["Before you begin" section in BigQuery Quickstart](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries#before-you-begin)
+
+In short, these are the steps
+
+- Create a Google Cloud project 
+- Enable the BigQuery API.
+- Create a service account and download a service account key
+ 
+
+## Importing data from Python to a BigQuery table
+
+### Installing requirements
+
+Install dependencies from the file below by running 
+```bash
+# preferably do this in a local virtualenv
+pip install -r requirements.txt
+```
+
+`gist:9492ac855ad0095a5e595822d5aada75#requirements.txt`
+
+Now, either paste your downloaded service account json into the file below,
+or export it as an env var ala
+
+```bash
+export SA_ACCOUNT='{ 
+  "type": "service_account",
+  "...etc"
+}'
+```
+
+You can then run the file below with
+
+```bash
+python bigquery_import.py
+```
+
+`gist:9492ac855ad0095a5e595822d5aada75#bigquery_import.py`
+
+
+## Selecting, updating and deleting BigQuery data
+
+BigQuery can be [queried with SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+Queries can be run via an interactive console in the browser, or via libraries as shown below.
+
+### With interactive console
+See [Running interactive queries](https://cloud.google.com/bigquery/docs/running-queries#queries)
+
+The queries are similar to SQL.
+
+For instance, querying data
+```sql
+SELECT * FROM myproject.mydataset.mytable 
+  WHERE first_name = 'Tomas';
+```
+
+...deleting data...
+```sql
+DELETE FROM myproject.mydataset.mytable 
+  WHERE first_name = 'Tomas';
+```
+
+...or updating:
+```sql
+UPDATE myproject.mydataset.mytable 
+  SET last_name = 'Newname' 
+  WHERE first_name = 'Tomas';
+```
+
+### Via a library
+
+The queries can be sent via the library client too:
+
+```python
+# python
+client = get_client();
+query = """
+    SELECT name, SUM(number) as total_people
+    FROM `your-project.dataset.table_name`
+    WHERE state = 'TX'
+    GROUP BY name, state
+    ORDER BY total_people DESC
+    LIMIT 20
+"""
+query_job = client.query(query)
+
+```
+
+## Modifying table schemas
+
+Only [three modifications can be made to the table schema](https://cloud.google.com/bigquery/docs/managing-table-schemas).
+
+- Adding columns to a schema definition
+- Deleting, or dropping, a column from a schema definition
+- Relaxing a column's mode from REQUIRED to NULLABLE
+
+### Dropping column
+
+Dropping columns can be done via the [interactive console](https://cloud.google.com/bigquery/docs/running-queries#queries).
+
+```sql
+ALTER TABLE your-project.dataset.table_name
+  DROP COLUMN IF EXISTS NAME
+```
+
+### Adding column
+
+Via the [interactive console](https://cloud.google.com/bigquery/docs/running-queries#queries)
+
+```sql
+ALTER TABLE your-project.dataset.table_name
+  ADD COLUMN NAME STRING
+```
+
+or via the library
+
+```python
+table_id = "your-project.dataset.table_name"
+table = client.get_table(table_id)
+
+original_schema = table.schema
+
+# Creates a copy of the schema.
+new_schema = original_schema[:]  
+new_schema.append(
+    bigquery.SchemaField("phone", "STRING")
+)
+
+table.schema = new_schema
+table = client.update_table(table, ["schema"]) 
+
+print("A new column has been added.")
+```
