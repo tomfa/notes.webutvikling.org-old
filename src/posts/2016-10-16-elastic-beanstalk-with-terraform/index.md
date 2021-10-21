@@ -2,7 +2,7 @@
 title: 'Elastic Beanstalk with Terraform'
 date: 2016-10-16
 image: ./benstlk.jpg
-tags: ['guide', AWS, beanstalk, roles, subnet, terraform, VPC configuration]
+tags: ['guide', aws, beanstalk, roles, subnet, terraform, vpc configuration]
 author: tomfa
 status: publish
 ---

@@ -18,6 +18,11 @@ export default function TagTemplate({ data, pathContext }) {
   const { tag } = pathContext;
   const { edges, totalCount } = data.allMdx;
 
+  if (tag === 'aws') {
+    console.log('aws is here');
+    console.log(data.allMdx.totalCount);
+  }
+
   return (
     <div>
       <MetaTags />

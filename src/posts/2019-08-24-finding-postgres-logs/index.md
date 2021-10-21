@@ -1,7 +1,7 @@
 ---
 title: 'Where is my PostgreSQL logs?'
 date: 2019-08-24
-tags: ['guide', 'postgres']
+tags: ['guide', 'postgres', tools]
 author: tomfa
 image: ./kayla-farmer-nhi3_11E6zM-unsplash.jpg
 imageAlt: 'Photo by @imagesbykayla at Unsplash'

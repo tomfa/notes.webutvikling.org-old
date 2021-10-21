@@ -1,8 +1,8 @@
 ---
-title: "Don't try converting SVG to PNG with Javascript in browser"
+title: "Don't convert SVG to PNG with browser Javascript"
 date: 2016-07-20
 image: ./polaroid.jpg
-tags: ['statement', 'learning', convert, java, javascript, png, svg]
+tags: ['statement', convert, java, javascript, png, svg]
 author: tomfa
 status: publish
 ---

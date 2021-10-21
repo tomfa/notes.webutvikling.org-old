@@ -1,5 +1,5 @@
 ---
-title: 'Pull request mountain code'
+title: 'This is how you do Pull requests'
 date: 2020-05-18
 image: ./tobias-cornille-4QWR5geRC9I-unsplash.jpg
 tags: ['statement', 'guide', 'github', pull-request]

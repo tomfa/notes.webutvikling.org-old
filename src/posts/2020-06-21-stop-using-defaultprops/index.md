@@ -2,7 +2,7 @@
 title: 'Stop using defaultProps'
 date: 2020-06-21
 image: ./raphael-biscaldi-5PEy9UraJ5c-unsplash.jpg
-tags: ['statement', 'React', 'javascript']
+tags: ['statement', 'react', 'javascript']
 author: tomfa
 status: published
 ---

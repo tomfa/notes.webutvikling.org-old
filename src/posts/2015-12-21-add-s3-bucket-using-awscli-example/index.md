@@ -2,7 +2,7 @@
 title: 'Add S3 bucket using awscli (example)'
 date: 2015-12-21
 image: ./samur-isma-7pSpz7hXox0-unsplash.jpg
-tags: ['guide', AWS, awscli, cloudfront, iam, policy, S3]
+tags: ['guide', aws, awscli, cloudfront, iam, policy, s3]
 author: tomfa
 status: publish
 ---

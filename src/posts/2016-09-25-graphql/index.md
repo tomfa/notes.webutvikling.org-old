@@ -3,7 +3,7 @@ title: 'Notes on GraphQL'
 date: 2016-09-25
 image: ./Screen-Shot-2016-09-25-at-14.39.59.png
 video: https://www.youtube.com/watch?v=Oh5oC98ztvI
-tags: ['talk', GraphQL]
+tags: ['talk', graphql]
 author: tomfa
 status: publish
 ---

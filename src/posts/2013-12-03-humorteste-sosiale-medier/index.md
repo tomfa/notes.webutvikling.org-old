@@ -2,7 +2,7 @@
 title: 'Humørteste sosiale medier'
 date: 2013-12-03
 image: ./mark-adriane-muS2RraYRuQ-unsplash.jpg
-tags: [AI, API, idea, Twitter]
+tags: [ai, api, idea, twitter]
 author: tomfa
 status: publish
 ---

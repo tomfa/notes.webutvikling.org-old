@@ -2,7 +2,7 @@
 title: 'Set index.html as default file on S3 bucket'
 date: 2016-07-13
 image: ./bucket.jpg
-tags: ['guide', AWS, bucket, index document, S3, website]
+tags: ['guide', aws, bucket, index document, s3, website]
 author: tomfa
 status: publish
 ---

@@ -2,7 +2,7 @@
 title: 'SFTP in Finder'
 date: 2013-12-04
 image: ./rodrigo-abreu-lq9PxpwDZUk-unsplash.jpg
-tags: [guide, Finder, ftp]
+tags: [guide, finder, ftp]
 author: tomfa
 status: publish
 ---

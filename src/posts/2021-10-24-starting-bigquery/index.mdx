@@ -2,7 +2,7 @@
 title: "Starting with Google BigQuery"
 date: 2021-10-24
 image: ./gbigquery.png
-tags: [gcp, "big query", python]
+tags: [google cloud platform, "big query", python]
 imageAlt: "Just the logo of Google BigQuery. Stock photos that fit are kind of boring: a spreadsheet, magnifying glass, spreadsheets, binoculars?"
 author: tomfa
 status: publish
@@ -16,16 +16,16 @@ See the ["Before you begin" section in BigQuery Quickstart](https://cloud.google
 
 In short, these are the steps
 
-- Create a Google Cloud project 
+- Create a Google Cloud project
 - Enable the BigQuery API.
 - Create a service account and download a service account key
- 
+
 
 ## Importing data from Python to a BigQuery table
 
 ### Installing requirements
 
-Install dependencies from the file below by running 
+Install dependencies from the file below by running
 ```bash
 # preferably do this in a local virtualenv
 pip install -r requirements.txt
@@ -37,7 +37,7 @@ Now, either paste your downloaded service account json into the file below,
 or export it as an env var ala
 
 ```bash
-export SA_ACCOUNT='{ 
+export SA_ACCOUNT='{
   "type": "service_account",
   "...etc"
 }'
@@ -64,20 +64,20 @@ The queries are similar to SQL.
 
 For instance, querying data
 ```sql
-SELECT * FROM myproject.mydataset.mytable 
+SELECT * FROM myproject.mydataset.mytable
   WHERE first_name = 'Tomas';
 ```
 
 ...deleting data...
 ```sql
-DELETE FROM myproject.mydataset.mytable 
+DELETE FROM myproject.mydataset.mytable
   WHERE first_name = 'Tomas';
 ```
 
 ...or updating:
 ```sql
-UPDATE myproject.mydataset.mytable 
-  SET last_name = 'Newname' 
+UPDATE myproject.mydataset.mytable
+  SET last_name = 'Newname'
   WHERE first_name = 'Tomas';
 ```
 
@@ -135,13 +135,13 @@ table = client.get_table(table_id)
 original_schema = table.schema
 
 # Creates a copy of the schema.
-new_schema = original_schema[:]  
+new_schema = original_schema[:]
 new_schema.append(
     bigquery.SchemaField("phone", "STRING")
 )
 
 table.schema = new_schema
-table = client.update_table(table, ["schema"]) 
+table = client.update_table(table, ["schema"])
 
 print("A new column has been added.")
 ```

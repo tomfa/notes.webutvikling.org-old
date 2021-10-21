@@ -2,7 +2,7 @@
 title: 'ES6 notes'
 date: 2016-07-20
 image: ./es6.png
-tags: ['learning', es6, intro, javascript]
+tags: [es6, intro, javascript]
 author: tomfa
 status: publish
 ---

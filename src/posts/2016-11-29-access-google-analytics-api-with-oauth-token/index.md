@@ -2,7 +2,7 @@
 title: 'Access Google Analytics API with OAuth token'
 date: 2016-11-29
 image: ./graphic-1142957_1280.jpg
-tags: ['guide', API, auth, ga, google analytics, java, javascript, jwt]
+tags: ['guide', api, auth, ga, google analytics, java, javascript, jwt]
 author: tomfa
 status: publish
 ---

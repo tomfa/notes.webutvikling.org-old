@@ -2,7 +2,7 @@
 title: 'Add S3 bucket using Terraform (example)'
 date: 2015-12-13
 image: ./elena-mozhvilo-eA32JIBsSu8-unsplash.jpg
-tags: ['guide', AWS, bucket, heroku, iam, S3, terraform]
+tags: ['guide', aws, bucket, heroku, iam, s3, terraform]
 author: tomfa
 status: publish
 ---

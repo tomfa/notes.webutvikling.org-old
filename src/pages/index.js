@@ -43,17 +43,16 @@ export default function Home() {
           <h4>{data.totalCount} Posts about ...</h4>
           <PostTags
             tags={[
-              'learning',
-              'book',
-              'guide',
-              'talk',
-              'debugging',
-              'tools',
               'management',
               'efficiency',
               'monitoring',
-              'startup',
               'code quality',
+              'startup',
+              'statement',
+              'book',
+              'guide',
+              'talk',
+              'tools',
             ]}
             useLink
           />

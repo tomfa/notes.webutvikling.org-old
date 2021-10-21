@@ -27,7 +27,6 @@ const Tag = styled.span`
 const tagStyles = {
   default: { bgColor: '#3a3a3a', color: 'white' },
   // category
-  learning: { bgColor: '#2C5C89', color: 'white' },
   book: { bgColor: '#2C5C89', color: 'white' },
   guide: { bgColor: '#2C5C89', color: 'white' },
   talk: { bgColor: '#2C5C89', color: 'white' },
@@ -53,12 +52,14 @@ const tagStyles = {
   node: { bgColor: '#3e953b', color: 'white' },
   react: { bgColor: '#3e953b', color: 'white' },
   graphql: { bgColor: '#3e953b', color: 'white' },
+  serverless: { bgColor: '#3e953b', color: 'white' },
+  git: { bgColor: '#3e953b', color: 'white' },
 
   // platforms
   github: { bgColor: '#E4B81B', color: 'white' },
   heroku: { bgColor: '#E4B81B', color: 'white' },
   aws: { bgColor: '#E4B81B', color: 'white' },
-  gcp: { bgColor: '#E4B81B', color: 'white' },
+  'google cloud platform': { bgColor: '#E4B81B', color: 'white' },
 
   // // services
   // "google maps": { bgColor: "#E4B81B", color: "white" },

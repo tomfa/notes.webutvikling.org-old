@@ -1,5 +1,5 @@
 ---
-title: 'Github + Clickup'
+title: 'Integrate task management with code'
 date: 2020-06-22
 image: ./clickhub.png
 tags: ['guide', 'statement', management, 'ClickUp', 'Github']

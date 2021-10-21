@@ -2,7 +2,7 @@
 title: 'AWS Elastic Beanstalk'
 date: 2016-09-06
 image: ./beans-flatulence_5.jpg
-tags: ['learning', AWS, beanstalk, opsworks]
+tags: [aws, beanstalk, opsworks]
 author: tomfa
 status: publish
 ---

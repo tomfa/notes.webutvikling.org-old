@@ -1,5 +1,5 @@
 ---
-title: 'Parallax. CSS it, please.'
+title: 'Parallax: solve it with CSS'
 date: 2015-10-22
 image: ./parallax.png
 tags: ['statement', css]

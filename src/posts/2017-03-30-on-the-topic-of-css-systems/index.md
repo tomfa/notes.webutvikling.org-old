@@ -3,7 +3,7 @@ title: 'CSS systems and principles'
 date: 2017-03-30
 image: ./sample.png
 tags:
-  ['learning', atomic css, atomic design, bem, css, oocss, pattern lab, smacss]
+  [atomic css, atomic design, bem, css, oocss, pattern lab, smacss]
 author: tomfa
 status: publish
 ---

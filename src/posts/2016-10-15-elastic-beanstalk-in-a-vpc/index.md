@@ -2,7 +2,7 @@
 title: 'Elastic Beanstalk – In a VPC'
 date: 2016-10-15
 image: ./beanstalk.jpg
-tags: ['guide', AWS, beanstalk, EC2, ELB, Loadbalancer, VPC]
+tags: ['guide', aws, beanstalk, ec2, elb, loadbalancer, vpc]
 author: tomfa
 status: publish
 ---

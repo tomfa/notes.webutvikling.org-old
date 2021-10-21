@@ -2,7 +2,7 @@
 title: 'Add S3 bucket + CloudFront using Terraform (example)'
 date: 2016-08-12
 image: ./cloudds.jpg
-tags: ['guide', AWS, cloudfront, S3, terraform]
+tags: ['guide', aws, cloudfront, s3, terraform]
 author: tomfa
 status: publish
 ---

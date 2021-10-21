@@ -3,7 +3,7 @@ title: "Understanding ESLint config"
 date: 2020-07-07
 image: "./eslint-logo.jpg"
 imageAlt: "ESLint logo"
-tags: ["guide", "ESLint", "code quality"]
+tags: ["guide", "eslint", "code quality"]
 author: tomfa
 status: publish
 ---
@@ -78,7 +78,7 @@ Javascript allows us to do some extra imports or logic if need be.
 
 ***
 
-This will install the needed depencies. If I look at my new `package.json`, I'll see some new eslint-* packages in my devDepencencies. 
+This will install the needed depencies. If I look at my new `package.json`, I'll see some new eslint-* packages in my devDepencencies.
 
 ### Running ESLint
 
@@ -111,9 +111,9 @@ extends: [
 ],
 ```
 
-[Extends](https://eslint.org/docs/user-guide/configuring#using-a-configuration-file) allows us to point to a different eslint configuration, and use that as a "basis". The current eslint config will take presendence over any configuration it extends. 
+[Extends](https://eslint.org/docs/user-guide/configuring#using-a-configuration-file) allows us to point to a different eslint configuration, and use that as a "basis". The current eslint config will take presendence over any configuration it extends.
 
-I can point to packages such as `eslint-config-airbnb`, or with a relative path to a different config file of my own. That allows me to split up rules and settings in different files, which can be useful if I want to reuse my rules accross different repositories. 
+I can point to packages such as `eslint-config-airbnb`, or with a relative path to a different config file of my own. That allows me to split up rules and settings in different files, which can be useful if I want to reuse my rules accross different repositories.
 
 _Note: When pointing to packages, I can omit `eslint-config`, and only write `airbnb` as the extended package string._
 
@@ -138,7 +138,7 @@ plugins: [
 
 [plugins](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) can preprocess files, or add extra rules to choose from.
 
-**Plugins: processor**: to generate javascript to be linted. An example would could be javascript contained within `.md` files. 
+**Plugins: processor**: to generate javascript to be linted. An example would could be javascript contained within `.md` files.
 
 The plugins job would then be to extract javascript from the files before eslint lints them.
 
@@ -153,7 +153,7 @@ rules: {
 },
 ```
 
-I can override existing rules, or add new rules in rules. [eslint.org/docs/rules](https://eslint.org/docs/rules/) provides a list of available rules, and reasoning and examples behind each of them. 
+I can override existing rules, or add new rules in rules. [eslint.org/docs/rules](https://eslint.org/docs/rules/) provides a list of available rules, and reasoning and examples behind each of them.
 
 ### Other configuration options
 - Ignore files by specifying them in [.eslintignore](https://eslint.org/docs/user-guide/configuring#eslintignore).

@@ -2,7 +2,7 @@
 title: 'curl headers only'
 date: 2015-12-13
 image: ./viktor-talashuk-bhoj9tHlsiY-unsplash.jpg
-tags: ['guide', AWS, curl, unix]
+tags: ['guide', aws, curl, unix]
 author: tomfa
 status: publish
 ---
