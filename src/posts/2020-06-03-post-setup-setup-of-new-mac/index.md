@@ -13,13 +13,13 @@ Also, it's interesting to see how many (or few!) things change.
 
 ### Install brew
 
-```sh
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 ### Install formulas
 
-```
+```bash
 brew tap heroku/brew
 brew install  \
     heroku \
@@ -42,7 +42,7 @@ brew install  \
 
 You want to use n without sudo, see [n on github](https://github.com/tj/n):
 
-```sh
+```bash
 sudo mkdir -p /usr/local/n
 sudo chown -R $(whoami) /usr/local/n
 sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
@@ -58,7 +58,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ### Install Homebrew casks
 
-```sh
+```bash
 brew cask install \
     dropbox  \
     iterm2  \
@@ -85,7 +85,7 @@ Log in to dropbox
 
 _This is how I keep settings synced across machines_
 
-```
+```bash
 cd
 ln -s Dropbox/settings/.git_profile
 ln -s Dropbox/settings/.bash_profile

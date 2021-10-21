@@ -11,7 +11,7 @@ status: draft
 When I copy-paste a project or use a template, I have a lot of renaming to do.
 I am no bash master, but I know I can do this with:
 
-```sh
+```bash
 # Rename all files and folders
 find . -type d -name '*oldname*' | while read f; do mv "$f" "${f//oldname/newname}"; done
 find . -type f -name '*oldname*' | while read f; do mv "$f" "${f//oldname/newname}"; done
@@ -19,7 +19,7 @@ find . -type d -name '*Oldname*' | while read f; do mv "$f" "${f//Oldname/Newnam
 find . -type f -name '*Oldname*' | while read f; do mv "$f" "${f//Oldname/Newname}"; done
 ```
 
-```
+```bash
 # Rename all references to files and folders
 find -E . -type f -not -path '*/\.git/*' -iregex  ".*" -exec sed -i '' s/oldname/newname/g {} +
 find -E . -type f -not -path '*/\.git/*' -iregex  ".*" -exec sed -i '' s/Oldname/Newname/g {} +
