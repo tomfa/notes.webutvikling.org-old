@@ -1145,9 +1145,15 @@
   border: 1px solid;
   border-color: #ddd #ddd #ccc;
   border-radius: 3px;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-  monospace;
-  margin-bottom: 1em;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+@media (min-width: 786px) {
+  .gist .gist-file {
+    margin-left: -5rem;
+    margin-right: -5rem;
+  }
 }
 .gist .gist-file article {
   padding: 6px;
