@@ -1,0 +1,38 @@
+---
+title: "Reminder: iPhone wants H.264 encoded videos"
+date: 2021-10-14
+image: ./visuals-sW_BS0OVgv0-unsplash.jpg
+tags: [debugging, tools]
+imageAlt: "The world needs more dog vlogs. Photo by @visuals on Unsplash"
+author: tomfa
+status: publish
+---
+
+I came over a bug where the video wouldn't play on iPhone, but worked on a Mac.
+
+```html
+<video>
+  <source
+    src="flower.mp4"
+    type="video/mp4"
+  >
+</video>
+```
+
+The HTML tag was valid, the video HTTP response wasn't an issue. Instead it was unsupported video encoding (which took me hours to figure out).
+
+And here's how I made the video compatible with iPhones, using [ffmpeg](https://www.ffmpeg.org/):
+
+```bash
+# Replace "input.mp4"
+ffmpeg \
+  -i input.mp4 \
+  -vcodec libx264 \
+  -acodec aac output.mp4
+```
+
+_I also realized getting stuck on this problem 5 years ago 😩_
+
+
+### Related
+- [apple.com: "Delivering Video Content for Safari"](https://developer.apple.com/documentation/webkit/delivering_video_content_for_safari)
