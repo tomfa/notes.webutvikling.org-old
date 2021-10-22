@@ -1,0 +1,84 @@
+---
+title: "Postgres needs built-in connection pooling"
+date: 2021-10-22
+image: ./marc-antoine-roy-gciKxriq3RY-unsplash.jpg
+tags: [statement, serverless, postgres, database]
+imageAlt: "A pool, something Postgres might benefit from to include better serverless support. Photo by Marc-Antoine Roy on Unsplash"
+author: tomfa
+status: publish
+---
+
+The future is serverless, and Postgres has issues fitting into that. 
+
+1. The high cost of creating and holding a database connection,
+   effectively stop direct connections from serverless functions.
+
+2. The slow startup time eliminates Postgres on-demand service. 
+   You pay for standby capacity instead.
+
+
+### Connection cost problems
+
+Postgres performance decline rapidly with number of connections.
+The cost of holding and creating connections is to an extent solvable
+with connection-pooling. Postgres does not have pooling built-in, 
+but it can be done with software like [pgBouncer](https://www.pgbouncer.org/). 
+
+This is what [Digitial Ocean](https://docs.digitalocean.com/products/databases/postgresql/how-to/manage-connection-pools/)
+has included by default on its database services. Since connection pooling
+is run on separate host, it's not surprising that Digital Ocean charges
+[almost twice the amount](https://www.digitalocean.com/pricing) of e.g. 
+[render.com](https://render.com/pricing/#databases) for a minimal database.
+
+
+### Paying for standby capacity
+
+Maybe the biggest issue with paying for initial standby capacity is how
+it drives developers away from Postgres and towards other options like 
+DynamoDB or Firebase. A student or someone playing around with making
+an app for fun will often avoid the 10$/month cost. And what you
+learn is what you'll preach when starting in a "real" job.
+
+A second issue is scaling, which is particulary relevant for new companies. 
+Publicity might increase their database load by 100x unexpectedly, and
+there isn't really great Postgres services that handle that for you (yet).
+
+## Postgres won't adapt to serverless
+
+I think Postgres is amazing, but I'm a bit worried that it'll become obsolete
+over time unless it adapts the the ephemeral function based future. 
+
+[Postgres 14](https://www.postgresql.org/about/news/postgresql-14-released-2318/) 
+goes in the right direction, handles many connections a bit better, but it's still 
+leap years from NoSQL. Searching ["serverless" on postgresql.org](https://www.postgresql.org/search/?q=serverless) 
+yield no results, and its [TODO list](https://wiki.postgresql.org/wiki/Todo) neither mentions
+connection pooling. We can find the following in its [Number of database connections page](https://wiki.postgresql.org/wiki/Number_Of_Database_Connections) (which is from 2014!):
+
+> The decision not to include a connection pooler inside the PostgreSQL server itself has been taken deliberately and with good reason 
+> [Postgres, 2014](https://wiki.postgresql.org/wiki/Number_Of_Database_Connections)
+
+### ...but it's maybe not their responsibility?
+
+Postgres is an open source software, not owned by any company. Anyone can set up
+a postgres database on their local computer or their server. Cloud providers
+like AWS, Google and Microsoft are the ones who would benefit greatly from a
+postgres-like serverless service, and maybe it's them who should figure out
+how to make that work?
+
+AWS attempts to be doing just that with [Aurora Serverless 2.0 (preview)](https://aws.amazon.com/rds/aurora/serverless/).
+It can scale up within milliseconds and automatically scale down when traffic resides. 
+But its cold start (scaling from 0 capacity) is still so slow it becomes unusable
+unless you keep minimum capacity always on (starts at about 100$/month). 
+
+The result of all this is alternative database services adapted to a serverless
+environment, like [Firestore](https://firebase.google.com/docs/firestore) and [FaunaDB](https://fauna.com/). 
+While that's cool and all, I'd really like to keep living in a Postgres world. 
+I'm just not sure I can anymore.
+
+
+## Related
+
+- [serverless.com: "Choosing a Database for Serverless Applications"](https://www.serverless.com/blog/choosing-a-database-with-serverless)
+- [fauna.com: ""AWS Aurora Serverless v2: Architecture, Features, Pricing, and Comparison with Fauna](https://fauna.com/blog/compare-aws-aurora-serverless-v2-architecture-features-pricing-vs-fauna)
+- [theburningmunk: "What you need to know about Aurora Serverless v2, so far."](https://theburningmonk.com/2020/12/what-you-need-to-know-about-aurora-serverless-v2-so-far/)
+- [jeremydaily: "Aurora Serverless v2: The Good, the Better, and the Possibly Amazing"](https://www.jeremydaly.com/aurora-serverless-v2-preview/)
