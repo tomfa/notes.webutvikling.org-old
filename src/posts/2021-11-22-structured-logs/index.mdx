@@ -1,0 +1,183 @@
+---
+title: "Suggested data structure for logging"
+date: 2021-11-22
+image: ./franki-chamaki-1K6IQsQbizI-unsplash.jpg
+tags: [monitoring]
+imageAlt: "Data is full of good ideas. When structured, you can use them too. Photo by @franki on Unsplash"
+author: tomfa
+status: publish
+---
+
+Structured logging (typically with JSON) instead of plain text is pretty much
+required if you want to use log for anything useful besides local debugging.
+
+## What to use logging for
+
+Logging is used to find answers for questions for internal use, unlike most stored files or database data which is 
+used to provide features and information to end users.
+
+Logging can give answers to *(by containing)*
+
+- Why something is in the state it is *(what was changed, when and by who)*
+- Who has accessed sensitive data *(what was read, when and by who)*
+- How are we progressing on business metrics *(products sold, payment amount, signup, userId, cancellation)*
+- Where are there an issue, and what was the context *(url paths, query params, http status codes, request ids, response time)*
+
+## Suggested structure
+
+`gist:668a1a4b07f01e112667cbe629d33a92#types.ts`
+
+## Examples
+
+Application logging examples, and examples on use cases for the logged info. 
+`createdAt`, `userId` and `requestId` is excluded here, and expected to be added by a log middleware. 
+
+Unlike application logs, HTTPLogs are typically automatically logged on each request by the web server (not our application). We often have little control over these
+
+### Who has accessed sensitive data?
+
+> User 12345 reads their own medical journal.
+
+```ts
+Logger.info('Read user journal', {
+  action: 'READ_JOURNAL',
+  value: 'user:12345',
+})
+
+/* Logs 
+{ 
+   level: "info", 
+   message: "Read user journal", 
+   createdAt: 1637594905976,
+   action: "READ_JOURNAL", 
+   value: "user:12345",
+   userId: "12345",
+   requestId: "123e4567-e89b-12d3-a456-426614174000"
+} 
+*/
+```
+
+- You can use this to detect users who access abnormal amounts of journals by counting `action="READ_JOURNAL"`, grouping by `userId`.
+- You can find who has access patient 12345s journals by filtering on `value="user:12345", action="READ_JOURNAL"`.
+- If the suspected user denies any knowledge, you can search for HTTP logs with same `requestId`, and read out `ipAddress` to find the IP of the user who did it and its timestamp, which should be sufficient information in case there's a legal inquiery.
+
+### How are we progressing on sales?
+
+> User 12345 completes purchase of 2 x Sunscreen 500ml
+
+```ts
+Logger.info('Purchase completed', {
+   action: 'PURCHASE_COMPLETED',
+   value: order.id,
+   userId: '12345',
+   monetaryValue: 100000,
+})
+productsPurchase.forEach(product => 
+   Logger.info(`'Purchase item ${product.name}'`, {
+      action: 'PURCHASED_ITEM',
+      value: product.id,
+      userId: '12345',
+      quantity: product.quantity,
+      monetaryValue: product.price * product.quantity,
+   })
+)
+
+/* Logs 
+{ 
+   level: "info", 
+   message: "Purchase completed", 
+   createdAt: 1637594905976,
+   action: "PURCHASE_COMPLETED", 
+   value: "123e4567-e89b-12d3-a456-426614174000",
+   monetaryValue: 100000,
+   userId: "12345",
+   requestId: "123e4567-e89b-12d3-a456-426614174000"
+} 
+{ 
+   level: "info", 
+   message: "Purchased item Sunscreen 500ml", 
+   createdAt: 1637594905977,
+   action: "PURCHASED_ITEM", 
+   value: "123e4567-e89b-12d3-a456-426614174000",
+   quantity: 2,
+   monetaryValue: 100000,
+   userId: "12345",
+   requestId: "123e4567-e89b-12d3-a456-426614174000"
+} 
+*/
+```
+
+- You can create a time series of sales revenue, by aggregation monetaryValue of logs with `action="PURCHASE_COMPLETED"`.
+- You can use this to find your best customers by aggregating `monetaryValue` and sorting by `userId`
+- You can create a table of products sorted by the amount of revenue it generates.
+
+### When was something changed.
+
+For certain systems, it may be necessary to have logging on most changes to add tracability or accountability. In these cases
+it can also be useful for the user to add a comment to why they performed a certain action.
+
+> Employee deletes a user after a request to be deleted ([Right to be forgotton](https://en.wikipedia.org/wiki/Right_to_be_forgotten)).
+
+```ts
+Logger.info('User deleted', {
+  action: 'DELETE',
+  model: 'user'
+  value: '22222',
+  comment: 'User requested to be deleted support email #1234'
+})
+
+/* Logs 
+{ 
+   level: "info", 
+   message: "User deleted", 
+   createdAt: 1637594905976,
+   action: "DELETE", 
+   model: "user",
+   value: "22222",
+   userId: "12345",
+   comment: "User requested to be deleted support email #1234",
+   requestId: "123e4567-e89b-12d3-a456-426614174000"
+} 
+*/
+```
+
+### Where can/should we improve performance
+
+If not logged, performance issues are sneaky. Application performance typically decrease over time, as data payloads gets heavier, use increases and features + libraries are added.
+
+With the `HTTPLog` structure logged on each request, we can
+
+- Spot performance issues by adding a time series of `responseTime`.
+- Identify which endpoints are slow by grouping by `path` and aggregating e.g. median and 95% percentiles of `responseTime`.
+- Identify which endpoints are collectively waited for the most, by aggregating sum of `responseTime`, grouped by `path`.
+- Find which parts of a request is slow by creating a timeline of events with the same `requestId`.
+
+### Where are the errors?
+
+Given that your API use HTTP status codes properly or logs status codes from GraphQL requests, you can easily identify problem urls.
+If you use an error tracker (e.g. Sentry) where requestIds are sent as error context to tracker, investigating errors becomes a lot easier too.
+
+With the mentioned setup, you could:
+
+- Find which endpoints errors the most by filtering http logs by `httpStatus=500` and grouping by `path`.
+- Investigate a Sentry issue by filtering log events on `requestId`.
+- Identify hack attempts by creating a timeseries of `httpStatus=401`.
+- Find bad links by filtering on `httpStatus=404` and grouping by `path`
+- Discover potential misconfiguration by filtering or creating timeseries of `httpStatus=400`
+
+## About privacy
+
+Logs are less secure than database values, as they go through third party libraries in a predictable pattern and are often sent to third party log aggregation vendors, in addition to the host provider.
+Therefore, logs should not contain personal information, which is why userId (and not name, email etc.) is added to the `ApplicationLog` above.
+
+## About requestId
+
+The purpose of a requestId is the ability to trace a request logged from the client, to all APIs that serve that request.
+Some typical rules of thumbs when setting up support for request ids are:
+
+- The requestId should ideally be sent from the client, using a `X-Request-ID` http header. This is usually required for it to be included in your HTTPLog.
+- The API should read and use that request ID (or generate one if not present) on each incoming request.
+- The requestId should be used in all logging that handles the given request.
+
+These rules applies for the communication between the app client and the API, but also between internal APIs.
+
