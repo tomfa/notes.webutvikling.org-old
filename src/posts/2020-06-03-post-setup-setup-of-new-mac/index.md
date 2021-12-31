@@ -30,21 +30,21 @@ brew install  \
     postgresql  \
     z   \
     zsh   \
-    oh-my-zsh
-    zsh-completions   \
     git   \
     diff-so-fancy   \
     yarn  \
     ffmpeg
+brew install hashicorp/tap/terraform
 ```
 
 #### n postsetup
 
-You want to use n without sudo, see [n on github](https://github.com/tj/n):
+You want to use n without sudo, see [n on github](https://github.com/tj/n#installation):
 
 ```bash
 sudo mkdir -p /usr/local/n
 sudo chown -R $(whoami) /usr/local/n
+sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 ```
 
@@ -59,7 +59,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ### Install Homebrew casks
 
 ```bash
-brew cask install \
+brew install --cask \
     dropbox  \
     iterm2  \
     google-chrome  \
@@ -74,7 +74,7 @@ brew cask install \
     alfred  \
     figma  \
     postman  \
-    spectacle \
+    rectangle \
     sublime-text \
     ngrok
 ```
@@ -118,3 +118,11 @@ touch .local_profile .zshrc.local
 - **Make Spectacle start automatically** - Alfred-search "Spectacle" -> settings and check it.
 - **Hide that Dock** – Put in on the right side, autohide and make it small.
 - **Set finder to always open in list view** – Open finder, click your harddisk, [click cmd-J and configure](https://apple.stackexchange.com/questions/284467/how-to-set-finder-to-always-use-list-view).
+
+
+### Update 2022
+
+- [Spectacle](https://www.spectacleapp.com/) replaced with [Rectangle](https://rectangleapp.com/), due to [no longer in active development](https://www.spectacleapp.com/)
+- [Keybase](https://keybase.io/) removed. [Zoom acquired them](https://blog.zoom.us/zoom-acquires-keybase-and-announces-goal-of-developing-the-most-broadly-used-enterprise-end-to-end-encryption-offering/), and Mac Silicon [seems to be a problem](https://www.reddit.com/r/Keybase/comments/qiuxgn/apple_silicon_support/).
+- Removed zsh-completions
+- Added [terraform](https://www.terraform.io/downloads)
