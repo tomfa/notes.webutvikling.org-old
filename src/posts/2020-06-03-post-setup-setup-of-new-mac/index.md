@@ -11,6 +11,7 @@ status: publish
 Every ~4 years, I'm getting a new Mac. It has happened a few times now, so I thought I might as well make a setup guide for next time.
 Also, it's interesting to see how many (or few!) things change.
 
+
 ### Install brew
 
 ```bash
@@ -23,28 +24,28 @@ Also, it's interesting to see how many (or few!) things change.
 brew tap heroku/brew
 brew install  \
     heroku \
-    node  \
     n  \
     pyenv  \
     redis  \
     postgresql  \
     z   \
     zsh   \
-    oh-my-zsh
-    zsh-completions   \
+    oh-my-zsh \
     git   \
     diff-so-fancy   \
     yarn  \
-    ffmpeg
+    ffmpeg \
+    hashicorp/tap/terraform
 ```
 
 #### n postsetup
 
-You want to use n without sudo, see [n on github](https://github.com/tj/n):
+You want to use n without sudo, see [n on github](https://github.com/tj/n#installation):
 
 ```bash
 sudo mkdir -p /usr/local/n
 sudo chown -R $(whoami) /usr/local/n
+sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
 ```
 
@@ -59,7 +60,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ### Install Homebrew casks
 
 ```bash
-brew cask install \
+brew install --cask \
     dropbox  \
     iterm2  \
     google-chrome  \
@@ -74,7 +75,7 @@ brew cask install \
     alfred  \
     figma  \
     postman  \
-    spectacle \
+    rectangle \
     sublime-text \
     ngrok
 ```
@@ -111,10 +112,33 @@ touch .local_profile .zshrc.local
 
 ### (Subjective) preferences
 
-- **Make Alfred search for folders and Chrome bookmarks** – Alfred -> _Settings_
+- **Make Alfred search for folders and Chrome bookmarks** – Alfred -> _Settings_ -> _Features_ -> _Web bookmarks_
 - **Make Caps lock button act as CTRL instead** – Alfred-search "Keyboard" -> _Modifier Keys_
 - **Swap windows within application with `cmd-ctrl-tab`** – Alfred-search "Keyboard" -> _Shortcuts_ -> _Keyboard_ -> _Move focus to next window_
 - **Remove the bad shortcuts** –> Alfred-search "Keyboard" -> _Shortcuts_ -> Generally remove every you don't know or use.
-- **Make Spectacle start automatically** - Alfred-search "Spectacle" -> settings and check it.
-- **Hide that Dock** – Put in on the right side, autohide and make it small.
 - **Set finder to always open in list view** – Open finder, click your harddisk, [click cmd-J and configure](https://apple.stackexchange.com/questions/284467/how-to-set-finder-to-always-use-list-view).
+
+**[Hide that Dock](https://apple.stackexchange.com/questions/59556/is-there-a-way-to-completely-disable-dock)**
+
+```
+defaults write com.apple.dock autohide -bool true 
+defaults write com.apple.dock autohide-delay -float 1000 
+defaults write com.apple.dock no-bouncing -bool TRUE && killall Dock
+```
+
+### Update 2022
+
+- [Spectacle](https://www.spectacleapp.com/) replaced with [Rectangle](https://rectangleapp.com/), due to [no longer in active development](https://www.spectacleapp.com/)
+- [Keybase](https://keybase.io/) removed. [Zoom acquired them](https://blog.zoom.us/zoom-acquires-keybase-and-announces-goal-of-developing-the-most-broadly-used-enterprise-end-to-end-encryption-offering/), and Mac Silicon [seems to be a problem](https://www.reddit.com/r/Keybase/comments/qiuxgn/apple_silicon_support/).
+- Removed oh-my-zsh. No longer being served through brew.
+- Removed node – no need when installing n.
+- Added [terraform](https://www.terraform.io/downloads)
+
+#### Temporary Mac Silicon issues
+
+
+```bash
+# npm fails at installing npm module sharp (and probably others)
+# https://sharp.pixelplumbing.com/install#apple-m1
+brew install --build-from-source gcc
+```
