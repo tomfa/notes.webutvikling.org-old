@@ -1,0 +1,48 @@
+---
+title: "Deploying GraphQL API to Google cloud"
+date: 2021-07-04
+image: ./nicolas-j-leclercq-va_nrBLonf8-unsplash.jpg
+tags: [google cloud platform, graphql, postgres, aurora]
+imageAlt: ""
+author: tomfa
+status: published
+---
+
+GraphQL API on google cloud
+
+
+## Gotchas
+
+### 1. Deploying compiled Javascript
+
+- Add your compiled index.js file to packages.main field like this:
+```json
+{
+  "main": "lib/index.js"
+}
+```
+- Add your source code to `.gcloudignore` file, as this: `src`
+- Add your compiled folder (e.g. `lib`) to `.gitignore`
+- Add your compiled folder (e.g. `lib`) as included to `.gcloudignore`, as this: `!lib`
+
+### 2. Deployment to region
+
+Deployment is done with gcloud cli like this
+
+```
+gcloud functions deploy graphql --entry-point handle
+```
+
+Add the region flag to specify region, e.g. `--region=europe-central2`
+
+### 3. Allow unauthenticated requests (public api)
+
+Add to following flag to allow anyone to connect to your API:
+```
+--allow-unauthenticated
+```
+
+### 4. Can't determine Firebase Database URL.
+
+You may have issues connecting to the database, returning this error.
+To resolve it.

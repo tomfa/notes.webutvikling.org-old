@@ -1,0 +1,42 @@
+---
+title: "Use semantic-release when creating npm packages"
+date: 2021-05-23
+image: ./spacex-OHOU-5UVIYQ-unsplash.jpg
+tags: [guide, npm, github, semantic-release]
+imageAlt: "Launching like a professional. Photo by @spacex on Unsplash."
+author: tomfa
+status: draft
+---
+
+[Semantic-release](https://semantic-release.gitbook.io/semantic-release/) can help me follow semantic versioning and create changelogs without me having to do much thinking.
+
+If I also use [commitlint](https://github.com/conventional-changelog/commitlint) or [commitizen](https://github.com/commitizen/cz-cli), I (and my team) can feel safe that the changelogs and version numbers include and respect our changes.
+
+Adding [Github actions](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md) or another CI setup allows us to forget all about it, and just churn out code 💌
+
+## How to set it up.
+
+TLDR: See the [gist](https://gist.github.com/tomfa/be73276aaa2d4f54f56da5f9d8fb092b).
+
+### 1. Install commitlint (+ husky)
+
+```bash
+yarn add -D husky @commitlint/config-conventional @commitlint/cli
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+### 2. Add semantic-release
+
+```bash
+# If in monorepo, run this next to the related package.json
+npx semantic-release-cli setup
+```
+
+This updates our package.json. See resulting [package.json here](https://gist.github.com/tomfa/be73276aaa2d4f54f56da5f9d8fb092b#file-package-json).
+
+### 3. Add CI release
+
+Below is the github action workflow for my current project. Remember to run any tests first, and any build step if you got them.
+
+See gist for [.github/workflows/release.sdk](https://gist.github.com/tomfa/be73276aaa2d4f54f56da5f9d8fb092b#file-github_slash_workflows_slash_release-sdk).

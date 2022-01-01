@@ -1,0 +1,134 @@
+---
+title: "Let users book slots in your calendar"
+date: 2021-02-18
+image: ./calendar.jpg
+tags: ["calendar", "calendly", "api"]
+author: tomfa
+status: draft
+---
+
+Say I want a way for users to book a slot in my calendar. It could be for me to demo them my product.
+
+- I want to choose when I'm available, e.g. Monday through Thursday, 08:00 to 12:00.
+- I'd like to only let them book in half hour increments, and only half an hour.
+- I want it to automatically show up in my Google Calendar.
+- I want to anything after 60 days ahead to be disabled for booking.
+- I'd want to be able to block out next Thursday for myself, by simply filling the slot in the calendar.
+
+So far, [Calendly](https://calendly.com/) solves this very nicely. It's cheap, easy to use and comes with some neat extra features
+like automated Google Hangout link (it's still Corona?). BUT, integrating it with your own webste involves [using their widgets or iframes](https://calendly.stoplight.io/docs/embed-api-docs/docs/A-Getting-Started.md)
+
+### So what if I want 100% control of the UI? 
+
+Then I'd need
+
+- API-ability to fetch available slots.
+- API-ability to book a slot.
+
+Which surprisingly [Calendly](https://calendly.com/) hasn't got!.
+
+
+### And what's my alternatives?
+
+#### SimplyBook.me 
+
+Despite the name, [simplybook.me](https://simplybook.me/en/) offers a lot. It includes a website, payment and gift-cards, mobile apps, social media integrations and marketing tools.
+
+Honestly, it looks pretty sweet. But total overkill for my use. I basically just want a calendar with an API.
+
+
+#### Dead ends: Cheap Calendly Copies
+
+- [Meetingbird](https://meetingbird.com/) looks to be missing an API. And it got sunset / smoshed into [Frontapp](https://frontapp.com/), which is too much.
+- [TidyCal](https://tidycal.com/) looks a bit too shabby. And no API? [Appointly](https://appoint.ly/) the same way. A one-pager with gradient colors? I'm a skeptic.
+- [Vocus](https://vocus.io/pricing) - more of the same.
+
+_Unrelated thought: Subscription-based payments, with a 30 day free trial are a sign of quality. If you want a one-time payment as a 
+software, you'll just take my money and run – with no intention of giving support or fixing bugs. You're probably selling a polished turd._
+
+#### Google Calendar API
+
+HOW HARD COULD IT BE?... I'm just going to get -one- calendar. And check availability. And create booking. Maybe add a video link and some attendees? It'll be easy, right?
+
+- [Google has a quickstart](https://developers.google.com/calendar/quickstart/nodejs)
+- [Google has a 74MB(!) package](https://www.npmjs.com/package/googleapis)
+- [Neal got exactly what I need](https://neal.codes/blog/google-calendar-api-on-g-suite)
+- [Jason has an article](https://medium.com/@jason_dark/google-calendar-api-connect-using-node-js-and-an-api-key-94c12057b330)
+- [Martee got some code using a service account](https://dev.to/maartennnn/google-calendar-integration-with-nodejs-without-oauth-2-0-5256)
+- [Melvin made it happen](https://hackernoon.com/my-journey-integrating-google-calendar-g-suite-in-node-62fbc8596455)
+
+
+#### Yes!
+
+- [We need to open up sharing](https://neal.codes/blog/google-calendar-api-on-g-suite)
+
+Because service account is considered outside org.
+
+#### Sending invites to users
+
+Add an attendee to your calendar event.
+
+```ts
+const attendees: Schema$EventAttendee[] = [{ email: "user@gmail.com" }];
+const params: Params$Resource$Events$Insert = {
+    calendarId: 'hello@mybusiness.com',
+    requestBody: {
+        start: {
+          dateTime: new Date().toISOString(),
+          timeZone: 'UTC',
+        },
+        end: {
+          dateTime: new Date(new Date().getTime()+3600*1000).toISOString(),
+          timeZone: 'UTC',
+        },
+        attendees: attendees,
+        summary: 'Let us talk',
+        status: 'confirmed',
+        description: 'There is this thing that we need to resolve',
+      },
+    }
+}
+cal.events.insert(params, (err, event) => {
+  if (err) {
+    return reject(err);
+  }
+  console.log(event.data);
+});
+```
+
+**Note: You will need "Domain-Wide Delegation of Authority"** for your service user before this works, or else you'll run into
+
+> Service accounts cannot invite attendees without Domain-Wide Delegation of Authority.
+
+#### Adding a Video link
+
+```ts
+const attendees: Schema$EventAttendee[] = [{ email: "user@gmail.com" }];
+const params: Params$Resource$Events$Insert = {
+    calendarId: 'hello@mybusiness.com',
+    requestBody: {
+        start: {
+          dateTime: new Date().toISOString(),
+          timeZone: 'UTC',
+        },
+        end: {
+          dateTime: new Date(new Date().getTime()+3600*1000).toISOString(),
+          timeZone: 'UTC',
+        },
+        attendees: attendees,
+        summary: 'Let us talk',
+        status: 'confirmed',
+        description: 'There is this thing that we need to resolve',
+      },
+    }
+}
+cal.events.insert(params, (err, event) => {
+  if (err) {
+    return reject(err);
+  }
+  console.log(event.data);
+});
+```
+
+
+
