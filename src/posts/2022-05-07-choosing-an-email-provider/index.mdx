@@ -1,0 +1,164 @@
+---
+title: "Email providers: AWS SES, Mailgun, Sendgrid, Mailchimp?"
+date: 2022-05-07
+image: "./solen-feyissa-TaOGbz_S-Qw-unsplash.jpg"
+tags: [email, mailgun, sendgrid, mailchimp, gmail]
+imageAlt: "Photo by Solen Feyissa on Unsplash. It's an image of a Macbook with Gmail open. The computer is placed on a cute carpet, giving a cozy feeling. Because carpets are cozy? Also, there's blankets in the background"
+author: tomfa
+status: publish
+---
+
+Every company needs to send some emails, but which email provider do I use?.
+
+I want high deliverability. Which in turn leads to the following requirements:
+- Inbound email routing
+- DKIM and SPF support
+
+_(I don't have enough volume or regularity to warrant a [dedicated IP](https://www.shiftparadigm.com/insights/dedicated-vs-shared-ip-how-they-affect-email-deliverability/))_
+
+For transactional emails, I'd want:
+
+- Email template editor, so developers aren't involved in text edits.
+- Pass template variables in API calls, preferably with validation.
+
+For marketing emails, It would be nice if it could:
+- Handle unsubscribing/resubscribing
+- Automation workflows, e.g. send welcome email 1 day after signup
+- Automated A/B testing of subject lines
+
+
+GDPR compliance is a must, and I believe integrattons with [Facebook Audiences](https://www.mailerlite.com/integrations/facebook-audiences)
+is massively useful for marketing? (But I also don't want to give Meta money)
+
+## [Mailgun](https://www.mailgun.com/pricing/)
+
+Cheap, old, transactional email provider.
+
+- ✅ [Inbound email](https://www.mailgun.com/products/send/inbound-routing/) routing (from 35$)
+- ✅ [DKIM](https://www.mailgun.com/blog/deliverability/understanding-dkim-how-it-works/) and [SPF](https://www.mailgun.com/blog/deliverability/spf-records-basics/) support
+
+
+- ❌ Email template editor, so developers aren't involved in text edits.
+- ❌ Pass template variables in API calls, with validation.
+
+
+- ❌ Handle unsubscribing/resubscribing
+- ❌ Automation workflows
+- ❌ Automated A/B testing of subject lines
+
+## [AWS SES](https://aws.amazon.com/ses/)
+
+- ✅ Inbound email routing
+- ✅ [DKIM](https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim.html) and [SPF](https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-spf.html) support
+
+
+- ❌ Email template editor, so developers aren't involved in text edits.
+- ✅ [Pass template variables in API calls, with validation](https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html).
+
+
+- ❌ Handle unsubscrsssibing/resubscribing
+- ❌ Automation workflows
+- ❌ Automated A/B testing of subject lines
+
+## [SendInBlue](https://www.sendinblue.com/)
+
+80% 5-stars, 9% 1-stars on [TrustPilot](https://no.trustpilot.com/review/www.sendinblue.com).
+Almost all 5-star reviews are marked as encouraged 😶, while almost all 1-star reviews are about blocked accounts/verification ✅.
+
+Seems to be taking over for MailChimp in the category of "doing everything".
+Includes [handling incoming emails in a shared CRM](https://www.sendinblue.com/features/inbox/)
+like inbox, and is [hosted within EU](https://www.sendinblue.com/api/) ✅
+
+- ✅ [Inbound email routing](https://www.sendinblue.com/features/inbox/)
+- ✅ [DKIM and SPF](https://help.sendinblue.com/hc/en-us/articles/208848209-Customise-your-DKIM-signature) support
+
+
+- ✅ [Email template editor](https://help.sendinblue.com/hc/en-us/articles/360019787120), so developers aren't involved in text edits.
+- ✅ [Pass template variables](https://developers.sendinblue.com/recipes/send-transactional-emails-in-nodejs) in API calls, with validation.
+
+
+- ✅ Handle [unsubscribing/resubscribing](https://help.sendinblue.com/hc/en-us/articles/208772629)
+- ✅ [Automation workflows](https://www.sendinblue.com/features/marketing-automation/)
+- ✅ [Automated A/B testing](https://help.sendinblue.com/hc/en-us/articles/360001298940--Classic-design-Creating-A-B-test-email-campaigns) of subject lines
+
+## [MailerLite](https://www.mailerlite.com/)
+
+Mailerlite (from 9$ or 19$ for my use case) is a **marketing-email service**,
+with a sister-company MailerSend to handle transactional emails. It has a Facebook
+marketer integration, helping you target similar customers ✅. It's based in EU ✅
+
+71% 5-stars, 24% 1-stars [on Trustpilot](https://no.trustpilot.com/review/mailerlite.com).
+The main reason for bad reviews are strict policies ✅, and technical issues ❌.
+
+- ❌ Inbound email routing
+- ✅ [DKIM and SPF](https://www.mailerlite.com/help/how-to-verify-and-authenticate-your-domain#new/get-records-approved) support
+
+
+- ✅ [Email template editor](https://www.mailerlite.com/video-tutorials/drag-and-drop-editor#classic), so developers aren't involved in text edits.
+- ✅ [Pass template variables](hhttps://www.mailerlite.com/help/how-to-create-and-use-custom-fields) in API calls, with validation.
+
+
+- ✅ Handle [unsubscribing/resubscribing](https://www.mailerlite.com/video-tutorials/customize-unsubscribe-page)
+- ✅ [Automation workflows](https://www.mailerlite.com/features/automation)
+- ✅ [Automated A/B testing](https://www.mailerlite.com/features/ab-testing) of subject lines
+
+## [MailerSend](https://www.mailersend.com/)
+
+Mailersend (from 25$ for my use calse) seems like a very well made, easy to use
+**transactional email provider**. Thumbs up! It's sister-company MailerLite handles the marketing part.
+
+- ✅ [Inbound email routing](https://www.mailersend.com/features/inbound-emails) (from $25)
+- ✅ DKIM and SPF support
+
+
+- ✅ Email template editor, so developers aren't involved in text edits.
+- 😶 [Pass template variables](https://www.mailersend.com/features/dynamic-email-templates) in API calls, with validation.
+
+
+- ❌ Handle unsubscribing/resubscribing
+- ❌ Automation workflows
+- ❌ Automated A/B testing of subject lines
+
+## [Activecampaign](https://www.activecampaign.com/)
+
+Gives off a more marketing vibe than I'd want.
+Custom domain starts at "Contact sales" pricing, which kind of disqualifies it for transactional stuff ❌
+
+## [Mailchimp](https://mailchimp.com/)
+
+Mailchimp has been a big name in email for a long time. Unfortunately, they still
+process all emails in US only ❌ (though they [claim to be GDPR complaint](https://mailchimp.com/help/mailchimp-european-data-transfers/) still),
+and their [Trustpilot](https://no.trustpilot.com/review/www.mailchimp.com) reviews stink .
+
+- ✅ [Inbound email routing](https://www.mailersend.com/features/inbound-emails) (from $25)
+- ✅ DKIM and SPF support
+
+
+- ✅ Email template editor, so developers aren't involved in text edits.
+- ✅ [Pass template variables](https://www.mailersend.com/features/dynamic-email-templates) in API calls, with validation.
+
+
+- ✅ Handle unsubscribing/resubscribing
+- ✅ Automation workflows
+- ✅ Automated A/B testing of subject lines
+
+## [Sendgrid](https://www.trustpilot.com/review/sendgrid.com)
+
+Like Mailchimp, Sendgrid has been a big name in email for a while. Similarily, they still
+process all emails in US only ❌ (though they [claim to be GDPR complaint](https://sendgrid.com/resource/general-data-protection-regulation-2/) still),
+and their [Trustpilot](https://no.trustpilot.com/review/www.sendgrid.com) reviews stink even worse than Mailchimps.
+
+- ✅ [Inbound email routing](https://docs.sendgrid.com/for-developers/parsing-email/setting-up-the-inbound-parse-webhook) (from $25)
+- ✅ DKIM and SPF support
+
+
+- ✅ Email template editor, so developers aren't involved in text edits.
+- ✅ [Pass template variables](https://www.mailersend.com/features/dynamic-email-templates) in API calls, with validation.
+
+
+- ✅ [Handle unsubscribing/resubscribing](https://docs.sendgrid.com/ui/account-and-settings/tracking#subscription-tracking)
+- ✅ [Automation workflows](https://sendgrid.com/solutions/email-marketing/automation/)
+- ✅ [Automated A/B testing of subject lines](https://docs.sendgrid.com/ui/sending-email/a-b-testing)
+
+## Related links
+- [Email Deliverability: The Only Guide to Avoid The Spam Folder in 2022](https://moosend.com/blog/email-deliverability/)
