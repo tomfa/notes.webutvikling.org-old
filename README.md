@@ -1,6 +1,7 @@
 # Notes
 
-Static site generator for [notes.webutvikling.org](https://notes.webutvikling.org)
+Gatsby static site generator, previously used for [notes.webutvikling.org](https://notes.webutvikling.org).
+Replaced by [an astro blog](https://github.com/tomfa/blog).
 
 ![Production Build](https://github.com/tomfa/notes/workflows/Production%20Build/badge.svg)
 
